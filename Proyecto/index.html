@@ -17,9 +17,14 @@
                 <a href="#" class="navbar-brand d-flex align-items-center">
                     <strong>Área Administrativa</strong>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="Assets/Images/profile.svg" style="width: 35px;" alt="perfil">
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="#">Ver perfil</a>
+                        <a class="dropdown-item" href="#">Cerrar sesión</a>
+                    </div>
             </div>
         </div>
     </header>
@@ -49,8 +54,8 @@
                                 <p class="card-text">Calendario.</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                                        <button type="button" class="btn btn-primary btn-sm">Ver</button>
+                                        <button type="button" class="btn btn-primary btn-sm">Editar</button>
                                     </div>
                                     <small class="text-muted">9 mins</small>
                                 </div>
@@ -59,9 +64,9 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" src="https://via.placeholder.com/225" alt="Imagen">
+                            <img class="card-img-top" src="Assets/Images/Mengapa-Harus-Bergabung-01.png" alt="cursos">
                             <div class="card-body">
-                                <p class="card-text">Este es un ejemplo de tarjeta con Bootstrap.</p>
+                                <p class="card-text">Cursos</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
@@ -75,9 +80,9 @@
             
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" src="https://via.placeholder.com/225" alt="Imagen">
+                            <img class="card-img-top" src="Assets/Images/Captura de pantalla 2025-02-20 122029.png" alt="Imagen">
                             <div class="card-body">
-                                <p class="card-text">Otra tarjeta con contenido de ejemplo.</p>
+                                <p class="card-text">Calificacioness</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
