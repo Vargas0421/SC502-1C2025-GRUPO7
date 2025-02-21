@@ -5,16 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Administracion</title>
-
-    <!-- Enlace a Bootstrap 4 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 
 <body>
-    
-    <!-- Barra de navegación -->
-    <header>
+    <header class="fixed-top">
         <div class="navbar navbar-dark bg-dark shadow-sm">
             <div class="container d-flex justify-content-between">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +25,8 @@
                         <img src="Assets/Images/profile.svg" style="width: 35px;" alt="perfil">
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="perfil">
-                        <a class="dropdown-item" href="#">Ver perfil</a>
+                        <a class="dropdown-item" href="profile.html">Ver perfil</a>
+
                         <a class="dropdown-item btn btn-danger" href="login.html">Cerrar sesión</a>
                     </div>
                 </div>
@@ -82,6 +79,8 @@
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
                                         <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                                        <a href="cursos.html" class="btn btn-sm btn-outline-primary">Ir a los cursos</a>
+
                                     </div>
                                     <small class="text-muted">9 mins</small>
                                 </div>
@@ -110,14 +109,13 @@
                         <div class="card mb-4 box-shadow">
                             <img class="card-img-top image-style" src="Assets/Images/nota.png" alt="Notas">
                             <div class="card-body">
-                                <h3>Calendario</h3>
+                                <h3>Calificaciones</h3>
                                 <p class="card-text">Aquí podrás manejar las notas de tus estudiantes.</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
                                         <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
-                                        <a href="calificacion.html" class="btn btn-sm btn-outline-primary">Ir a
-                                            Calificaciones</a>
+                                        <a href="calificacion.html" class="btn btn-sm btn-outline-primary">Ir aCalificaciones</a>
                                     </div>
                                     <small class="text-muted">30 mins</small>
                                 </div>
@@ -135,6 +133,8 @@
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
                                         <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                                        <a href="estudiantes.html" class="btn btn-sm btn-outline-primary">Ver los estudiantes</a>
+
                                     </div>
                                     <small class="text-muted">15 mins</small>
                                 </div>
@@ -149,16 +149,14 @@
 
     </main>
 
-    <!-- Pie de página -->
-    <footer class="text-muted text-center py-4">
+    <footer class="text-muted text-center py-4"> 
         <div class="container">
-            <p>&copy; 2024 Álbum Bootstrap. Todos los derechos reservados.</p>
+            <p>&copy; 2025 SC502-1C2025-GRUPO7. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     
 
-    <!-- Scripts de Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
