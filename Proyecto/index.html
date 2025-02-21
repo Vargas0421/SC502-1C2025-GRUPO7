@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,23 +8,32 @@
 
     <!-- Enlace a Bootstrap 4 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
 
+<body>
+    
     <!-- Barra de navegación -->
     <header>
         <div class="navbar navbar-dark bg-dark shadow-sm">
             <div class="container d-flex justify-content-between">
-                <a href="#" class="navbar-brand d-flex align-items-center">
-                    <strong>Área Administrativa</strong>
-                </a>
-                <a href="#" class="btn btn-danger my-2">Log out</a>
-
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <strong>Área Administrativa</strong>
+                </a>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <img src="Assets/Images/profile.svg" style="width: 35px;" alt="perfil">
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="perfil">
+                        <a class="dropdown-item" href="#">Ver perfil</a>
+                        <a class="dropdown-item btn btn-danger" href="login.html">Cerrar sesión</a>
+                    </div>
+                </div>
             </div>
-        </div>
     </header>
 
     <!-- Contenido principal -->
@@ -47,9 +57,10 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="Assets/Images/Calendar.webp" alt="Calendar">
+                            <img class="card-img-top image-style"  src="Assets/Images/Calendar.webp" alt="Calendar">
                             <div class="card-body">
-                                <p class="card-text">Calendario.</p>
+                                <h3>Calendario</h3>
+                                <p class="card-text">Puede administrar las fechas y tiempos de las asignaturas</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
@@ -63,8 +74,9 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" src="Assets/Images/cursos " alt="Cursos">
+                            <img class="card-img-top image-style" src="Assets/Images/cursos" alt="Cursos">
                             <div class="card-body">
+                                <h3>Cursos</h3>
                                 <p class="card-text">En este elemnto podras administrar los cursos que impartes</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
@@ -76,11 +88,12 @@
                             </div>
                         </div>
                     </div>
-            
+
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" src="Assets/Images/clases.png" alt="Clases">
+                            <img class="card-img-top image-style" src="Assets/Images/clases.png" alt="Clases">
                             <div class="card-body">
+                                <h3>Clases</h3>
                                 <p class="card-text">En este apartado podras administar tuc clases .</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
@@ -92,25 +105,44 @@
                             </div>
                         </div>
                     </div>
-            
+
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" src="https://via.placeholder.com/225" alt="Notas">
+                            <img class="card-img-top image-style" src="Assets/Images/nota.png" alt="Notas">
                             <div class="card-body">
+                                <h3>Calendario</h3>
                                 <p class="card-text">Aquí podrás manejar las notas de tus estudiantes.</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
                                         <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
-                                        <a href="calificacion.html" class="btn btn-sm btn-outline-primary">Ir a Calificaciones</a>
+                                        <a href="calificacion.html" class="btn btn-sm btn-outline-primary">Ir a
+                                            Calificaciones</a>
                                     </div>
                                     <small class="text-muted">30 mins</small>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    
+
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top image-style" src="Assets/Images/clases.png" alt="Clases">
+                            <div class="card-body">
+                                <h3>Estudiantes</h3>
+                                <p class="card-text">En este apartado puewde encontrar información sobre sus estudiantes.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                                    </div>
+                                    <small class="text-muted">15 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -124,10 +156,13 @@
         </div>
     </footer>
 
+    
+
     <!-- Scripts de Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
+
 </html>
