@@ -12,7 +12,9 @@
   <header class="fixed-top">
     <div class="navbar navbar-dark bg-dark shadow-sm">
       <div class="container d-flex justify-content-between align-items-center">
-        <a href="index.php" class="btn btn-outline-light">Volver</a>
+      <a href="index.html" class="btn btn-outline-light d-flex align-items-center gap-2" aria-label="Volver"
+              title="Volver a la página anterior">
+              <span>Volver</span> </a>
         <a href="#" class="navbar-brand">Pagos</a>
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
@@ -41,7 +43,7 @@
         </thead>
         <tbody>
           <?php
-          include 'salarios.php';
+          include 'datosPhp/salarios.php';
           $contador = 1;
           foreach ($salarios as $salario) {
             echo "<tr>";
