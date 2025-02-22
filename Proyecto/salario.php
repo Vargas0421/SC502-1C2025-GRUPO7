@@ -41,7 +41,7 @@
         </thead>
         <tbody>
           <?php
-          include 'salarios.php';
+          include 'datosPhp/salarios.php';
           $contador = 1;
           foreach ($salarios as $salario) {
             echo "<tr>";

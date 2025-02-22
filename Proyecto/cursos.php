@@ -1,5 +1,5 @@
 <?php
-include "php/estudiantes.php";
+include "datosPhp/cursos.php";
 ?>
 
 <!DOCTYPE html>
