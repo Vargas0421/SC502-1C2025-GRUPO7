@@ -1,11 +1,11 @@
 <?php
-include "cursos.php";
+include "datosPhp/cursos.php";
+
+$cursoEncontrado = null;
 
 if (isset($_GET['nombre'])) {
-    $nombreCurso = urldecode($_GET['nombre']); 
-    $nombreCurso = mb_convert_encoding($nombreCurso, "UTF-8", "auto");
+    $nombreCurso = urldecode($_GET['nombre']);
 
-    $cursoEncontrado = null;
     foreach ($cursos as $curso) {
         if ($curso->nombre === $nombreCurso) {
             $cursoEncontrado = $curso;
@@ -13,10 +13,10 @@ if (isset($_GET['nombre'])) {
         }
     }
 } else {
-    $cursoEncontrado = null;
+    header("Location: cursos.php");
+    exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,7 +29,7 @@ if (isset($_GET['nombre'])) {
 <header class="fixed-top">
         <div class="navbar navbar-dark bg-dark shadow-sm">
           <div class="container d-flex justify-content-between align-items-center">
-            <a href="index.html" class="btn btn-outline-light d-flex align-items-center gap-2" aria-label="Volver"
+            <a href="Clases.php" class="btn btn-outline-light d-flex align-items-center gap-2" aria-label="Volver"
               title="Volver a la página anterior">
               <span>Volver</span> </a>
             <a href="#" class="navbar-brand d-flex align-items-center">
