@@ -1,17 +1,30 @@
 <?php
-include "php/estudiantes.php";
+include "cursos.php";
+
+if (isset($_GET['nombre'])) {
+    $nombreCurso = urldecode($_GET['nombre']); 
+    $nombreCurso = mb_convert_encoding($nombreCurso, "UTF-8", "auto");
+
+    $cursoEncontrado = null;
+    foreach ($cursos as $curso) {
+        if ($curso->nombre === $nombreCurso) {
+            $cursoEncontrado = $curso;
+            break;
+        }
+    }
+} else {
+    $cursoEncontrado = null;
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cursos Universitarios</title>
+    <title>Información del Curso</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
 <header class="fixed-top">
         <div class="navbar navbar-dark bg-dark shadow-sm">
@@ -20,7 +33,7 @@ include "php/estudiantes.php";
               title="Volver a la página anterior">
               <span>Volver</span> </a>
             <a href="#" class="navbar-brand d-flex align-items-center">
-              <strong>Cursos</strong>
+              <strong>Informacion sobre el curso</strong>
             </a>
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
@@ -36,29 +49,26 @@ include "php/estudiantes.php";
         </div>
       </header>
 
-    <main role="main">
-        <div class="container marketing mt-5 pt-5">
-            <h2 class="text-center mb-4">Listado de curos impartidos</h2>
-            <div class="row">
-                <?php foreach ($cursos as $curso): ?>
-                    <div class="col-lg-4 mb-4">
-                        <div class="card shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $curso->nombre ?></h5>
-                                <p class="card-text">
-                                    <strong>Profesor:</strong> <?= $curso->profesor ?><br>
-                                    <strong>Créditos:</strong> <?= $curso->creditos ?><br>
-                                    <strong>Alumnos:</strong> <?= $curso->cantidadAlumnos ?><br>
-                                    <strong>Horario:</strong> <?= $curso->horario ?><br>
-                                    <strong>Sede:</strong> <?= $curso->sede ?>
-                                </p>
-                                <a href="informacionCurso.php?nombre=<?= urlencode($curso->nombre) ?>" class="btn btn-primary">Más información</a>
-                                </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
+    <main role="main" class="container mt-5 pt-5">
+        <?php if ($cursoEncontrado): ?>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title"><?= $cursoEncontrado->nombre ?></h2>
+                    <p class="card-text">
+                        <strong>Profesor:</strong> <?= $cursoEncontrado->profesor ?><br>
+                        <strong>Créditos:</strong> <?= $cursoEncontrado->creditos ?><br>
+                        <strong>Alumnos:</strong> <?= $cursoEncontrado->cantidadAlumnos ?><br>
+                        <strong>Horario:</strong> <?= $cursoEncontrado->horario ?><br>
+                        <strong>Sede:</strong> <?= $cursoEncontrado->sede ?>
+                    </p>
+                    <a href="cursos.html" class="btn btn-secondary">Regresar</a>
+                </div>
             </div>
-        </div>
+        <?php else: ?>
+            <div class="alert alert-danger">
+                <p>Curso no encontrado.</p>
+            </div>
+        <?php endif; ?>
     </main>
 
     <footer class="container mt-5">

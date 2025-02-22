@@ -17,7 +17,6 @@ class Curso {
     }
 }
 
-// Definimos cursos quemados
 $cursos = [
     new Curso("Bases de Datos", "Carlos Ramírez", 4, 20, "Miércoles 14:00 - 16:00", "Sede Sur"),
     new Curso("Programación Web", "Laura Fernández", 3, 25, "Lunes 10:00 - 12:00", "Sede Norte"),
