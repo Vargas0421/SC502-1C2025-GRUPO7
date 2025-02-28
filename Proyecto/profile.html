@@ -6,28 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Profile</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link href="css/profile.css" rel="stylesheet">
+    <link href="Assets/css/profile.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Barra de navegación fija -->
     <header class="fixed-top">
         <div class="navbar navbar-dark bg-dark shadow-sm">
             <div class="container d-flex justify-content-between">
-                <!-- Botón de volver -->
                 <a href="index.html" class="btn btn-outline-light d-flex align-items-center gap-2" aria-label="Volver"
                     title="Volver a la página anterior"> Volver</a>
 
-                <!-- Título -->
                 <a href="#" class="navbar-brand d-flex align-items-center">
                     <strong>Profile</strong>
                 </a>
 
-                <!-- Menú desplegable de perfil -->
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                        <img src="Assets/Images/profile.svg" style="width: 35px;" alt="perfil">
+                        <img src="Assets/Images/profile.svg" class="profile-img" alt="perfil">
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="perfil">
                         <a class="dropdown-item" href="#">Ver perfil</a>
@@ -38,100 +35,87 @@
         </div>
     </header>
 
-    <!-- Contenido principal -->
-    <div class="bg-light">
+    <div class="bg-light pt-5">
         <div class="container py-5">
             <div class="row">
                 <div class="col-12 mb-4">
                     <div class="profile-header position-relative mb-4">
                         <div class="position-absolute top-0 end-0 p-3">
-                            <button class="btn btn-light"><i class="fas fa-edit me-2"></i>Edit Cover</button>
+                            <button class="btn btn-light"><i class="fas fa-edit me-2"></i>Editar Portada</button>
                         </div>
                     </div>
                     <div class="text-center">
                         <div class="position-relative d-inline-block">
                             <img src="https://randomuser.me/api/portraits/men/40.jpg" class="rounded-circle profile-pic"
                                 alt="Profile Picture">
-                            <button class="btn btn-primary btn-sm position-absolute bottom-0 end-0 rounded-circle">
+                            <button class="btn btn-primary btn-sm position-absolute bottom-0 end-0 rounded-circle" title="Change Profile Picture">
                                 <i class="fas fa-camera"></i>
                             </button>
                         </div>
                         <h3 class="mt-3 mb-1">Alex Johnson</h3>
                         <p class="text-muted mb-3">Senior Product Designer</p>
                         <div class="d-flex justify-content-center gap-2 mb-4">
-                            <button class="btn btn-outline-primary"><i class="fas fa-envelope me-2"></i>Message</button>
-                            <button class="btn btn-primary"><i class="fas fa-user-plus me-2"></i>Connect</button>
+                            <button class="btn btn-outline-primary"><i class="fas fa-envelope me-2"></i>Mensaje</button>
+                            <button class="btn btn-primary"><i class="fas fa-user-plus me-2"></i>Conectar</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Main Content -->
                 <div class="col-12">
                     <div class="card border-0 shadow-sm">
                         <div class="card-body p-0">
                             <div class="row g-0">
-                                <!-- Sidebar -->
-                                <div class="col-lg-3 border-end">
+                                <div class="col-lg-3 border-end profile-sidebar">
                                     <div class="p-4">
                                         <div class="nav flex-column nav-pills">
-                                            <a class="nav-link active" href="#"><i class="fas fa-user me-2"></i>Personal
-                                                Info</a>
-                                            <a class="nav-link" href="#"><i class="fas fa-lock me-2"></i>Security</a>
-                                            <a class="nav-link" href="#"><i
-                                                    class="fas fa-bell me-2"></i>Notifications</a>
-                                            <a class="nav-link" href="#"><i
-                                                    class="fas fa-credit-card me-2"></i>Billing</a>
-                                            <a class="nav-link" href="#"><i
-                                                    class="fas fa-chart-line me-2"></i>Activity</a>
+                                            <a class="nav-link active" href="#"><i class="fas fa-user me-2"></i> Información Personal</a>
+                                            <a class="nav-link" href="#"><i class="fas fa-lock me-2"></i> Seguridad</a>
+                                            <a class="nav-link" href="#"><i class="fas fa-bell me-2"></i> Notificaciones</a>
+                                            <a class="nav-link" href="#"><i class="fas fa-credit-card me-2"></i> Facturación</a>
+                                            <a class="nav-link" href="#"><i class="fas fa-chart-line me-2"></i> Actividad</a>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Content Area -->
                                 <div class="col-lg-9">
                                     <div class="p-4">
-                                        <!-- Personal Information -->
                                         <div class="mb-4">
-                                            <h5 class="mb-4">Personal Information</h5>
+                                            <h5 class="mb-4">Información Personal</h5>
                                             <div class="row g-3">
                                                 <div class="col-md-6">
-                                                    <label class="form-label">First Name</label>
-                                                    <input type="text" class="form-control" value="Alex">
+                                                    <label class="form-label">Nombre</label>
+                                                    <input type="text" class="form-control" value="Alex" title="Nombre" placeholder="Ingrese su nombre">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="form-label">Last Name</label>
-                                                    <input type="text" class="form-control" value="Johnson">
+                                                    <label class="form-label">Apellido</label>
+                                                    <input type="text" class="form-control" value="Johnson" title="Apellido" placeholder="Ingrese su apellido">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="email" class="form-control"
-                                                        value="alex.johnson@example.com">
+                                                    <label class="form-label">Correo Electrónico</label>
+                                                    <input type="email" class="form-control" value="alex.johnson@example.com" title="Correo Electrónico" placeholder="Ingrese su correo electrónico">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="form-label">Phone</label>
-                                                    <input type="tel" class="form-control" value="+1 (555) 123-4567">
+                                                    <label class="form-label">Teléfono</label>
+                                                    <input type="tel" class="form-control" value="+1 (555) 123-4567" title="Teléfono" placeholder="Ingrese su teléfono">
                                                 </div>
                                                 <div class="col-12">
                                                     <label class="form-label">Bio</label>
-                                                    <textarea class="form-control"
-                                                        rows="4">Product designer with 5+ years of experience in creating user-centered digital solutions. Passionate about solving complex problems through simple and elegant designs.</textarea>
+                                                    <textarea class="form-control" rows="4" title="Bio" placeholder="Ingrese su bio">Product designer with 5+ years of experience in creating user-centered digital solutions. Passionate about solving complex problems through simple and elegant designs.</textarea>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <!-- Settings Cards -->
                                         <div class="row g-4 mb-4">
                                             <div class="col-md-6">
                                                 <div class="settings-card card">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <div>
-                                                                <h6 class="mb-1">Two-Factor Authentication</h6>
-                                                                <p class="text-muted mb-0 small">Add an extra layer of
-                                                                    security</p>
+                                                                <h6 class="mb-1">Autenticación en dos pasos</h6>
+                                                                <p class="text-muted mb-0 small">Añade una capa extra de seguridad</p>
                                                             </div>
                                                             <div class="form-check form-switch">
-                                                                <input class="form-check-input" type="checkbox" checked>
+                                                                <input class="form-check-input" type="checkbox" checked title="Autenticación en dos pasos">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -142,13 +126,11 @@
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <div>
-                                                                <h6 class="mb-1">Email Notifications</h6>
-                                                                <p class="text-muted mb-0 small">Receive activity
-                                                                    updates
-                                                                </p>
+                                                                <h6 class="mb-1">Notificaciones por correo</h6>
+                                                                <p class="text-muted mb-0 small">Recibe actualizaciones de actividad</p>
                                                             </div>
                                                             <div class="form-check form-switch">
-                                                                <input class="form-check-input" type="checkbox" checked>
+                                                                <input class="form-check-input" type="checkbox" checked title="Notificaciones por correo">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -156,20 +138,19 @@
                                             </div>
                                         </div>
 
-                                        <!-- Recent Activity -->
                                         <div>
-                                            <h5 class="mb-4">Recent Activity</h5>
+                                            <h5 class="mb-4">Actividad Reciente</h5>
                                             <div class="activity-item mb-3">
-                                                <h6 class="mb-1">Updated profile picture</h6>
-                                                <p class="text-muted small mb-0">2 hours ago</p>
+                                                <h6 class="mb-1">Actualizó la foto de perfil</h6>
+                                                <p class="text-muted small mb-0">Hace 2 horas</p>
                                             </div>
                                             <div class="activity-item mb-3">
-                                                <h6 class="mb-1">Changed password</h6>
-                                                <p class="text-muted small mb-0">Yesterday</p>
+                                                <h6 class="mb-1">Cambiada la contraseña</h6>
+                                                <p class="text-muted small mb-0">Ayer</p>
                                             </div>
                                             <div class="activity-item">
-                                                <h6 class="mb-1">Updated billing information</h6>
-                                                <p class="text-muted small mb-0">3 days ago</p>
+                                                <h6 class="mb-1">Actualizó la información de facturación</h6>
+                                                <p class="text-muted small mb-0">Hace 3 días</p>
                                             </div>
                                         </div>
                                     </div>
@@ -181,6 +162,10 @@
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>

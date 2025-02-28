@@ -1,0 +1,215 @@
+.image-style {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+header {
+    width: 100%;
+    z-index: 1000;
+}
+
+h1 {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.btn-outline-primary {
+    width: 100%;
+}
+.card-custom {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+    overflow: hidden;
+    position: relative;
+    animation: fadeInUp 0.6s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-custom:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    border: 2px solid transparent;
+    background-image: linear-gradient(white, white), 
+                      linear-gradient(45deg, #007bff, #00d4ff);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.card-custom .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.card-custom:hover .card-img-top {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.card-custom .card-body {
+    text-align: center;
+    padding: 20px;
+}
+
+.card-custom .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.card-custom:hover .card-title {
+    color: #007bff;
+}
+
+.card-custom .card-text {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+.card-custom:hover .card-text {
+    color: #333;
+}
+
+.card-custom .btn-primary {
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.card-custom .btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+
+
+.table-container {
+    margin-top: 40px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid #ddd;
+}
+
+.thead-dark th {
+    background-color: #343a40;
+    color: white;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.table tbody tr:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+}
+
+.dropdown-toggle {
+    padding: 10px;
+    border-radius: 8px;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0;
+    background-color: #343a40;
+}
+
+footer .text-white {
+    font-size: 14px;
+}
+
+.dropdown-item.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-radius: 5px;
+}
+
+.dropdown-item.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.table .btn {
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.table .btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-custom {
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-custom:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-custom .card-title {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.card-custom .card-text {
+    font-size: 1rem;
+    color: #666;
+}
+
+.card-custom .btn-primary {
+    font-size: 1rem;
+    background-color: #007bff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.card-custom .btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
