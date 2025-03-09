@@ -6,33 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Administracion</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="../css/estilos.css">
 </head>
 
 <body>
-    <header class="fixed-top">
-        <div class="navbar navbar-dark bg-dark shadow-sm">
-            <div class="container d-flex justify-content-between">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
-                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a href="#" class="navbar-brand d-flex align-items-center">
-                    <strong>Área Administrativa</strong>
-                </a>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <img src="Assets/Images/profile.svg" style="width: 35px;" alt="perfil">
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="perfil">
-                        <a class="dropdown-item" href="profile.html">Ver perfil</a>
-
-                        <a class="dropdown-item btn btn-danger" href="login.html">Cerrar sesión</a>
-                    </div>
-                </div>
-            </div>
-    </header>
+<?php 
+$titulo = "Inicio - Área Administrativa"; 
+require_once('header/headerIndex.php'); 
+?>
 
     <main role="main">
         <section class="jumbotron text-center">
@@ -46,7 +27,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top image-style" src="Assets/Images/Calendar.webp" alt="Calendar">
+                            <img class="card-img-top image-style" src="../Images/Calendar.webp" alt="Calendar">
                             <div class="card-body">
                                 <h3>Calendario</h3>
                                 <p class="card-text">Puede administrar las fechas y tiempos de las asignaturas</p>
@@ -54,7 +35,6 @@
                                     <div class="btn-group">
                                         <a href="calendario.html" class="btn btn-sm btn-outline-primary">Abrir
                                             calendario</a>
-
                                     </div>
                                     <small class="text-muted">9 mins</small>
                                 </div>
@@ -63,26 +43,22 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
-                            <img class="card-img-top image-style" src="Assets/Images/cursos" alt="Cursos">
+                            <img class="card-img-top image-style" src="../Images/imagenCurso.png" alt="Cursos">
                             <div class="card-body">
                                 <h3>Cursos</h3>
-                                <p class="card-text">En este elemnto podras administrar los cursos que impartes</p>
+                                <p class="card-text">En este elemento podrás administrar los cursos que impartes</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <a href="clases.php" class="btn btn-sm btn-outline-primary">Ir a los cursos</a>
-
                                     </div>
                                     <small class="text-muted">9 mins</small>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
-                            <img class="card-img-top image-style" src="Assets/Images/salario" alt="Notas">
+                            <img class="card-img-top image-style" src="../Images/imagenSalario.png" alt="Salario">
                             <div class="card-body">
                                 <h3>Salario</h3>
                                 <p class="card-text">Aquí podrás manejar el historial de tus Salarios.</p>
@@ -95,18 +71,16 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
-                            <img class="card-img-top image-style" src="Assets/Images/clases.png" alt="Clases">
+                            <img class="card-img-top image-style" src="../Images/imagenEstudiantes.png" alt="Clases">
                             <div class="card-body">
                                 <h3>Estudiantes</h3>
-                                <p class="card-text">En este apartado puewde encontrar información sobre sus
+                                <p class="card-text">En este apartado puede encontrar información sobre sus
                                     estudiantes.</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <a href="estudiantes.html" class="btn btn-sm btn-outline-primary">Ver los estudiantes</a>
-
+                                        <a href="estudiantes.php" class="btn btn-sm btn-outline-primary">Ver los estudiantes</a>
                                     </div>
                                     <small class="text-muted">15 mins</small>
                                 </div>
@@ -116,17 +90,13 @@
                 </div>
             </div>
         </div>
-
     </main>
 
-    require_once('views/footer.php');
-
-
+    <?php require_once('footer/footer.php'); ?>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
 </body>
 
 </html>
