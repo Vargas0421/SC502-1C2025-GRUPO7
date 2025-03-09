@@ -11,7 +11,7 @@
 
 <body>
 <?php 
-$titulo = "Inicio - Área Administrativa"; 
+$titulo = "Área Administrativa"; 
 require_once('header/headerIndex.php'); 
 ?>
 
@@ -49,7 +49,7 @@ require_once('header/headerIndex.php');
                                 <p class="card-text">En este elemento podrás administrar los cursos que impartes</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <a href="clases.php" class="btn btn-sm btn-outline-primary">Ir a los cursos</a>
+                                        <a href="Clases.php" class="btn btn-sm btn-outline-primary">Ir a los cursos</a>
                                     </div>
                                     <small class="text-muted">9 mins</small>
                                 </div>

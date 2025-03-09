@@ -14,24 +14,24 @@
     <header class="fixed-top">
         <div class="navbar navbar-dark bg-dark shadow-sm">
             <div class="container d-flex justify-content-between">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
-                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                
+                <!-- Solo mostrar el botón "Volver" si no estás en index.php ni en login.php -->
+                <?php if (basename($_SERVER['PHP_SELF']) != 'index.php' && basename($_SERVER['PHP_SELF']) != 'login.php'): ?>
+    <a href="javascript:history.back()" class="btn btn-outline-light d-flex align-items-center gap-2" aria-label="Volver" title="Volver a la página anterior">
+        Volver
+    </a>
+<?php endif; ?>
+
+                
+                <!-- El logo siempre se muestra -->
                 <a href="#" class="navbar-brand d-flex align-items-center">
                     <strong><?php echo isset($titulo) ? $titulo : 'Área Administrativa'; ?></strong>
                 </a>
-                <?php if ( basename($_SERVER['PHP_SELF']) != 'login.php'): ?>
-                    <a href="../../../views/content/index.php" class="btn btn-outline-light d-flex align-items-center gap-2" aria-label="Volver"
-                        title="Volver a la página anterior">
-                        Volver
-                    </a>
-                <?php endif; ?>
-
+                
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                        <img src="views/Images/profile.svg" style="width: 35px;" alt="perfil">
+                        <img src="../../Iconos/profile.svg" style="width: 35px;" alt="perfil">
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="perfil">
                         <?php if (basename($_SERVER['PHP_SELF']) != 'profile.php'): ?>
@@ -43,3 +43,6 @@
             </div>
         </div>
     </header>
+</body>
+
+</html>

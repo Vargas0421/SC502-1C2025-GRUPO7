@@ -1,5 +1,5 @@
 <?php
-include "datosPhp/cursos.php";
+include '../../models/datosPhp/cursos.php';
 ?>
 
 <!DOCTYPE html>
