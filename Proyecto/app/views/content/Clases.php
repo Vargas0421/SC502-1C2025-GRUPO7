@@ -1,5 +1,5 @@
 <?php
-include "datosPhp/cursos.php";
+include '../../models/datosPhp/cursos.php';
 ?>
 
 <!DOCTYPE html>
@@ -13,28 +13,9 @@ include "datosPhp/cursos.php";
 </head>
 
 <body>
-<header class="fixed-top">
-        <div class="navbar navbar-dark bg-dark shadow-sm">
-          <div class="container d-flex justify-content-between align-items-center">
-            <a href="index.html" class="btn btn-outline-light d-flex align-items-center gap-2" aria-label="Volver"
-              title="Volver a la página anterior">
-              <span>Volver</span> </a>
-            <a href="#" class="navbar-brand d-flex align-items-center">
-              <strong>Cursos</strong>
-            </a>
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false">
-                  <img src="Assets/Images/profile.svg" style="width: 35px;" alt="perfil">
-              </button>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="perfil">
-                  <a class="dropdown-item" href="profile.html">Ver perfil</a>
-                  <a class="dropdown-item btn btn-danger" href="login.html">Cerrar sesión</a>
-              </div>
-          </div>
-          </div>
-        </div>
-      </header>
+<?php 
+$titulo = "Maneja tus cursos"; 
+require_once('header/headerIndex.php'); ?>
 
     <main role="main">
         <div class="container marketing mt-5 pt-5">

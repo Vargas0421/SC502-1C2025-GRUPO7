@@ -9,25 +9,10 @@
 
 </head>
 <body>
-  <header class="fixed-top">
-    <div class="navbar navbar-dark bg-dark shadow-sm">
-      <div class="container d-flex justify-content-between align-items-center">
-      <a href="index.html" class="btn btn-outline-light d-flex align-items-center gap-2" aria-label="Volver"
-              title="Volver a la página anterior">
-              <span>Volver</span> </a>
-        <a href="#" class="navbar-brand">Pagos</a>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-            <img src="Assets/Images/profile.svg" style="width: 35px;" alt="perfil">
-          </button>
-          <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="profile.php">Ver perfil</a>
-            <a class="dropdown-item btn btn-danger" href="login.php">Cerrar sesión</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+<?php 
+$titulo = "Salario"; 
+require_once('header/headerIndex.php'); 
+?>
 
   <div class="container-fluid mt-5 pt-3">
     <h2>Dashboard</h2>
