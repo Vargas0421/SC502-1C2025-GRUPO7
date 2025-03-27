@@ -42,7 +42,7 @@ if (isset($_GET['nombre'])) {
               </button>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="perfil">
                   <a class="dropdown-item" href="profile.html">Ver perfil</a>
-                  <a class="dropdown-item btn btn-danger" href="login.html">Cerrar sesión</a>
+                  <a class="dropdown-item btn btn-danger" href="login.php">Cerrar sesión</a>
               </div>
           </div>
           </div>
