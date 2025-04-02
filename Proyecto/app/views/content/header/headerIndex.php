@@ -37,7 +37,9 @@
                         <?php if (basename($_SERVER['PHP_SELF']) != 'profile.php'): ?>
                             <a class="dropdown-item" href="profile.php">Ver perfil</a>
                         <?php endif; ?>
-                        <a class="dropdown-item btn btn-danger" href="login.php">Cerrar sesión</a>
+                        <!--<a class="dropdown-item btn btn-danger" href="login.php">Cerrar sesión</a>-->
+                        <a href="index.php?action=logout" class="btn btn-danger">Cerrar sesión</a>
+
                     </div>
                 </div>
             </div>
