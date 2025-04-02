@@ -9,7 +9,7 @@ class LoginController {
         $this->userModel = new UserModel($pdo);
     }
 
-    public function index() {
+        public function index() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['email'];
             $password = $_POST['password'];
