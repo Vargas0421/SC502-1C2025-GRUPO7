@@ -1,7 +1,7 @@
 <?php
 // config.php
 $host = '127.0.0.1';
-$dbname = 'sc502-1c2025-grupo7';
+$dbname = 'sc502_1c2025_grupo7';
 $user = 'root';
 $pass = '';
 
