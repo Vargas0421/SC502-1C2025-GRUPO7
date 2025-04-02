@@ -10,10 +10,12 @@
 </head>
 
 <body>
-    <!-- Barra de navegación fija -->
+
     <?php 
-$titulo = "Maneja tus cursos"; 
-require_once('header/headerIndex.php'); ?>
+        $titulo = "Bienvenido a tu perfil"; 
+        require_once('header/headerIndex.php'); 
+    ?>
+   
 
 
     <!-- Contenido principal -->
@@ -22,10 +24,6 @@ require_once('header/headerIndex.php'); ?>
             <div class="row">
                 <div class="col-12 mb-4">
                     <div class="profile-header position-relative mb-4">
-                        <div class="position-absolute top-0 end-0 p-3">
-                            <button class="btn btn-light"><i class="fas fa-edit me-2"></i>Edit Cover</button>
-                        </div>
-                    </div>
                     <div class="text-center">
                         <div class="position-relative d-inline-block">
                             <img src="https://randomuser.me/api/portraits/men/40.jpg" class="rounded-circle profile-pic"
@@ -34,8 +32,11 @@ require_once('header/headerIndex.php'); ?>
                                 <i class="fas fa-camera"></i>
                             </button>
                         </div>
-                        <h3 class="mt-3 mb-1">Alex Johnson</h3>
-                        <p class="text-muted mb-3">Senior Product Designer</p>
+                        <?php
+                            session_start();   
+                            echo '<h3 class="mt-3 mb-1">' . htmlspecialchars($_SESSION['email']['nombre']) .' '. htmlspecialchars($_SESSION['email']['apellido']) . '</h3>';
+                            echo ' <p class="text-muted mb-3">' . htmlspecialchars($_SESSION['email']['puesto']) .'</p>';
+                        ?>
                         <div class="d-flex justify-content-center gap-2 mb-4">
                             <button class="btn btn-outline-primary"><i class="fas fa-envelope me-2"></i>Message</button>
                             <button class="btn btn-primary"><i class="fas fa-user-plus me-2"></i>Connect</button>
