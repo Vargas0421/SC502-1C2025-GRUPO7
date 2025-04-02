@@ -8,6 +8,8 @@ $pass = '';
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "conexion exitosa con la base de datos del curso ";
+
 } catch (PDOException $e) {
     die("Error en la conexión: " . $e->getMessage());
 }

@@ -1,27 +1,44 @@
-<!doctype html>
+<!-- views/login.php -->
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Inicio de Sesión</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card mt-5">
+                    <div class="card-header text-center">
+                        <h4>Iniciar Sesión</h4>
+                    </div>
+                    <div class="card-body">
+                        <?php if (isset($error)): ?>
+                            <div class="alert alert-danger"><?= $error ?></div>
+                        <?php endif; ?>
+                        <form method="POST" action="index.php?action=login">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Contraseña</label>
+                                <input type="password" id="password" name="password" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <link href="../bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href='../css/estilos.css'>
-  </head>
-  <body class="text-center">
-    <form class="form-signin" method="POST" action="index.php?action=login">
-      <h1 class="h3 mb-3 font-weight-normal">Inicio de Sesión</h1>
-      <?php if (isset($error)) { echo "<p class='text-danger'>$error</p>"; } ?>
-      <label for="inputEmail" class="sr-only">Correo Electrónico</label>
-      <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-      <label for="inputPassword" class="sr-only">Contraseña</label>
-      <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-    </form>
-    <footer class="text-muted text-center py-4">
-      <div class="container">
-        <p>&copy; 2024 Álbum Bootstrap. Todos los derechos reservados.</p>
-      </div>
-    </footer>
-  </body>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
