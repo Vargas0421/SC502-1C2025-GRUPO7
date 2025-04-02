@@ -1,5 +1,4 @@
 <?php
-// models/UserModel.php
 class UserModel {
     private $pdo;
 
@@ -12,12 +11,19 @@ class UserModel {
         $stmt->execute(['username' => $username, 'password' => $password]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // var_dump($user);
-
         if ($user) {
             return $user;
         }
         return false;
     }
+
+    public function updateProfesor($id_profesor, $nombre, $apellido, $puesto) {
+        $stmt = $this->db->prepare("UPDATE profesores SET nombre = ?, apellido = ?, puesto = ? WHERE email = ?");
+        $stmt->bind_param('sssi', $nombre, $apellido, $puesto, $id_profesor);
+        $stmt->execute();
+    }
+    
+    
+
 }
 ?>
