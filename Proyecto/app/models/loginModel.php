@@ -7,7 +7,7 @@ class loginModel {
     }
 
     public function login($email, $password) {
-        $stmt = $this->pdo->prepare('SELECT * FROM Profesores WHERE email = :email AND password = :password');
+        $stmt = $this->pdo->prepare('SELECT * FROM profesores WHERE email = :email AND password = :password');
         $stmt->execute(['email' => $email, 'password' => $password]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 

@@ -10,44 +10,19 @@
 </head>
 
 <body>
-    <!-- Barra de navegación fija -->
-    <header class="fixed-top">
-        <div class="navbar navbar-dark bg-dark shadow-sm">
-            <div class="container d-flex justify-content-between">
-                <!-- Botón de volver -->
-                <a href="index.html" class="btn btn-outline-light d-flex align-items-center gap-2" aria-label="Volver"
-                    title="Volver a la página anterior"> Volver</a>
 
-                <!-- Título -->
-                <a href="#" class="navbar-brand d-flex align-items-center">
-                    <strong>Profile</strong>
-                </a>
-
-                <!-- Menú desplegable de perfil -->
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <img src="Assets/Images/profile.svg" style="width: 35px;" alt="perfil">
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="perfil">
-                        <a class="dropdown-item" href="#">Ver perfil</a>
-                        <a class="dropdown-item btn btn-danger" href="login.html">Cerrar sesión</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
+    <?php 
+        $titulo = "Bienvenido a tu perfil"; 
+        require_once('header/headerIndex.php'); 
+        require_once('../../config/config.php');
+        require_once('../../models/UserModel.php');
+    ?>
     <!-- Contenido principal -->
     <div class="bg-light">
         <div class="container py-5">
             <div class="row">
                 <div class="col-12 mb-4">
                     <div class="profile-header position-relative mb-4">
-                        <div class="position-absolute top-0 end-0 p-3">
-                            <button class="btn btn-light"><i class="fas fa-edit me-2"></i>Edit Cover</button>
-                        </div>
-                    </div>
                     <div class="text-center">
                         <div class="position-relative d-inline-block">
                             <img src="https://randomuser.me/api/portraits/men/40.jpg" class="rounded-circle profile-pic"
@@ -56,8 +31,11 @@
                                 <i class="fas fa-camera"></i>
                             </button>
                         </div>
-                        <h3 class="mt-3 mb-1">Alex Johnson</h3>
-                        <p class="text-muted mb-3">Senior Product Designer</p>
+                        <?php
+                            session_start();   
+                            echo '<h3 class="mt-3 mb-1">' . htmlspecialchars($_SESSION['email']['nombre']) .' '. htmlspecialchars($_SESSION['email']['apellido']) . '</h3>';
+                            echo ' <p class="text-muted mb-3">' . htmlspecialchars($_SESSION['email']['puesto']) .'</p>';
+                        ?>
                         <div class="d-flex justify-content-center gap-2 mb-4">
                             <button class="btn btn-outline-primary"><i class="fas fa-envelope me-2"></i>Message</button>
                             <button class="btn btn-primary"><i class="fas fa-user-plus me-2"></i>Connect</button>
@@ -86,39 +64,36 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <!-- Content Area -->
                                 <div class="col-lg-9">
                                     <div class="p-4">
-                                        <!-- Personal Information -->
-                                        <div class="mb-4">
-                                            <h5 class="mb-4">Personal Information</h5>
-                                            <div class="row g-3">
-                                                <div class="col-md-6">
-                                                    <label class="form-label">First Name</label>
-                                                    <input type="text" class="form-control" value="Alex">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Last Name</label>
-                                                    <input type="text" class="form-control" value="Johnson">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="email" class="form-control"
-                                                        value="alex.johnson@example.com">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Phone</label>
-                                                    <input type="tel" class="form-control" value="+1 (555) 123-4567">
-                                                </div>
-                                                <div class="col-12">
-                                                    <label class="form-label">Bio</label>
-                                                    <textarea class="form-control"
-                                                        rows="4">Product designer with 5+ years of experience in creating user-centered digital solutions. Passionate about solving complex problems through simple and elegant designs.</textarea>
+                                        <form action="../../index.php?action=actualizarPerfil" method="POST">
+                                            <div class="mb-4">
+                                                <h5 class="mb-4">Personal Information</h5>
+                                                <div class="row g-3">
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">First Name</label>
+                                                        <input type="text" class="form-control" name="nombre" value="<?= htmlspecialchars($_SESSION['email']['nombre']) ?>">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Last Name</label>
+                                                        <input type="text" class="form-control" name="apellido" value="<?= htmlspecialchars($_SESSION['email']['apellido']) ?>">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Password</label>
+                                                        <input type="password" class="form-control" name="password" value="<?= htmlspecialchars($_SESSION['email']['password']) ?>">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Puesto</label>
+                                                        <input type="text" class="form-control" name="puesto" value="<?= htmlspecialchars($_SESSION['email']['puesto']) ?>">
+                                                    </div>
+                                                    <input type="hidden" name="id_profesor" value="<?= htmlspecialchars($_SESSION['email']['id_profesor']) ?>"> <!-- Campo con el id del profesor -->
+                                                    <div class="mt-4">
+                                                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-
+                                        </form>
                                         <!-- Settings Cards -->
                                         <div class="row g-4 mb-4">
                                             <div class="col-md-6">
@@ -184,3 +159,4 @@
 </body>
 
 </html>
+
