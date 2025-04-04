@@ -6,21 +6,21 @@ class cursosModel {
         $this->pdo = $pdo;
     }
 
-    public function info_cursos() {
+    public function info_cursos($idProfesor) {
         $stmt = $this->pdo->prepare('
-        SELECT 
-            c.id_curso, -- Asegúrate de incluir este campo
-            c.nombre_curso AS nombre,
-            c.descripcion,
-            CONCAT(p.nombre, " ", p.apellido) AS profesor
-        FROM Profesor_Curso pc
-        INNER JOIN Cursos c ON pc.id_curso = c.id_curso
-        INNER JOIN Profesores p ON pc.id_profesor = p.id_profesor
-    ');
-
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            SELECT 
+                c.id_curso,
+                c.nombre_curso AS nombre,
+                c.descripcion,
+                CONCAT(p.nombre, " ", p.apellido) AS profesor
+            FROM Profesor_Curso pc
+            INNER JOIN Cursos c ON pc.id_curso = c.id_curso
+            INNER JOIN Profesores p ON pc.id_profesor = p.id_profesor
+            WHERE pc.id_profesor = :idProfesor
+        ');
     
+        $stmt->execute(['idProfesor' => $idProfesor]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function obtenerCursoPorId($idCurso) {

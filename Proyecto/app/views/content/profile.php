@@ -16,6 +16,10 @@
         require_once('header/headerIndex.php'); 
         require_once('../../config/config.php');
         require_once('../../models/UserModel.php');
+        require_once('../../controllers/VerificacionController.php');
+
+        $verificacion = new VerificacionController();
+        $verificacion->verificarSesion();
     ?>
     <!-- Contenido principal -->
     <div class="bg-light">
@@ -31,8 +35,7 @@
                                 <i class="fas fa-camera"></i>
                             </button>
                         </div>
-                        <?php
-                            session_start();   
+                        <?php 
                             echo '<h3 class="mt-3 mb-1">' . htmlspecialchars($_SESSION['email']['nombre']) .' '. htmlspecialchars($_SESSION['email']['apellido']) . '</h3>';
                             echo ' <p class="text-muted mb-3">' . htmlspecialchars($_SESSION['email']['puesto']) .'</p>';
                         ?>

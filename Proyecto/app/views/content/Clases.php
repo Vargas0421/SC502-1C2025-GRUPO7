@@ -14,10 +14,16 @@
         $titulo = "Maneja tus cursos"; 
         require_once('header/headerIndex.php'); 
         require_once('../../config/config.php');
+        require_once('../../models/UserModel.php');
         require_once('../../models/cursosModel.php');
-
+        require_once('../../controllers/VerificacionController.php');
+        $verificacion = new VerificacionController();
+        $verificacion->verificarSesion();
+        
+        $id_profesor = $_SESSION['email']['id_profesor'];
         $cursosModel = new cursosModel($pdo);
-        $cursos = $cursosModel->info_cursos();
+        $cursos = $cursosModel->info_cursos($id_profesor);
+        
     ?>
 
     <main role="main">
