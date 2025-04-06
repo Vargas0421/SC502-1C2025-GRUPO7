@@ -8,15 +8,17 @@ class ProfesorController {
         print "Se ejecuta el controller";
     }
     public function actualizarProfesor() {
-        if (isset($_POST['id_profesor'], $_POST['nombre'], $_POST['apellido'], $_POST['password'], $_POST['puesto'])) {
+        if (isset($_POST['id_profesor'], $_POST['nombre'], $_POST['apellido'], $_POST['password'], $_POST['telefono'], $_POST['puesto'])) {
             $profeModel = new profeModel($this->pdo);
-            $resultado = $profeModel->updateProfesor($_POST['id_profesor'], $_POST['nombre'], $_POST['apellido'], $_POST['password'], $_POST['puesto']);
+            $resultado = $profeModel->updateProfesor($_POST['id_profesor'], $_POST['nombre'], $_POST['apellido'], $_POST['password'], $_POST['telefono'], $_POST['puesto']);
 
-            if ($resultado) {
-                $_SESSION['success'] = "El perfil del profesor se actualizó correctamente.";
-            } else {
-                $_SESSION['error'] = "Hubo un error al actualizar el perfil del profesor.";
-            }
+            $_SESSION['email']['nombre'] = $_POST['nombre'];
+            $_SESSION['email']['apellido'] = $_POST['apellido'];
+            $_SESSION['email']['password'] = $_POST['password']; 
+            $_SESSION['email']['telefono'] = $_POST['telefono'];
+            $_SESSION['email']['puesto'] = $_POST['puesto'];
+
+
 
             header('Location: views/content/profile.php');
             exit();

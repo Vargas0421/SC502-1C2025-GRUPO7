@@ -24,23 +24,28 @@ class cursosModel {
     }
 
     public function obtenerCursoPorId($idCurso) {
-    $stmt = $this->pdo->prepare('
-        SELECT 
-            c.nombre_curso AS nombre,
-            c.descripcion,
-            CONCAT(p.nombre, " ", p.apellido) AS profesor,
-            h.dia_semana AS horario,
-            h.hora_inicio,
-            h.hora_fin,
-            "Campus Central" AS sede 
-        FROM Profesor_Curso pc
-        INNER JOIN Cursos c ON pc.id_curso = c.id_curso
-        INNER JOIN Profesores p ON pc.id_profesor = p.id_profesor
-        LEFT JOIN Horarios h ON h.id_curso = c.id_curso
-        WHERE c.id_curso = :idCurso
-    ');
-    $stmt->execute(['idCurso' => $idCurso]);
-    return $stmt->fetch(PDO::FETCH_ASSOC); 
+        $stmt = $this->pdo->prepare('
+            SELECT 
+                c.nombre_curso AS nombre,
+                c.descripcion,
+                CONCAT(p.nombre, " ", p.apellido) AS profesor,
+                p.telefono AS telefono_profesor,
+                d.calle AS direccion_calle,
+                d.ciudad AS direccion_ciudad,
+                d.estado AS direccion_estado,
+                d.codigo_postal AS direccion_codigo_postal,
+                h.dia_semana AS horario,
+                h.hora_inicio,
+                h.hora_fin
+            FROM Profesor_Curso pc
+            INNER JOIN Cursos c ON pc.id_curso = c.id_curso
+            INNER JOIN Profesores p ON pc.id_profesor = p.id_profesor
+            LEFT JOIN Direccion d ON p.id_direccion = d.id_direccion
+            LEFT JOIN Horarios h ON h.id_curso = c.id_curso
+            WHERE c.id_curso = :idCurso
+        ');
+        $stmt->execute(['idCurso' => $idCurso]);
+        return $stmt->fetch(PDO::FETCH_ASSOC); 
 }
     
 }

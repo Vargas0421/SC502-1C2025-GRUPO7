@@ -13,6 +13,10 @@
         <?php 
         $titulo = "Área Administrativa"; 
         require_once('header/headerIndex.php'); 
+        require_once('../../controllers/VerificacionController.php');
+
+        $verificacion = new VerificacionController();
+        $verificacion->verificarSesion();
         ?>
 
         <main role="main">
@@ -35,7 +39,6 @@
                                             <a href="calendario.html" class="btn btn-sm btn-outline-primary">Abrir
                                                 calendario</a>
                                         </div>
-                                        <small class="text-muted">9 mins</small>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +53,6 @@
                                         <div class="btn-group">
                                             <a href="views/content/Clases.php" class="btn btn-sm btn-outline-primary">Ir a los cursos</a>
                                         </div>
-                                        <small class="text-muted">9 mins</small>
                                     </div>
                                 </div>
                             </div>
@@ -63,9 +65,8 @@
                                     <p class="card-text">Aquí podrás manejar el historial de tus Salarios.</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="salario.php" class="btn btn-sm btn-outline-primary">Ver mis pagos</a>
+                                            <a href="views/content/salario.php" class="btn btn-sm btn-outline-primary">Ver mis pagos</a>
                                         </div>
-                                        <small class="text-muted">30 mins</small>
                                     </div>
                                 </div>
                             </div>
@@ -79,9 +80,8 @@
                                         estudiantes.</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="estudiantes.php" class="btn btn-sm btn-outline-primary">Ver los estudiantes</a>
+                                            <a href="views/content/estudiantes.php" class="btn btn-sm btn-outline-primary">Ver los estudiantes</a>
                                         </div>
-                                        <small class="text-muted">15 mins</small>
                                     </div>
                                 </div>
                             </div>

@@ -70,21 +70,25 @@
                                 <!-- Content Area -->
                                 <div class="col-lg-9">
                                     <div class="p-4">
-                                        <form action="../../index.php?action=actualizarPerfil" method="POST">
+                                        <form action="../../index.php?action=actualizarPerfil" method="POST" id="updateProfesor">
                                             <div class="mb-4">
                                                 <h5 class="mb-4">Personal Information</h5>
                                                 <div class="row g-3">
                                                     <div class="col-md-6">
-                                                        <label class="form-label">First Name</label>
+                                                        <label class="form-label">Nombre</label>
                                                         <input type="text" class="form-control" name="nombre" value="<?= htmlspecialchars($_SESSION['email']['nombre']) ?>">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label">Last Name</label>
+                                                        <label class="form-label">Apellidos</label>
                                                         <input type="text" class="form-control" name="apellido" value="<?= htmlspecialchars($_SESSION['email']['apellido']) ?>">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Password</label>
                                                         <input type="password" class="form-control" name="password" value="<?= htmlspecialchars($_SESSION['email']['password']) ?>">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Telefono</label>
+                                                        <input type="text" class="form-control" name="telefono" value="<?= htmlspecialchars($_SESSION['email']['telefono']) ?>">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Puesto</label>

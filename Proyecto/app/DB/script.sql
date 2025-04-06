@@ -6,7 +6,6 @@ USE sc502_1c2025_grupo7;
 DROP TABLE IF EXISTS Direccion;
 DROP TABLE IF EXISTS Profesores;
 DROP TABLE IF EXISTS Estudiantes;
-DROP TABLE IF EXISTS Telefonos;
 DROP TABLE IF EXISTS Cursos;
 DROP TABLE IF EXISTS Profesor_Curso;
 DROP TABLE IF EXISTS Estudiante_Curso;
@@ -29,15 +28,17 @@ CREATE TABLE Direccion (
   codigo_postal VARCHAR(10) NOT NULL
 );
 
+
 CREATE TABLE Profesores (
   id_profesor INT PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(100) NOT NULL,
   apellido VARCHAR(100) NOT NULL,
   email VARCHAR(100) UNIQUE NOT NULL,
   password VARCHAR(255) NOT NULL,
-  direccion_id INT,
+  id_direccion INT,
+  telefono VARCHAR(20),
   puesto VARCHAR(200) ,
-  FOREIGN KEY (direccion_id) REFERENCES Direccion(id_direccion)
+  FOREIGN KEY (id_direccion) REFERENCES Direccion(id_direccion)
 );
 
 CREATE TABLE Estudiantes (
@@ -46,15 +47,9 @@ CREATE TABLE Estudiantes (
   apellido VARCHAR(100) NOT NULL,
   email VARCHAR(100) UNIQUE NOT NULL,
   password VARCHAR(255) NOT NULL,
-  direccion_id INT,
-  FOREIGN KEY (direccion_id) REFERENCES Direccion(id_direccion)
-);
-
-CREATE TABLE Telefonos (
-  id_telefono INT PRIMARY KEY AUTO_INCREMENT,
-  id_persona INT NOT NULL,
-  tipo ENUM('Profesor', 'Estudiante') NOT NULL,
-  numero VARCHAR(20) UNIQUE NOT NULL
+  id_direccion INT,
+  telefono VARCHAR(20),
+  FOREIGN KEY (id_direccion) REFERENCES Direccion(id_direccion)
 );
 
 CREATE TABLE Cursos (
@@ -149,24 +144,72 @@ CREATE TABLE Turnos (
   hora_fin TIME NOT NULL
 );
 
--- Insertar los datos nuevamente
+
 INSERT INTO Direccion (calle, ciudad, estado, codigo_postal) VALUES
 ('Av. Central 123', 'San José', 'San José', '10101'),
 ('Calle 45 Norte', 'Heredia', 'Heredia', '40101');
 
-INSERT INTO Profesores (nombre, apellido, email, password, direccion_id, puesto) VALUES
-('Carlos', 'Fernández', 'cfernandez@gmail.com', 'clave123', 1, NULL),
-('María', 'Gómez', 'mgomez@gmail.com', 'segura456', 2, 'Profesor de Matematicas'),
-('Brandon', 'Vargas', 'Bvargas@gmail.com', 'a', 2, 'Fullstack Developer');
+INSERT INTO Profesores (nombre, apellido, email, password, id_direccion, telefono, puesto) VALUES
+('Carlos', 'Fernández', 'cfernandez@gmail.com', 'clave123', 1, 1, 'Profesor de Matemáticas'),
+('María', 'Gómez', 'mgomez@gmail.com', 'segura456', 2, 2, 'Profesor de Física');
 
-INSERT INTO Estudiantes (nombre, apellido, email, password, direccion_id) VALUES
-('Juan', 'Pérez', 'jperez@gmail.com', 'estudiante789', 1),
-('Ana', 'Ramírez', 'aramirez@gmail.com', 'claveestu123', 2);
+INSERT INTO Estudiantes (nombre, apellido, email, password, id_direccion, telefono) VALUES
+('Juan', 'Pérez', 'jperez@gmail.com', 'estudiante789', 1, 1),
+('Ana', 'Ramírez', 'aramirez@gmail.com', 'claveestu123', 2, 2);
 
 INSERT INTO Cursos (nombre_curso, descripcion) VALUES
 ('Matemáticas Avanzadas', 'Curso sobre álgebra y cálculo avanzado'),
 ('Física Moderna', 'Introducción a la física cuántica y relatividad');
 
 INSERT INTO Profesor_Curso (id_profesor, id_curso) VALUES
-(1, 1),
-(2, 2);
+(1, 1),  
+(2, 2);  
+
+INSERT INTO Estudiante_Curso (id_estudiante, id_curso, fecha_inscripcion) VALUES
+(1, 1, '2025-03-01'),  
+(2, 2, '2025-03-01');  
+
+INSERT INTO Horarios (id_curso, dia_semana, hora_inicio, hora_fin) VALUES
+(1, 'Lunes', '08:00:00', '10:00:00'),  
+(2, 'Martes', '10:00:00', '12:00:00');  
+
+INSERT INTO Salarios (id_profesor, salario, fecha_actualizacion) VALUES
+(1, 1500.00, '2025-04-01'),
+(2, 1600.00, '2025-04-22'); 
+
+INSERT INTO Historial_Salarios (id_profesor, salario, fecha_inicio, fecha_fin) VALUES
+(1, 1450.00, '2025-01-01', '2025-03-31'),  
+(2, 1550.00, '2025-01-01', '2025-03-31'),
+(1, 1450.00, '2025-01-01', '2025-03-31'),
+(2, 1550.00, '2025-01-01', '2025-03-31'),
+(1, 1650.00, '2025-01-15', '2025-03-31'),
+(2, 1800.00, '2025-02-01', '2025-05-09'),
+(1, 1520.00, '2025-03-01', '2025-05-14'),
+(2, 1680.50, '2025-04-01', '2025-05-31'),
+(1, 1850.75, '2025-04-15', '2025-06-14'),
+(2, 1590.20, '2025-05-01', '2025-06-30'); 
+
+INSERT INTO Metodos_Pago (nombre_metodo) VALUES
+('Tarjeta de Crédito'),
+('Transferencia Bancaria');
+
+INSERT INTO Pagos (id_estudiante, monto, fecha_pago, id_metodo_pago) VALUES
+(1, 200.00, '2025-04-01', 1),  
+(2, 250.00, '2025-04-01', 2); 
+
+INSERT INTO Tipos_Telefono (tipo) VALUES
+('Móvil'),
+('Fijo');
+
+
+INSERT INTO Estados_Inscripcion (estado) VALUES
+('Inscrito'),
+('Pendiente');
+
+INSERT INTO Inscripciones (id_estudiante, id_curso, fecha_inscripcion, id_estado) VALUES
+(1, 1, '2025-03-01', 1),  
+(2, 2, '2025-03-01', 1);  
+
+INSERT INTO Turnos (nombre_turno, hora_inicio, hora_fin) VALUES
+('Mañana', '08:00:00', '12:00:00'),
+('Tarde', '14:00:00', '18:00:00');

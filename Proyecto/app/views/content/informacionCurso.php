@@ -39,14 +39,20 @@ if (isset($_GET['id'])) {
 </header>
 
 <main role="main" class="container mt-5 pt-5">
-    <?php if ($cursoEncontrado): ?>
+<?php if ($cursoEncontrado): ?>
         <div class="card shadow-sm">
             <div class="card-body">
                 <h2 class="card-title"><?= htmlspecialchars($cursoEncontrado['nombre']) ?></h2>
                 <p class="card-text">
                     <strong>Profesor:</strong> <?= htmlspecialchars($cursoEncontrado['profesor']) ?><br>
+                    <strong>Teléfono del Profesor:</strong> <?= htmlspecialchars($cursoEncontrado['telefono_profesor']) ?><br>
                     <strong>Descripción:</strong> <?= htmlspecialchars($cursoEncontrado['descripcion']) ?><br>
-                    <strong>Sede:</strong> <?= htmlspecialchars($cursoEncontrado['sede']) ?>
+                    <strong>Dirección:</strong> <?= htmlspecialchars($cursoEncontrado['direccion_calle']) ?>, 
+                    <?= htmlspecialchars($cursoEncontrado['direccion_ciudad']) ?>, 
+                    <?= htmlspecialchars($cursoEncontrado['direccion_estado']) ?>, 
+                    <?= htmlspecialchars($cursoEncontrado['direccion_codigo_postal']) ?><br>
+                    <strong>Horario:</strong> <?= htmlspecialchars($cursoEncontrado['horario']) ?>, 
+                    de <?= htmlspecialchars($cursoEncontrado['hora_inicio']) ?> a <?= htmlspecialchars($cursoEncontrado['hora_fin']) ?>
                 </p>
                 <a href="Clases.php" class="btn btn-secondary">Regresar</a>
             </div>
