@@ -16,10 +16,15 @@
         require_once('header/headerIndex.php'); 
         require_once('../../config/config.php');
         require_once('../../models/UserModel.php');
+        require_once('../../models/profeModel.php');
         require_once('../../controllers/VerificacionController.php');
 
         $verificacion = new VerificacionController();
         $verificacion->verificarSesion();
+
+        $id = $_SESSION['email']['id_profesor'];
+        $profeModel = new profeModel($pdo);
+        $direccion = $profeModel->obtenerDireccionId($id);
     ?>
     <!-- Contenido principal -->
     <div class="bg-light">
@@ -67,12 +72,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Content Area -->
+                                
                                 <div class="col-lg-9">
                                     <div class="p-4">
                                         <form action="../../index.php?action=actualizarPerfil" method="POST" id="updateProfesor">
                                             <div class="mb-4">
-                                                <h5 class="mb-4">Personal Information</h5>
+                                                <h5 class="mb-4">Informacion Personal</h5>
                                                 <div class="row g-3">
                                                     <div class="col-md-6">
                                                         <label class="form-label">Nombre</label>
@@ -93,6 +98,35 @@
                                                     <div class="col-md-6">
                                                         <label class="form-label">Puesto</label>
                                                         <input type="text" class="form-control" name="puesto" value="<?= htmlspecialchars($_SESSION['email']['puesto']) ?>">
+                                                    </div>
+                                                    <input type="hidden" name="id_profesor" value="<?= htmlspecialchars($_SESSION['email']['id_profesor']) ?>"> <!-- Campo con el id del profesor -->
+                                                    <div class="mt-4">
+                                                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                        <!-- calle, ciudad, estado, codigo_postal -->
+                                        <form action="../../index.php?action=actualizarDireccion" method="POST" id="updateDireccion">
+                                            <div class="mb-4">
+                                                <h5 class="mb-4">Direcciones</h5>
+                                                <div class="row g-3">
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Calle</label>
+                                                        <input type="text" class="form-control" name="calle" value="<?= htmlspecialchars($direccion['calle']) ?>">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Ciudad</label>
+                                                        <input type="text" class="form-control" name="ciudad" value="<?= htmlspecialchars($direccion['ciudad']) ?>">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Estado</label>
+                                                        <input type="text" class="form-control" name="estado" value="<?= htmlspecialchars($direccion['estado']) ?>">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Codigo Postal</label>
+                                                        <input type="text" class="form-control" name="codigo_postal" value="<?= htmlspecialchars($direccion['codigo_postal']) ?>">
                                                     </div>
                                                     <input type="hidden" name="id_profesor" value="<?= htmlspecialchars($_SESSION['email']['id_profesor']) ?>"> <!-- Campo con el id del profesor -->
                                                     <div class="mt-4">

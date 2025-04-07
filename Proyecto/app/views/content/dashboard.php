@@ -13,10 +13,6 @@
         <?php 
         $titulo = "Área Administrativa"; 
         require_once('header/headerIndex.php'); 
-        require_once('../../controllers/VerificacionController.php');
-
-        $verificacion = new VerificacionController();
-        $verificacion->verificarSesion();
         ?>
 
         <main role="main">

@@ -7,7 +7,6 @@ require_once('../../controllers/VerificacionController.php');
 $verificacion = new VerificacionController();
 $verificacion->verificarSesion();
 
-
 $cursoEncontrado = null;
 // Recibe el id
 if (isset($_GET['id'])) {
@@ -19,56 +18,67 @@ if (isset($_GET['id'])) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Información del Curso</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
-<header class="fixed-top">
-    <div class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container d-flex justify-content-between align-items-center">
-            <a href="Clases.php" class="btn btn-outline-light d-flex align-items-center gap-2" aria-label="Volver"
-              title="Volver a la página anterior">
-              <span>Volver</span> </a>
-            <a href="#" class="navbar-brand d-flex align-items-center">
-              <strong>Información sobre el curso</strong>
-            </a>
-        </div>
-    </div>
-</header>
+    <?php 
+    $titulo = "Cursos"; 
+    require_once('header/headerIndex.php'); 
+    ?>
 
-<main role="main" class="container mt-5 pt-5">
-<?php if ($cursoEncontrado): ?>
-        <div class="card shadow-sm">
+  <main role="main" class="container mt-5 pt-5">
+    <?php if ($cursoEncontrado): ?>
+      <div class="row g-4">
+        <div class="col-12">
+          <div class="card shadow-sm">
             <div class="card-body">
-                <h2 class="card-title"><?= htmlspecialchars($cursoEncontrado['nombre']) ?></h2>
-                <p class="card-text">
-                    <strong>Profesor:</strong> <?= htmlspecialchars($cursoEncontrado['profesor']) ?><br>
-                    <strong>Teléfono del Profesor:</strong> <?= htmlspecialchars($cursoEncontrado['telefono_profesor']) ?><br>
-                    <strong>Descripción:</strong> <?= htmlspecialchars($cursoEncontrado['descripcion']) ?><br>
-                    <strong>Dirección:</strong> <?= htmlspecialchars($cursoEncontrado['direccion_calle']) ?>, 
-                    <?= htmlspecialchars($cursoEncontrado['direccion_ciudad']) ?>, 
-                    <?= htmlspecialchars($cursoEncontrado['direccion_estado']) ?>, 
-                    <?= htmlspecialchars($cursoEncontrado['direccion_codigo_postal']) ?><br>
-                    <strong>Horario:</strong> <?= htmlspecialchars($cursoEncontrado['horario']) ?>, 
-                    de <?= htmlspecialchars($cursoEncontrado['hora_inicio']) ?> a <?= htmlspecialchars($cursoEncontrado['hora_fin']) ?>
-                </p>
-                <a href="Clases.php" class="btn btn-secondary">Regresar</a>
+              <h3 class="card-title"></i><?= htmlspecialchars($cursoEncontrado['nombre']) ?></h3>
+              <p class="card-text"><?= htmlspecialchars($cursoEncontrado['descripcion']) ?></p>
             </div>
+          </div>
         </div>
+
+        <div class="col-md-6">
+          <div class="card shadow-sm">
+            <div class="card-header bg-white">
+              <strong>Profesor</strong>
+            </div>
+            <div class="card-body">
+              <p class="mb-1"><strong>Nombre: </strong> <?= htmlspecialchars($cursoEncontrado['profesor']) ?></p>
+            </div>  
+            <div class="card-footer">
+                <strong>Contactos: </strong>
+              <p class="mb-0"><strong>Email:</strong> <?= htmlspecialchars($cursoEncontrado['email']) ?></p>
+              <p class="mb-0"><strong>Teléfono:</strong> <?= htmlspecialchars($cursoEncontrado['telefono']) ?></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card shadow-sm">
+            <div class="card-header bg-white">
+              <strong>Horario</strong>
+            </div>
+            <div class="card-body">
+            <p class="mb-0"><?= htmlspecialchars($cursoEncontrado['horario']) ?>  (<?= htmlspecialchars($cursoEncontrado['hora_inicio']) ?> - <?= htmlspecialchars($cursoEncontrado['hora_fin']) ?> )</p>
+            </div>
+          </div>
+        </div>
+      </div>
     <?php else: ?>
-        <div class="alert alert-danger">
-            <p>Curso no encontrado.</p>
-        </div>
+      <div class="alert alert-danger">
+        <p>Curso no encontrado.</p>
+      </div>
     <?php endif; ?>
-</main>
+  </main>
 
-<footer class="container mt-5">
-    <p class="text-center">&copy; 2025 Universidad &middot; <a href="#">Privacidad</a> &middot; <a href="#">Términos</a></p>
-</footer>
+  <?php require_once('footer/footer.php'); ?>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

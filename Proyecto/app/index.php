@@ -29,9 +29,11 @@ switch ($action) {
     case 'actualizarPerfil':
         $controller = new ProfesorController($pdo);
         $controller->actualizarProfesor();
-
         break;
-        
+    case 'actualizarDireccion':
+        $controller = new ProfesorController($pdo);
+        $controller->actualizarDireccion();
+        break;
     default:
         $loginController = new LoginController($pdo);
         $loginController->index();

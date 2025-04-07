@@ -29,11 +29,8 @@ class cursosModel {
                 c.nombre_curso AS nombre,
                 c.descripcion,
                 CONCAT(p.nombre, " ", p.apellido) AS profesor,
-                p.telefono AS telefono_profesor,
-                d.calle AS direccion_calle,
-                d.ciudad AS direccion_ciudad,
-                d.estado AS direccion_estado,
-                d.codigo_postal AS direccion_codigo_postal,
+                p.telefono AS telefono,
+                p.email AS email,
                 h.dia_semana AS horario,
                 h.hora_inicio,
                 h.hora_fin

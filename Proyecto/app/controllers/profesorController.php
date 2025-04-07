@@ -12,18 +12,24 @@ class ProfesorController {
             $profeModel = new profeModel($this->pdo);
             $resultado = $profeModel->updateProfesor($_POST['id_profesor'], $_POST['nombre'], $_POST['apellido'], $_POST['password'], $_POST['telefono'], $_POST['puesto']);
 
-            $_SESSION['email']['nombre'] = $_POST['nombre'];
-            $_SESSION['email']['apellido'] = $_POST['apellido'];
-            $_SESSION['email']['password'] = $_POST['password']; 
-            $_SESSION['email']['telefono'] = $_POST['telefono'];
-            $_SESSION['email']['puesto'] = $_POST['puesto'];
-
-
 
             header('Location: views/content/profile.php');
             exit();
+
+
+            
         }
         print "No pasa el if"; 
+    }
+    public function actualizarDireccion() {
+        if (isset($_POST['id_profesor'], $_POST['calle'], $_POST['ciudad'], $_POST['estado'], $_POST['codigo_postal'])) {
+            $profeModel = new profeModel($this->pdo);
+    
+            $resultado = $profeModel->updateDireccion($_POST['id_profesor'], $_POST['calle'],$_POST['ciudad'], $_POST['estado'], $_POST['codigo_postal']);
+    
+            header('Location: views/content/profile.php');
+            exit();
+        }
     }
 }
 ?>

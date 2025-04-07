@@ -150,12 +150,12 @@ INSERT INTO Direccion (calle, ciudad, estado, codigo_postal) VALUES
 ('Calle 45 Norte', 'Heredia', 'Heredia', '40101');
 
 INSERT INTO Profesores (nombre, apellido, email, password, id_direccion, telefono, puesto) VALUES
-('Carlos', 'Fernández', 'cfernandez@gmail.com', 'clave123', 1, 1, 'Profesor de Matemáticas'),
-('María', 'Gómez', 'mgomez@gmail.com', 'segura456', 2, 2, 'Profesor de Física');
+('Carlos', 'Fernández', 'cfernandez@gmail.com', 'clave123', 1, "8765-4321", 'Profesor de Matemáticas'),
+('María', 'Gómez', 'mgomez@gmail.com', 'segura456', 2, "6012-3456", 'Profesor de Física');
 
 INSERT INTO Estudiantes (nombre, apellido, email, password, id_direccion, telefono) VALUES
-('Juan', 'Pérez', 'jperez@gmail.com', 'estudiante789', 1, 1),
-('Ana', 'Ramírez', 'aramirez@gmail.com', 'claveestu123', 2, 2);
+('Juan', 'Pérez', 'jperez@gmail.com', 'estudiante789', 1, "7111-2222"),
+('Ana', 'Ramírez', 'aramirez@gmail.com', 'claveestu123', 2, "8333-9999");
 
 INSERT INTO Cursos (nombre_curso, descripcion) VALUES
 ('Matemáticas Avanzadas', 'Curso sobre álgebra y cálculo avanzado'),
@@ -170,8 +170,8 @@ INSERT INTO Estudiante_Curso (id_estudiante, id_curso, fecha_inscripcion) VALUES
 (2, 2, '2025-03-01');  
 
 INSERT INTO Horarios (id_curso, dia_semana, hora_inicio, hora_fin) VALUES
-(1, 'Lunes', '08:00:00', '10:00:00'),  
-(2, 'Martes', '10:00:00', '12:00:00');  
+(1, 'Lunes', '08:00', '11:00'),  
+(2, 'Martes', '10:00', '13:00');  
 
 INSERT INTO Salarios (id_profesor, salario, fecha_actualizacion) VALUES
 (1, 1500.00, '2025-04-01'),
@@ -211,5 +211,5 @@ INSERT INTO Inscripciones (id_estudiante, id_curso, fecha_inscripcion, id_estado
 (2, 2, '2025-03-01', 1);  
 
 INSERT INTO Turnos (nombre_turno, hora_inicio, hora_fin) VALUES
-('Mañana', '08:00:00', '12:00:00'),
-('Tarde', '14:00:00', '18:00:00');
+('Mañana', '08:00', '11:00'),
+('Tarde', '14:00', '17:00');
