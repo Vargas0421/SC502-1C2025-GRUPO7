@@ -1,4 +1,3 @@
-<!-- views/header.php -->
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,9 +13,10 @@
     <header class="fixed-top">
         <div class="navbar navbar-dark bg-dark shadow-sm">
             <div class="container d-flex justify-content-between">
-                
-                <!-- Solo mostrar el botón "Volver" si no estás en index.php ni en login.php -->
-                <?php if (basename($_SERVER['PHP_SELF']) != 'dashboard.php' && basename($_SERVER['PHP_SELF']) != 'login.php'): ?>
+                <?php
+                $pagina = basename($_SERVER['PHP_SELF']);
+                $esHome = isset($_GET['action']) && $_GET['action'] === 'home';
+                if ($pagina !== 'dashboard.php' && $pagina !== 'login.php' && !$esHome): ?>
                     <a href="javascript:history.back()" class="btn btn-outline-light d-flex align-items-center gap-2" aria-label="Volver" title="Volver a la página anterior">Volver</a>
                 <?php endif; ?>
                 <a href="#" class="navbar-brand d-flex align-items-center">
@@ -25,14 +25,16 @@
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.Lps0Q-ivqNODwTLHs3RdRwHaHa%26pid%3DApi&f=1&ipt=048f0547ee544d1ba8370e393b316fe0fb1f29caadee2ac29749afb7b717a755&ipo=images" style="width: 35px;" alt="perfil">
+                        <img src="../../views/Iconos/profile.svg" style="width: 35px;" alt="perfil">
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="perfil">
-                        <?php if (basename($_SERVER['PHP_SELF']) != 'profile.php'): ?>
-                            <a class="dropdown-item" href="profile.php">Ver perfil</a>
-                        <?php endif; ?>
-                        <a href="index.php?action=logout" class="dropdown-item btn btn-danger" href="login.php">Cerrar sesión</a>
-
+                        <a href="index.php?action=logout" class="dropdown-item btn btn-danger">Cerrar sesión</a>
+                        <?php if ($pagina !== 'profile.php' && $esHome): ?>
+                        <a class="dropdown-item" href="views/content/profile.php">Ver perfil</a>
+                    <?php elseif ($pagina !== 'profile.php' && !$esHome): ?>
+                        <a class="dropdown-item" href="profile.php">Ver perfil</a>
+                    <?php endif; ?>
+                        
                     </div>
                 </div>
             </div>
@@ -40,4 +42,4 @@
     </header>
 </body>
 
-</html>
+
