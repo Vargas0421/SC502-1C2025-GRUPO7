@@ -26,7 +26,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
-                                <img class="card-img-top image-style" src="../Images/Calendar.webp" alt="Calendar">
+                                <img class="card-img-top image-style" src="views/Images/Calendar.webp" alt="Calendar">
                                 <div class="card-body">
                                     <h3>Calendario</h3>
                                     <p class="card-text">Puede administrar las fechas y tiempos de las asignaturas</p>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card mb-4 box-shadow">
-                                <img class="card-img-top image-style" src="../Images/imagenCurso.png" alt="Cursos">
+                                <img class="card-img-top image-style" src="views/Images/imagenCurso.png" alt="Cursos">
                                 <div class="card-body">
                                     <h3>Cursos</h3>
                                     <p class="card-text">En este elemento podrás administrar los cursos que impartes</p>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card mb-4 box-shadow">
-                                <img class="card-img-top image-style" src="../Images/imagenSalario.png" alt="Salario">
+                                <img class="card-img-top image-style" src="views/Images/imagenSalario.png" alt="Salario">
                                 <div class="card-body">
                                     <h3>Salario</h3>
                                     <p class="card-text">Aquí podrás manejar el historial de tus Salarios.</p>
@@ -69,7 +69,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card mb-4 box-shadow">
-                                <img class="card-img-top image-style" src="../Images/imagenEstudiantes.png" alt="Clases">
+                                <img class="card-img-top image-style" src="views/Images/imagenEstudiantes.png" alt="Clases">
                                 <div class="card-body">
                                     <h3>Estudiantes</h3>
                                     <p class="card-text">En este apartado puede encontrar información sobre sus

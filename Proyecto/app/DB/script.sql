@@ -151,7 +151,8 @@ INSERT INTO Direccion (calle, ciudad, estado, codigo_postal) VALUES
 
 INSERT INTO Profesores (nombre, apellido, email, password, id_direccion, telefono, puesto) VALUES
 ('Carlos', 'Fernández', 'cfernandez@gmail.com', 'clave123', 1, "8765-4321", 'Profesor de Matemáticas'),
-('María', 'Gómez', 'mgomez@gmail.com', 'segura456', 2, "6012-3456", 'Profesor de Física');
+('María', 'Gómez', 'mgomez@gmail.com', 'segura456', 2, "6012-3456", 'Profesor de Física'),
+('Brandon', 'Vargas', 'Bvargas@mail.com', 'a', 2, "8369-0296", 'Desarrollador Full Stack');
 
 INSERT INTO Estudiantes (nombre, apellido, email, password, id_direccion, telefono) VALUES
 ('Juan', 'Pérez', 'jperez@gmail.com', 'estudiante789', 1, "7111-2222"),
