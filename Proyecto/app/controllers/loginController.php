@@ -23,7 +23,7 @@ class LoginController {
                                 exit;
             } else {
                 $error = 'Usuario o contraseña incorrectos';
-                require 'views/login.php';
+                require 'views/content/login.php';
             }
         } else {
             require __DIR__ . '/../views/content/login.php';

@@ -29,7 +29,7 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="perfil">
                         <?php if (basename($_SERVER['PHP_SELF']) != 'profile.php'): ?>
-                            <a class="dropdown-item" href="views/content/profile.php">Ver perfil</a>
+                            <a class="dropdown-item" href="profile.php">Ver perfil</a>
                         <?php endif; ?>
                         <a href="index.php?action=logout" class="dropdown-item btn btn-danger" href="login.php">Cerrar sesión</a>
 

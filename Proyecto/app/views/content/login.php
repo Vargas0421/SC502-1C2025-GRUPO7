@@ -29,7 +29,7 @@
                                 <label for="password">Contraseña</label>
                                 <input type="password" id="password" name="password" class="form-control" required>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+                            <button type="submit" class="btn btn-primary btn-block ">Ingresar</button>
                         </form>
                     </div>
                 </div>
