@@ -18,7 +18,7 @@ class UserModel {
     }
 
     public function updateProfesor($id_profesor, $nombre, $apellido, $puesto) {
-        $stmt = $this->db->prepare("UPDATE profesores SET nombre = ?, apellido = ?, puesto = ? WHERE email = ?");
+        $stmt = $this->db->prepare("UPDATE profesores SET nombre = ?, apellido = ?, puesto = ? WHERE id_profesor = ?");
         $stmt->bind_param('sssi', $nombre, $apellido, $puesto, $id_profesor);
         $stmt->execute();
     }
