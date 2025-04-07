@@ -26,7 +26,6 @@ class LoginController {
                 require 'views/content/login.php';
             }
         } else {
-            echo "no pasa por el metodo post ";
             require __DIR__ . '/../views/content/login.php';
         }
     }
