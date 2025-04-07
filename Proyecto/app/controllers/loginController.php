@@ -13,7 +13,6 @@ class LoginController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['email'];
             $password = $_POST['password'];
-            echo "si pasa por el metodo post ";
 
 
             $user = $this->userModel->login($username, $password);
@@ -24,7 +23,7 @@ class LoginController {
                                 exit;
             } else {
                 $error = 'Usuario o contraseña incorrectos';
-                require 'views/login.php';
+                require 'views/content/login.php';
             }
         } else {
             echo "no pasa por el metodo post ";

@@ -1,6 +1,3 @@
-<?php
-include '../../models/datosPhp/cursos.php';
-?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -13,28 +10,37 @@ include '../../models/datosPhp/cursos.php';
 </head>
 
 <body>
-<?php 
-$titulo = "Maneja tus cursos"; 
-require_once('header/headerIndex.php'); ?>
+    <?php 
+        $titulo = "Maneja tus cursos"; 
+        require_once('header/headerIndex.php'); 
+        require_once('../../config/config.php');
+        require_once('../../models/UserModel.php');
+        require_once('../../models/cursosModel.php');
+        require_once('../../controllers/VerificacionController.php');
+        $verificacion = new VerificacionController();
+        $verificacion->verificarSesion();
+        
+        $id_profesor = $_SESSION['email']['id_profesor'];
+        $cursosModel = new cursosModel($pdo);
+        $cursos = $cursosModel->info_cursos($id_profesor);
+        
+    ?>
 
     <main role="main">
         <div class="container marketing mt-5 pt-5">
-            <h2 class="text-center mb-4">Listado de curos impartidos</h2>
+            <h2 class="text-center mb-4">Listado de cursos impartidos</h2>
             <div class="row">
                 <?php foreach ($cursos as $curso): ?>
                     <div class="col-lg-4 mb-4">
                         <div class="card shadow-sm">
                             <div class="card-body">
-                                <h5 class="card-title"><?= $curso->nombre ?></h5>
+                                <h5 class="card-title"><?= htmlspecialchars($curso['nombre']) ?></h5>
                                 <p class="card-text">
-                                    <strong>Profesor:</strong> <?= $curso->profesor ?><br>
-                                    <strong>Créditos:</strong> <?= $curso->creditos ?><br>
-                                    <strong>Alumnos:</strong> <?= $curso->cantidadAlumnos ?><br>
-                                    <strong>Horario:</strong> <?= $curso->horario ?><br>
-                                    <strong>Sede:</strong> <?= $curso->sede ?>
+                                    <strong>Profesor:</strong> <?= htmlspecialchars($curso['profesor']) ?><br>
+                                    <strong>Descripción:</strong> <?= htmlspecialchars($curso['descripcion']) ?><br>
                                 </p>
-                                <a href="informacionCurso.php?nombre=<?= urlencode($curso->nombre) ?>" class="btn btn-primary">Más información</a>
-                                </div>
+                                <a href="informacionCurso.php?id=<?= urlencode($curso['id_curso']) ?>" class="btn btn-primary">Más información</a>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>

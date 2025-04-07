@@ -14,10 +14,18 @@
     <?php 
         $titulo = "Bienvenido a tu perfil"; 
         require_once('header/headerIndex.php'); 
+        require_once('../../config/config.php');
+        require_once('../../models/UserModel.php');
+        require_once('../../models/profeModel.php');
+        require_once('../../controllers/VerificacionController.php');
+
+        $verificacion = new VerificacionController();
+        $verificacion->verificarSesion();
+
+        $id = $_SESSION['email']['id_profesor'];
+        $profeModel = new profeModel($pdo);
+        $direccion = $profeModel->obtenerDireccionId($id);
     ?>
-   
-
-
     <!-- Contenido principal -->
     <div class="bg-light">
         <div class="container py-5">
@@ -32,8 +40,7 @@
                                 <i class="fas fa-camera"></i>
                             </button>
                         </div>
-                        <?php
-                            session_start();   
+                        <?php 
                             echo '<h3 class="mt-3 mb-1">' . htmlspecialchars($_SESSION['email']['nombre']) .' '. htmlspecialchars($_SESSION['email']['apellido']) . '</h3>';
                             echo ' <p class="text-muted mb-3">' . htmlspecialchars($_SESSION['email']['puesto']) .'</p>';
                         ?>
@@ -65,39 +72,69 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Content Area -->
+                                
                                 <div class="col-lg-9">
                                     <div class="p-4">
-                                        <!-- Personal Information -->
-                                        <div class="mb-4">
-                                            <h5 class="mb-4">Personal Information</h5>
-                                            <div class="row g-3">
-                                                <div class="col-md-6">
-                                                    <label class="form-label">First Name</label>
-                                                    <input type="text" class="form-control" value="Alex">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Last Name</label>
-                                                    <input type="text" class="form-control" value="Johnson">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="email" class="form-control"
-                                                        value="alex.johnson@example.com">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Phone</label>
-                                                    <input type="tel" class="form-control" value="+1 (555) 123-4567">
-                                                </div>
-                                                <div class="col-12">
-                                                    <label class="form-label">Bio</label>
-                                                    <textarea class="form-control"
-                                                        rows="4">Product designer with 5+ years of experience in creating user-centered digital solutions. Passionate about solving complex problems through simple and elegant designs.</textarea>
+                                        <form action="../../index.php?action=actualizarPerfil" method="POST" id="updateProfesor">
+                                            <div class="mb-4">
+                                                <h5 class="mb-4">Informacion Personal</h5>
+                                                <div class="row g-3">
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Nombre</label>
+                                                        <input type="text" class="form-control" name="nombre" value="<?= htmlspecialchars($_SESSION['email']['nombre']) ?>">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Apellidos</label>
+                                                        <input type="text" class="form-control" name="apellido" value="<?= htmlspecialchars($_SESSION['email']['apellido']) ?>">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Password</label>
+                                                        <input type="password" class="form-control" name="password" value="<?= htmlspecialchars($_SESSION['email']['password']) ?>">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Telefono</label>
+                                                        <input type="text" class="form-control" name="telefono" value="<?= htmlspecialchars($_SESSION['email']['telefono']) ?>">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Puesto</label>
+                                                        <input type="text" class="form-control" name="puesto" value="<?= htmlspecialchars($_SESSION['email']['puesto']) ?>">
+                                                    </div>
+                                                    <input type="hidden" name="id_profesor" value="<?= htmlspecialchars($_SESSION['email']['id_profesor']) ?>"> <!-- Campo con el id del profesor -->
+                                                    <div class="mt-4">
+                                                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
 
+                                        <!-- calle, ciudad, estado, codigo_postal -->
+                                        <form action="../../index.php?action=actualizarDireccion" method="POST" id="updateDireccion">
+                                            <div class="mb-4">
+                                                <h5 class="mb-4">Direcciones</h5>
+                                                <div class="row g-3">
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Calle</label>
+                                                        <input type="text" class="form-control" name="calle" value="<?= htmlspecialchars($direccion['calle']) ?>">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Ciudad</label>
+                                                        <input type="text" class="form-control" name="ciudad" value="<?= htmlspecialchars($direccion['ciudad']) ?>">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Estado</label>
+                                                        <input type="text" class="form-control" name="estado" value="<?= htmlspecialchars($direccion['estado']) ?>">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Codigo Postal</label>
+                                                        <input type="text" class="form-control" name="codigo_postal" value="<?= htmlspecialchars($direccion['codigo_postal']) ?>">
+                                                    </div>
+                                                    <input type="hidden" name="id_profesor" value="<?= htmlspecialchars($_SESSION['email']['id_profesor']) ?>"> <!-- Campo con el id del profesor -->
+                                                    <div class="mt-4">
+                                                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                         <!-- Settings Cards -->
                                         <div class="row g-4 mb-4">
                                             <div class="col-md-6">
@@ -163,3 +200,4 @@
 </body>
 
 </html>
+
