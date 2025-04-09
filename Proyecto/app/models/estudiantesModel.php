@@ -7,7 +7,7 @@ class EstudiantesModel {
         $this->pdo = $pdo;
     }
 
-    public function obtenerEstudiantes() {
+    public function obtenerEstudiantes() { 
         $stmt = $this->pdo->prepare('SELECT * FROM estudiantes');
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

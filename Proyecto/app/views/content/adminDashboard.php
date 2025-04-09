@@ -24,7 +24,7 @@
             <div class="album py-5 bg-light">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 d-flex align-items-stretch">
                             <div class="card mb-4 shadow-sm">
                                 <img class="card-img-top image-style" src="views/Images/imagenProfesores.png" alt="Profesores">
                                 <div class="card-body">
@@ -32,13 +32,13 @@
                                     <p class="card-text">Desde aca puesdes administrar los roles y cursos de los profesores</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="calendario.html" class="btn btn-sm btn-outline-primary">Abrir manejo de profesores</a>
+                                            <a href="views/content/adminProfesores.php" class="btn btn-sm btn-outline-primary">Abrir manejo de profesores</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4"> 
+                        <div class="col-md-4 d-flex align-items-stretch"> 
                             <div class="card mb-4 box-shadow">
                                 <img class="card-img-top image-style" src="views/Images/imagenEstudiantesAdmin.png" alt="Estudiantes">
                                 <div class="card-body">
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 d-flex align-items-stretch">
                             <div class="card mb-4 box-shadow">
                                 <img class="card-img-top image-style" src="views/Images/imagenSalarioAdmin.png" alt="Salarios">
                                 <div class="card-body">
@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 d-flex align-items-stretch">
                             <div class="card mb-4 box-shadow">
                                 <img class="card-img-top image-style" src="views/Images/imagenCurosAdmin.png" alt="Clases">
                                 <div class="card-body">

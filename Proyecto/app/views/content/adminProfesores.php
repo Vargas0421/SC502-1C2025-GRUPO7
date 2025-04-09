@@ -4,73 +4,77 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Administracion</title>
+    <title>Manejo Profesores</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 
 <body>
 <?php 
-$titulo = "Manejo de estudiantes"; 
+$titulo = "Manejo de profesores"; 
 require_once('header/headerIndex.php'); 
 require_once('../../config/config.php'); 
-require_once('../../models/estudiantesModel.php'); 
+require_once('../../models/profeModel.php'); 
 require_once('../../controllers/VerificacionController.php'); 
 
 $verificacion = new VerificacionController();
-$verificacion->verificarSesion();
-$estudiantesModel = new EstudiantesModel($pdo);
-$estudiantes = $estudiantesModel->obtenerEstudiantes(); 
+$verificacion->verificarSesion();  // Verificar la sesión del usuario
+$profeModel = new profeModel($pdo);  // Instancia del modelo para manejar los datos de los profesores
+$profesores = $profeModel->obtenerProfesores();  // Obtener todos los profesores desde la base de datos
 ?>
 
 <div class="container">
     <div class="text-center mb-4">
-        <p class="text-muted">Aquí puedes ver la información de todos los estudiantes.</p>
+        <p class="text-muted">Aquí puedes ver la información de todos los profesores.</p>
     </div>
     <div class="table-container">
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Nombre</th>
+                    <th>Puesto</th>
+                    <th>Email</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($estudiantes as $estudiante): ?>
+                <?php foreach ($profesores as $profesor): ?>
                     <tr>
-                        <td><?= htmlspecialchars($estudiante['nombre']) . ' ' . htmlspecialchars($estudiante['apellido']) ?></td>
+                        <td><?= htmlspecialchars($profesor['nombre']) . ' ' . htmlspecialchars($profesor['apellido']) ?></td>
+                        <td><?= htmlspecialchars($profesor['puesto']) ?></td>
+                        <td><?= htmlspecialchars($profesor['email']) ?></td>
                         <td>
                             <button 
                                 class="btn btn-info" 
                                 data-toggle="modal" 
-                                data-target="#modalEstudiante-<?= htmlspecialchars($estudiante['id_estudiante']) ?>"
+                                data-target="#modalProfesor-<?= htmlspecialchars($profesor['id_profesor']) ?>"
                             >
                                 Ver Detalles
                             </button>
                         </td>
                     </tr>
-                    <div class="modal" id="modalEstudiante-<?= htmlspecialchars($estudiante['id_estudiante']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalEstudianteLabel" aria-hidden="true">
+                    <!-- Modal para mostrar los detalles del profesor -->
+                    <div class="modal" id="modalProfesor-<?= htmlspecialchars($profesor['id_profesor']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalProfesorLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="modalEstudianteLabel">Detalles del Estudiante</h5>
+                                    <h5 class="modal-title" id="modalProfesorLabel">Detalles del Profesor</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button> 
                                 </div>
                                 <div class="modal-body">
-                                    <p><strong>Nombre:</strong> <?= htmlspecialchars($estudiante['nombre']) ?></p>
-                                    <p><strong>Apellido:</strong> <?= htmlspecialchars($estudiante['apellido']) ?></p>
-                                    <p><strong>Email:</strong> <?= htmlspecialchars($estudiante['email']) ?></p>
-                                    <p><strong>Teléfono:</strong> <?= htmlspecialchars($estudiante['telefono']) ?></p>
-                                    <p><strong>Cursos inscritos:</strong></p>
-                                    <ul>
+                                    <p><strong>Nombre:</strong> <?= htmlspecialchars($profesor['nombre']) ?></p>
+                                    <p><strong>Apellido:</strong> <?= htmlspecialchars($profesor['apellido']) ?></p>
+                                    <p><strong>Email:</strong> <?= htmlspecialchars($profesor['email']) ?></p>
+                                    <p><strong>Puesto:</strong> <?= htmlspecialchars($profesor['puesto']) ?></p>
+                                    <p><strong>Dirección:</strong> 
                                         <?php 
-                                        $cursos = $estudiantesModel->obtenerCursosEstudiante($estudiante['id_estudiante']);
-                                        foreach ($cursos as $curso): ?>
-                                            <p><?= htmlspecialchars($curso['nombre_curso']) ?></p>
-                                        <?php endforeach; ?>
-                                    </ul>
+                                        // Suponiendo que 'direccion_id' corresponde a un registro en una tabla de direcciones
+                                        $direccion = $profeModel->obtenerDireccionProfesor($profesor['direccion_id']);
+                                        echo htmlspecialchars($direccion['calle']) . ', ' . htmlspecialchars($direccion['ciudad']) . ', ' . htmlspecialchars($direccion['estado']);
+                                        ?>
+                                    </p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

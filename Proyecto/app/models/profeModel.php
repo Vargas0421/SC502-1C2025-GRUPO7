@@ -53,6 +53,11 @@ class profeModel {
         $stmt->execute(['id_profesor' => $idProfesor]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function obtenerProfesores() { 
+        $stmt = $this->pdo->prepare('SELECT * FROM profesores');
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 ?>
