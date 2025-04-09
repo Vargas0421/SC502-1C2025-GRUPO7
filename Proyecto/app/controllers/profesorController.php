@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/../models/profeModel.php';
-print "Llegp al controller\n";
 class ProfesorController {
     private $pdo;
     public function __construct($pdo) {
