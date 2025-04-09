@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo isset($titulo) ? $titulo : 'Administración'; ?></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/estilos.css">
+    <link rel="stylesheet" href='../views/css/headerStyle.css'>
 </head>
 
 <body>
@@ -30,7 +30,13 @@
                 <?php else: ?>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" id="perfil" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="../../views/Iconos/profile.svg" style="width: 35px;" alt="perfil">
+                        <?php
+                        $imgSrc = ($esHome) // PARA LA VISTA DE INICIO PARA QUE SE MUESTRE EL ICONO 
+                            ? "views/Iconos/profile.svg" 
+                            : "../../views/Iconos/profile.svg";
+                        ?>
+                        <img src="<?= $imgSrc ?>" class="profile-icon" alt="perfil">
+            
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="perfil">
                             <a href="index.php?action=logout" class="dropdown-item btn btn-danger">Cerrar sesión</a>

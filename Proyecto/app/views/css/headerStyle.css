@@ -1,0 +1,69 @@
+/* Estilo general del header */
+header {
+    z-index: 9999;
+  }
+  
+  /* Navbar personalizado */
+  .navbar {
+    background: linear-gradient(90deg, #343a40, #212529);
+    padding: 0.75rem 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Marca (título del header) */
+  .navbar-brand strong {
+    color: #32577c;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-brand:hover strong {
+    color: #adb5bd;
+  }
+  
+  /* Botón volver */
+  .btn-outline-light {
+    border-radius: 30px;
+    padding: 6px 16px;
+    font-weight: 500;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Icono de perfil */
+  .profile-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+  }
+  
+  .profile-icon:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Dropdown personalizado */
+  .dropdown-menu {
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    background-color: #343a40;
+  }
+  
+  .dropdown-item {
+    color: #f8f9fa;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #495057;
+    color: #ffffff;
+  }
+  

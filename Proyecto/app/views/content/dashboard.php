@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Administracion</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href='../css/dashboard.css'>
-    </head>
+        <link rel="stylesheet" href='views/css/dashboard.css'>
+    </head>   
 
     <body>
         <?php 
