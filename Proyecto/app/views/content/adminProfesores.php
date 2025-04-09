@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Manejo Profesores</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="../css/profesores.css">
 </head>
 
 <body>
@@ -18,73 +18,27 @@ require_once('../../models/profeModel.php');
 require_once('../../controllers/VerificacionController.php'); 
 
 $verificacion = new VerificacionController();
-$verificacion->verificarSesion();  // Verificar la sesión del usuario
-$profeModel = new profeModel($pdo);  // Instancia del modelo para manejar los datos de los profesores
-$profesores = $profeModel->obtenerProfesores();  // Obtener todos los profesores desde la base de datos
+$verificacion->verificarSesion();
+$profeModel = new profeModel($pdo);
+$profesores = $profeModel->obtenerProfesores(); 
 ?>
 
-<div class="container">
-    <div class="text-center mb-4">
-        <p class="text-muted">Aquí puedes ver la información de todos los profesores.</p>
-    </div>
-    <div class="table-container">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Puesto</th>
-                    <th>Email</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($profesores as $profesor): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($profesor['nombre']) . ' ' . htmlspecialchars($profesor['apellido']) ?></td>
-                        <td><?= htmlspecialchars($profesor['puesto']) ?></td>
-                        <td><?= htmlspecialchars($profesor['email']) ?></td>
-                        <td>
-                            <button 
-                                class="btn btn-info" 
-                                data-toggle="modal" 
-                                data-target="#modalProfesor-<?= htmlspecialchars($profesor['id_profesor']) ?>"
-                            >
-                                Ver Detalles
-                            </button>
-                        </td>
-                    </tr>
-                    <!-- Modal para mostrar los detalles del profesor -->
-                    <div class="modal" id="modalProfesor-<?= htmlspecialchars($profesor['id_profesor']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalProfesorLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalProfesorLabel">Detalles del Profesor</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button> 
-                                </div>
-                                <div class="modal-body">
-                                    <p><strong>Nombre:</strong> <?= htmlspecialchars($profesor['nombre']) ?></p>
-                                    <p><strong>Apellido:</strong> <?= htmlspecialchars($profesor['apellido']) ?></p>
-                                    <p><strong>Email:</strong> <?= htmlspecialchars($profesor['email']) ?></p>
-                                    <p><strong>Puesto:</strong> <?= htmlspecialchars($profesor['puesto']) ?></p>
-                                    <p><strong>Dirección:</strong> 
-                                        <?php 
-                                        // Suponiendo que 'direccion_id' corresponde a un registro en una tabla de direcciones
-                                        $direccion = $profeModel->obtenerDireccionProfesor($profesor['direccion_id']);
-                                        echo htmlspecialchars($direccion['calle']) . ', ' . htmlspecialchars($direccion['ciudad']) . ', ' . htmlspecialchars($direccion['estado']);
-                                        ?>
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                </div>
-                            </div>
+<div class="container py-5">
+    <h1 class="text-center mb-4">Listado de Profesores</h1>
+    <div class="row" id="profesores-container">
+        <?php foreach ($profesores as $profesor): ?>
+            <div class="col-md-4 d-flex align-items-stretch mb-4">
+                <div class="card shadow-sm w-100">
+                    <img src="https://via.placeholder.com/400x200?text=Profesor" class="card-img-top image-style" alt="<?= htmlspecialchars($profesor['nombre']) ?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= htmlspecialchars($profesor['nombre']) . ' ' . htmlspecialchars($profesor['apellido']) ?></h5>
+                        <p class="card-text">Puesto: <?= htmlspecialchars($profesor['puesto']) ?></p>
+                        <p class="card-text">Email: <?= htmlspecialchars($profesor['email']) ?></p>
+                        <a href="adminVistaProfesor.php?id=<?= $profesor['id_profesor'] ?>" class="btn btn-outline-primary btn-sm mt-auto">Ver perfil</a>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
 </div>
 

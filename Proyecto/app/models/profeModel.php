@@ -58,6 +58,12 @@ class profeModel {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function obtenerProfesorPorId($id_profesor) {
+        $stmt = $this->pdo->prepare("SELECT * FROM profesores WHERE id_profesor = :id_profesor");
+        $stmt->bindParam(':id_profesor', $id_profesor, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
 ?>
