@@ -46,7 +46,7 @@
                                     <p class="card-text">En este elemento podrás administrar los estudiantes y los cursos a los que estaran asiganados</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="views/content/Clases.php" class="btn btn-sm btn-outline-primary">Manejar estudiantes</a>
+                                            <a href="views/content/adminEstudiantes.php" class="btn btn-sm btn-outline-primary">Manejar estudiantes</a>
                                         </div>
                                     </div>
                                 </div>

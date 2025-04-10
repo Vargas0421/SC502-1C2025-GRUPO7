@@ -1,6 +1,6 @@
 <?php
 
-$host = '127.0.0.1';
+$host = 'localhost:4306';
 $dbname = 'sc502_1c2025_grupo7';
 $user = 'root';
 $pass = '';
