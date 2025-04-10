@@ -4,6 +4,8 @@ session_start(); // Es necesario para acceder a $_SESSION
 
 require_once 'config/config.php';
 require_once 'controllers/loginController.php';
+require_once 'controllers/clasesController.php';
+
 require_once 'controllers/dashboardController.php';
 require_once 'controllers/adminDashboardController.php';
 require_once 'controllers/UserController.php';
@@ -41,8 +43,14 @@ switch ($action) {
         $controller = new ProfesorController($pdo);
         $controller->actualizarDireccion();
         break;
+    case 'verClases':
+        $clasesController = new ClasesController($pdo);
+        $clasesController->abrirClases();
+        break;
     default:
         $loginController = new LoginController($pdo);
         $loginController->index();
         break;
 }
+
+

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo isset($titulo) ? $titulo : 'Administración'; ?></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href='../views/css/headerStyle.css'>
+    <link rel="stylesheet" href='views/css/headerStyle.css'>
 </head>
 
 <body>
@@ -53,3 +53,4 @@
 </body>
 
 </html>
+

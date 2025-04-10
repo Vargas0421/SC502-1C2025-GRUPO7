@@ -36,7 +36,7 @@ body {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  min-height: 1000px; /* o el valor que necesites */
+  min-height: 100px; /* o el valor que necesites */
   justify-content: space-between;
 }
 

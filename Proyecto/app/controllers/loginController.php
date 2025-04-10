@@ -19,7 +19,7 @@ class LoginController {
             if ($user) {
                 session_start();
                 $_SESSION['email'] = $user;
-                header('Location: index.php?action=adminHome');
+                header('Location: index.php?action=');
                                 exit;
             } else {
                 $error = 'Usuario o contraseña incorrectos';

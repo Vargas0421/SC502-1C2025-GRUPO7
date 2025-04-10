@@ -18,7 +18,6 @@ class ProfesorController {
 
             
         }
-        print "No pasa el if"; 
     }
     public function actualizarDireccion() {
         if (isset($_POST['id_profesor'], $_POST['calle'], $_POST['ciudad'], $_POST['estado'], $_POST['codigo_postal'])) {
