@@ -64,10 +64,10 @@ switch ($action) {
         $controller = new gestionEstudianteController($pdo);
         $controller->eliminarEstudiante();
         break;
-        case 'cursosMatriculados':
-            $controller = new gestionEstudianteController($pdo);
-            $controller->eliminarEstudiante();
-            break;
+    case 'desinscribirEstudiante':
+        $controller = new gestionEstudianteController($pdo);
+        $controller->desinscribirEstudiante();
+        break;
     default:
         $loginController = new LoginController($pdo);
         $loginController->index();

@@ -57,12 +57,21 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             <thead>
                 <tr>
                     <th>Cursos</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($cursosMatriculados as $curso): ?>
                     <tr>
                         <td><?= htmlspecialchars($curso['nombre_curso']) ?></td>
+                        <td>
+                        <form action="../../index.php?action=desinscribirEstudiante" method="POST" 
+                            onsubmit = "return confirm('Seguro desinscribir al estudiante del curso?')">
+                                <input type="hidden" name="id_estudiante" value="<?= htmlspecialchars($idEstudiante) ?>">
+                                <input type="hidden" name="id_curso" value="<?= htmlspecialchars($curso['id_curso']) ?>">
+                                <button type="submit" class="btn btn-danger mb-3">Desinscribir</button>
+                        </form>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -72,5 +81,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <div class="alert alert-warning" role="alert">El estudiante no esta matriculado en ningun curso</div> <!--Seguir agregando else a todo -->
     <?php endif; ?>
 </div>
+
+
 </body>
 </html>

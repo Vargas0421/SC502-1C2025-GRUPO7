@@ -20,21 +20,28 @@ class gestionEstudianteController {
             $estudiantesModel = new estudiantesModel($this->pdo);
             $resultado = $estudiantesModel->agregarCursoEstudiante($_POST['id_estudiante'], $_POST['id_curso']);
 
-            header('Location: views/content/gestionEstudiante.php?id=$idEstudiante');
+            header("Location: views/content/adminEstudiantes.php");
             exit();
         } 
     }
-
+    
     public function eliminarEstudiante() {
         if (isset($_POST['id_estudiante'])) {
             $estudiantesModel = new estudiantesModel($this->pdo);
             $resultado = $estudiantesModel->eliminarEstudiante($_POST['id_estudiante']);
 
-            header('Location: views/content/adminEstudiantes.php');
+            header("Location: views/content/adminEstudiantes.php");
             exit();
         }
     }
 
-
+    public function desinscribirEstudiante() {
+            if (isset($_POST['id_estudiante'], $_POST['id_curso'])) {
+            $estudiantesModel = new estudiantesModel($this->pdo);
+            $resultado = $estudiantesModel->desinscribirEstudiante($_POST['id_estudiante'], $_POST['id_curso']);
+            header("Location: views/content/adminEstudiantes.php");
+            exit();
+        }
+    }
 }
 ?>
