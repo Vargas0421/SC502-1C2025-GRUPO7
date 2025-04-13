@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/../models/profeModel.php';
-print "Llegp al controller\n";
 class ProfesorController {
     private $pdo;
     public function __construct($pdo) {
@@ -19,7 +18,6 @@ class ProfesorController {
 
             
         }
-        print "No pasa el if"; 
     }
     public function actualizarDireccion() {
         if (isset($_POST['id_profesor'], $_POST['calle'], $_POST['ciudad'], $_POST['estado'], $_POST['codigo_postal'])) {

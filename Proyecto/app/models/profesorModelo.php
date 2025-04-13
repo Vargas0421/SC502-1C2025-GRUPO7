@@ -7,13 +7,11 @@ class profesorModelo {
     }
 
     public function login($username, $password) {
-        $stmt = $this->pdo->prepare('SELECT * FROM profesores WHERE username = a AND password = :password');
-        $stmt->execute(['username' => $username, 'password' => $password]);
+        $stmt = $this->pdo->prepare('SELECT * FROM profesores WHERE email = :username');
+        $stmt->execute(['username' => $username]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // var_dump($user);
-
-        if ($user) {
+        if ($user && password_verify($password, $user['password'])) {
             return $user;
         }
         return false;

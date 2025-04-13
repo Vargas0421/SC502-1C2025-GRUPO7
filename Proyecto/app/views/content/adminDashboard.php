@@ -11,72 +11,70 @@
 
     <body>
         <?php 
-        $titulo = "Área de Gestión"; 
+        $titulo = "Área Administrativa";  
         require_once('header/headerIndex.php'); 
         ?>
 
         <main role="main">
             <section class="jumbotron text-center">
                 <div class="container">
-                    <h1 class="jumbotron-heading">Bienvenido <?= htmlspecialchars($user['nombre']) ?> <?= htmlspecialchars($user['apellido']) ?> </h1>
+                    <h1 class="jumbotron-heading">Bienvenido administrador <?= htmlspecialchars($user['nombre']) ?> <?= htmlspecialchars($user['apellido']) ?> </h1>
                 </div>
             </section>
             <div class="album py-5 bg-light">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 d-flex align-items-stretch">
                             <div class="card mb-4 shadow-sm">
-                                <img class="card-img-top image-style" src="views/Images/Calendar.webp" alt="Calendar">
+                                <img class="card-img-top image-style" src="views/Images/imagenProfesores.png" alt="Profesores">
                                 <div class="card-body">
-                                    <h3>Calendario</h3>
-                                    <p class="card-text">Puede administrar las fechas y tiempos de las asignaturas</p>
+                                    <h3>Manejo de profesores</h3>
+                                    <p class="card-text">Desde aca puesdes administrar los roles y cursos de los profesores</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="calendario.html" class="btn btn-sm btn-outline-primary">Abrir
-                                                calendario</a>
+                                            <a href="views/content/adminProfesores.php" class="btn btn-sm btn-outline-primary">Abrir manejo de profesores</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4"> 
+                        <div class="col-md-4 d-flex align-items-stretch"> 
                             <div class="card mb-4 box-shadow">
-                                <img class="card-img-top image-style" src="views/Images/imagenCurso.png" alt="Cursos">
+                                <img class="card-img-top image-style" src="views/Images/imagenEstudiantesAdmin.png" alt="Estudiantes">
                                 <div class="card-body">
-                                    <h3>Cursos</h3>
-                                    <p class="card-text">En este elemento podrás administrar los cursos que impartes</p>
+                                    <h3>Manejo de estudiantes</h3>
+                                    <p class="card-text">En este elemento podrás administrar los estudiantes y los cursos a los que estaran asiganados</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="../app/index.php?action=verClases" class="btn btn-sm btn-outline-primary">Ir a los cursos</a>
+                                            <a href="views/content/adminEstudiantes.php" class="btn btn-sm btn-outline-primary">Manejar estudiantes</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 d-flex align-items-stretch">
                             <div class="card mb-4 box-shadow">
-                                <img class="card-img-top image-style" src="views/Images/imagenSalario.png" alt="Salario">
+                                <img class="card-img-top image-style" src="views/Images/imagenSalarioAdmin.png" alt="Salarios">
                                 <div class="card-body">
-                                    <h3>Salario</h3>
-                                    <p class="card-text">Aquí podrás manejar el historial de tus Salarios.</p>
+                                    <h3>Admistrar  pagos</h3>
+                                    <p class="card-text">Aca podras administar los pagos de los profesores</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="views/content/salario.php" class="btn btn-sm btn-outline-primary">Ver mis pagos</a>
+                                            <a href="views/content/salario.php" class="btn btn-sm btn-outline-primary">Administrar pagos</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 d-flex align-items-stretch">
                             <div class="card mb-4 box-shadow">
-                                <img class="card-img-top image-style" src="views/Images/imagenEstudiantes.png" alt="Clases">
+                                <img class="card-img-top image-style" src="views/Images/imagenCurosAdmin.png" alt="Clases">
                                 <div class="card-body">
-                                    <h3>Estudiantes</h3>
-                                    <p class="card-text">En este apartado puede encontrar información sobre sus
-                                        estudiantes.</p>
+                                    <h3>Manejo de Cursos</h3>
+                                    <p class="card-text">Aca puesdes administar los cursos, tanto estudiantes como profesores.</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="views/content/estudiantes.php" class="btn btn-sm btn-outline-primary">Ver los estudiantes</a>
+                                            <a href="views/content/estudiantes.php" class="btn btn-sm btn-outline-primary">Administar cursos</a>
                                         </div>
                                     </div>
                                 </div>

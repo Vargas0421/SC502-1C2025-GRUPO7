@@ -56,7 +56,7 @@ $estudiantes = $estudiantesModel->obtenerEstudiantes();
                                     <h5 class="modal-title" id="modalEstudianteLabel">Detalles del Estudiante</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    </button> 
                                 </div>
                                 <div class="modal-body">
                                     <p><strong>Nombre:</strong> <?= htmlspecialchars($estudiante['nombre']) ?></p>
