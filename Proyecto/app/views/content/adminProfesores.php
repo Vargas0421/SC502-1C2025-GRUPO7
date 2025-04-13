@@ -6,51 +6,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Manejo Profesores</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/profesores.css">
+    <link rel="stylesheet" href="views/css/profesores.css">
 </head>
 
 <body>
-<?php 
-$titulo = "Manejo de profesores"; 
-require_once('header/headerIndex.php'); 
-require_once('../../config/config.php'); 
-require_once('../../models/profeModel.php'); 
-require_once('../../controllers/VerificacionController.php'); 
+    <?php
+    $titulo = "Manejo de profesores";
+    require_once('header/headerIndex.php');
+    require_once('../../config/config.php');
+    require_once('../../models/profeModel.php');
+    require_once('../../controllers/VerificacionController.php');
 
-$verificacion = new VerificacionController();
-$verificacion->verificarSesion();
-$profeModel = new profeModel($pdo);
-$profesores = $profeModel->obtenerProfesores(); 
-?>
+    $verificacion = new VerificacionController();
+    $verificacion->verificarSesion();
+    $profeModel = new profeModel($pdo);
+    $profesores = $profeModel->obtenerProfesores();
+    ?>
 
-<div class="container py-5">
-    <h1 class="text-center mb-4">Listado de Profesores</h1>
-    <div class="row" id="profesores-container">
-        <?php foreach ($profesores as $profesor): ?>
-            <div class="col-md-4 d-flex align-items-stretch mb-4">
-                <div class="card shadow-sm w-100">
-                    <img src="https://via.placeholder.com/400x200?text=Profesor" class="card-img-top image-style" alt="<?= htmlspecialchars($profesor['nombre']) ?>">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= htmlspecialchars($profesor['nombre']) . ' ' . htmlspecialchars($profesor['apellido']) ?></h5>
-                        <p class="card-text">Puesto: <?= htmlspecialchars($profesor['puesto']) ?></p>
-                        <p class="card-text">Email: <?= htmlspecialchars($profesor['email']) ?></p>
-                        <a href="adminVistaProfesor.php?id=<?= $profesor['id_profesor'] ?>" class="btn btn-outline-primary btn-sm mt-auto">Ver perfil</a>
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Listado de Profesores</h1>
+        <div class="row" id="profesores-container">
+            <?php foreach ($profesores as $profesor): ?>
+                <div class="col-md-4 d-flex align-items-stretch mb-4">
+                    <div class="card shadow-sm w-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <?= htmlspecialchars($profesor['nombre']) . ' ' . htmlspecialchars($profesor['apellido']) ?>
+                            </h5>
+                            <p class="card-text">Puesto: <?= htmlspecialchars($profesor['puesto']) ?></p>
+                            <p class="card-text">Email: <?= htmlspecialchars($profesor['email']) ?></p>
+                            <a href="adminVistaProfesor.php?id=<?= $profesor['id_profesor'] ?>"
+                                class="btn btn-outline-primary btn-sm mt-auto">Ver perfil</a>
                         </div>
+                    </div>
                 </div>
+            <?php endforeach; ?>
+        </div>
+
+
+        <div class="mb-3 text-left">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarEstudiante">
+                Agregar un profesor
+            </button>
+        </div>
+
+        <div class="modal fade" id="modalAgregarEstudiante" tabindex="-1" role="dialog"
+            aria-labelledby="modalAgregarLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form action="../../index.php?action=agregarProfesor" method="POST" class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAgregarLabel">Agregar Nuevo Profesor</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" name="nombre" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellido">Apellido</label>
+                            <input type="text" name="apellido" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Contraseña</label>
+                            <input type="password" name="password" class="form-control" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Confirmar contraseña</label>
+                            <input type="password" name="password" class="form-control" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="text" name="telefono" class="form-control" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rol">Rol</label>
+                            <select name="rol" class="form-control" required>
+                                <option value="1">Admin</option>
+                                <option value="2">Usuario Normal</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Agregar profesor</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-        <?php endforeach; ?>
-    </div>
-</div>
+        </div>
 
-<footer class="text-muted text-center py-4 bg-dark">
-    <div class="container">
-        <p class="text-white">&copy; 2024 Álbum Bootstrap. Todos los derechos reservados.</p>
     </div>
-</footer>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <?php require_once('footer/footer.php'); ?>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById('formAgregarProfesor').addEventListener('submit', function (e) {
+            const pass1 = document.getElementById('password').value;
+            const pass2 = document.getElementById('confirm_password').value;
+
+            if (pass1 !== pass2) {
+                e.preventDefault(); // Detiene el envío
+                alert("Las contraseñas no coinciden.");
+            }
+        });
+    </script>
 </body>
 
 </html>

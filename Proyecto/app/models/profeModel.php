@@ -7,6 +7,22 @@ class profeModel {
         $this->pdo = $pdo;
     }
 
+    public function agregarProfesor($nombre, $apellido, $email, $password, $telefono, $puesto, $rol_id) {
+        $stmt = $this->pdo->prepare(
+            'INSERT INTO profesores (nombre, apellido, email, password, telefono, puesto, rol_id) 
+             VALUES (:nombre, :apellido, :email, :password, :telefono, ;puesto, rol id)'
+        );
+        return $stmt->execute([
+            'nombre' => $nombre,
+            'apellido' => $apellido,
+            'email' => $email,
+            'password' => $password,
+            'telefono' => $telefono,
+            'puesto' => $puesto,
+            'rol_id' => $rol_id
+        ]);
+    }
+
     public function updateProfesor($id, $nombre, $apellido, $password, $telefono, $puesto) {
         $stmt = $this->pdo->prepare(
             'UPDATE profesores 
