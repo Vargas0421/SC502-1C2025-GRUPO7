@@ -40,6 +40,10 @@ if (isset($_GET['id'])) {
 </head>
 
 <body>
+    <?php
+    $titulo = "Área de Gestión";
+    require_once('header/headerIndex.php');
+    ?>
 
 
 
@@ -50,7 +54,8 @@ if (isset($_GET['id'])) {
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <?= htmlspecialchars($profesor['nombre']) . ' ' . htmlspecialchars($profesor['apellido']) ?></h5>
+                        <?= htmlspecialchars($profesor['nombre']) . ' ' . htmlspecialchars($profesor['apellido']) ?>
+                    </h5>
                     <p class="card-text"><strong>Puesto:</strong> <?= htmlspecialchars($profesor['puesto']) ?></p>
                     <p class="card-text"><strong>Email:</strong> <?= htmlspecialchars($profesor['email']) ?></p>
                     <p class="card-text"><strong>Dirección:</strong>
@@ -60,22 +65,26 @@ if (isset($_GET['id'])) {
                         CP <?= htmlspecialchars($direccion['codigo_postal']) ?>
                     </p>
                     </p>
-
                 </div>
             </div>
+            <section> 
+            <a href="adminProfesores.php" class="btn btn-success    mt-4">Volver al listado</a>
+            <a href="adminProfesores.php" class="btn btn-warning mt-4">Editar informacion</a>
+            <form action="../../index.php?action=eliminarProfesor" method="POST"
+                onsubmit="return confirm('Seguro de que deseas eliminar este prfesor?')">
+                <input type="hidden" name="id_profesor" value="<?= htmlspecialchars($id_profesor) ?>">
+                <button type="submit" class="btn btn-danger mb-3">Eliminar Profesor</button>
+            </form>
+            </section>
 
-            <a href="adminProfesores.php" class="btn btn-secondary mt-4">Volver al listado</a>
         <?php else: ?>
-            <p class="text-center text-danger">Profesor no encontrado.</p>
+            <p class="text-center text-danger">Profesor con el id encontrado.</p>
         <?php endif; ?>
 
     </div>
 
-    <footer class="text-muted text-center py-4 bg-dark">
-        <div class="container">
-            <p class="text-white">&copy; 2024 Álbum Bootstrap. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+    <?php require_once('footer/footer.php'); ?>
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

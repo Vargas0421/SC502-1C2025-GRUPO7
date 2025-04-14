@@ -23,6 +23,22 @@ class profeModel {
         ]);
     }
 
+    public function eliminarProfesor($idProfesor) {
+        $stmt = $this->pdo->prepare('DELETE FROM profesor_curso WHERE id_profesor = :id_profesor');
+        $stmt->execute(['id_profesor' => $idProfesor]);
+
+        $stmt = $this->pdo->prepare('DELETE FROM historial_salarios WHERE id_profesor = :id_profesor');
+        $stmt->execute(['id_profesor' => $idProfesor]);
+
+        $stmt = $this->pdo->prepare('DELETE FROM salarios WHERE id_profesor = :id_profesor');
+        $stmt->execute(['id_profesor' => $idProfesor]);
+
+        $stmt = $this->pdo->prepare('DELETE FROM profesores WHERE id_profesor = :id_profesor');
+        return $stmt->execute(['id_profesor' => $idProfesor]);
+
+        
+    }
+
     public function updateProfesor($id, $nombre, $apellido, $password, $telefono, $puesto) {
         $stmt = $this->pdo->prepare(
             'UPDATE profesores 

@@ -70,6 +70,10 @@ switch ($action) {
         $controller = new gestionEstudianteController($pdo);
         $controller->eliminarEstudiante();
         break;
+    case 'eliminarProfesor':
+        $controller = new gestionProfesorController($pdo);
+        $controller->eliminarProfesor();
+        break;
     case 'desinscribirEstudiante':
         $controller = new gestionEstudianteController($pdo);
         $controller->desinscribirEstudiante();

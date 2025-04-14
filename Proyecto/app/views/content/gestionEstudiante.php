@@ -28,7 +28,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <form action="../../index.php?action=eliminarEstudiante" method="POST" 
     onsubmit = "return confirm('Seguro de que deseas eliminar este estudiante?')">
         <input type="hidden" name="id_estudiante" value="<?= htmlspecialchars($idEstudiante) ?>">
-        <button type="submit" class="btn btn-danger mb-3">Eliminar Estudiante</button>
+        <button type="submit" class=    "btn btn-danger mb-3">Eliminar Estudiante</button>
     </form>
 
     <form action="../../index.php?action=agregarCursoEstudiante" method="POST">

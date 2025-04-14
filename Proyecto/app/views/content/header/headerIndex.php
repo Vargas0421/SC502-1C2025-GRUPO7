@@ -18,7 +18,7 @@
                 <?php
                 $pagina = basename($_SERVER['PHP_SELF']);
                 $esHome = isset($_GET['action']) && $_GET['action'] === 'home';
-
+                $esAdminHome = isset($_GET['action']) && $_GET['action'] === 'adminHome';
                 if ($pagina !== 'dashboard.php' && $pagina !== 'login.php' && !$esHome): ?>
                     <a href="javascript:history.back()" class="btn btn-outline-light d-flex align-items-center gap-2"
                         aria-label="Volver" title="Volver a la página anterior">Volver</a>
@@ -28,7 +28,7 @@
                     <strong><?php echo isset($titulo) ? $titulo : 'Área Administrativa'; ?></strong>
                 </a>
 
-                <?php if ($esHome): ?>
+                <?php if ($esHome || $esAdminHome): ?>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" id="perfil" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
