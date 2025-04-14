@@ -78,10 +78,6 @@
                             <input type="password" name="password" class="form-control" autocomplete="off" required>
                         </div>
                         <div class="form-group">
-                            <label for="telefono">Confirmar contraseña</label>
-                            <input type="password" name="password" class="form-control" autocomplete="off" required>
-                        </div>
-                        <div class="form-group">
                             <label for="telefono">Teléfono</label>
                             <input type="text" name="telefono" class="form-control" autocomplete="off" required>
                         </div>

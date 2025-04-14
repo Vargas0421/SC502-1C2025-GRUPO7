@@ -17,7 +17,7 @@ class gestionProfesorController {
                 $_POST['nombre'],
                 $_POST['apellido'],
                 $_POST['email'],
-                password_hash($_POST['password'], PASSWORD_BCRYPT), // Encripta la contraseña
+                $_POST['password'], // Encripta la contraseña
                 $_POST['telefono'],
                 $_POST['puesto'],
                 $_POST['rol_id']
