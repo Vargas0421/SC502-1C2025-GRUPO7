@@ -72,7 +72,7 @@ if (isset($_GET['id'])) {
             <a href="adminProfesores.php" class="btn btn-warning mt-4">Editar informacion</a>
             <form action="../../index.php?action=eliminarProfesor" method="POST"
                 onsubmit="return confirm('Seguro de que deseas eliminar este prfesor?')">
-                <input type="hidden" name="id_profesor" value="<?= htmlspecialchars($id_profesor) ?>">
+                <input type="hidden" name="id_profesor" value="<?= htmlspecialchars($id_profesor    ) ?>">
                 <button type="submit" class="btn btn-danger mb-3">Eliminar Profesor</button>
             </form>
             </section>

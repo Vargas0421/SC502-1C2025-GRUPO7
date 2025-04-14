@@ -10,8 +10,8 @@ class profeModel {
     public function agregarProfesor($nombre, $apellido, $email, $password, $telefono, $puesto, $rol_id) {
         $stmt = $this->pdo->prepare(
             'INSERT INTO profesores (nombre, apellido, email, password, telefono, puesto, rol_id) 
-             VALUES (:nombre, :apellido, :email, :password, :telefono, ;puesto, rol id)'
-        );  
+            VALUES (:nombre, :apellido, :email, :password, :telefono, :puesto, :rol_id)'
+        );
         return $stmt->execute([
             'nombre' => $nombre,
             'apellido' => $apellido,

@@ -11,6 +11,10 @@
 
 <body>
     <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     $titulo = "Manejo de profesores";
     require_once('header/headerIndex.php');
     require_once('../../config/config.php');
@@ -82,8 +86,12 @@
                             <input type="text" name="telefono" class="form-control" autocomplete="off" required>
                         </div>
                         <div class="form-group">
-                            <label for="rol">Rol</label>
-                            <select name="rol" class="form-control" required>
+                            <label for="puesto">Puesto</label>
+                            <input type="text" name="puesto" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rol_id">Rol</label>
+                            <select name="rol_id" class="form-control" required>
                                 <option value="1">Admin</option>
                                 <option value="2">Usuario Normal</option>
                             </select>
