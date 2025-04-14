@@ -36,7 +36,7 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="perfil">
                             <a class="dropdown-item"  href="index.php?action=logout">Cerrar sesión</a>
-                            <a class="dropdown-item" href="index.php?action=verPerfil">Ver perfil</a>
+                            <a class="dropdown-item" href="views/content/profile.php">Ver perfil</a>
                         </div>
                     </div>
                 <?php elseif ($pagina === 'profile.php'): ?>
