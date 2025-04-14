@@ -74,7 +74,7 @@
                                     <p class="card-text">Aca puesdes administar los cursos, tanto estudiantes como profesores.</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="views/content/estudiantes.php" class="btn btn-sm btn-outline-primary">Administar cursos</a>
+                                            <a href="views/content/adminCursos.php" class="btn btn-sm btn-outline-primary">Administar cursos</a>
                                         </div>
                                     </div>
                                 </div>
