@@ -9,13 +9,39 @@ class gestionProfesorController {
     }   
 
     public function agregarProfesor() {
-        if (isset($_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['password'], $_POST['telefono'], $_POST['puesto'], $_POST['rol_id'])) {
+        if (
+            isset(
+                $_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['password'],
+                $_POST['telefono'], $_POST['puesto'], $_POST['rol_id'],
+                $_POST['calle'], $_POST['ciudad'], $_POST['estado'], $_POST['codigo_postal']
+            )
+        ) {
             $profeModel = new profeModel($this->pdo);
-            $resultado = $profeModel->agregarProfesor($_POST['nombre'],$_POST['apellido'],$_POST['email'],$_POST['password'], $_POST['telefono'],$_POST['puesto'],$_POST['rol_id']);
-            header('Location: views/content/adminProfesores.php');
+            $resultado = $profeModel->agregarProfesor(
+                $_POST['nombre'],
+                $_POST['apellido'],
+                $_POST['email'],
+                $_POST['password'],
+                $_POST['telefono'],
+                $_POST['puesto'],
+                $_POST['rol_id'],
+                $_POST['calle'],
+                $_POST['ciudad'],
+                $_POST['estado'],
+                $_POST['codigo_postal']
+            );
+    
+            if ($resultado) {
+                header('Location: views/content/adminProfesores.php');
+            } else {
+                echo "Error al registrar el profesor.";
+            }
             exit();
+        } else {
+            echo "Faltan datos obligatorios.";
         }
     }
+    
 
     public function eliminarProfesor() {
         if (isset($_POST['id_profesor'])) {

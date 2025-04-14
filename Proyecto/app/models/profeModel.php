@@ -7,21 +7,60 @@ class profeModel {
         $this->pdo = $pdo;
     }
 
-    public function agregarProfesor($nombre, $apellido, $email, $password, $telefono, $puesto, $rol_id) {
-        $stmt = $this->pdo->prepare(
-            'INSERT INTO profesores (nombre, apellido, email, password, telefono, puesto, rol_id) 
-            VALUES (:nombre, :apellido, :email, :password, :telefono, :puesto, :rol_id)'
+    public function agregarProfesor($nombre, $apellido, $email, $password, $telefono, $puesto, $rol_id, $calle, $ciudad, $estado, $codigo_postal) {
+        // 1. Verificar si la dirección ya existe
+        $stmtBuscar = $this->pdo->prepare(
+            'SELECT id_direccion FROM direccion 
+             WHERE calle = :calle AND ciudad = :ciudad AND estado = :estado AND codigo_postal = :codigo_postal'
         );
-        return $stmt->execute([
+    
+        $stmtBuscar->execute([
+            'calle' => $calle,
+            'ciudad' => $ciudad,
+            'estado' => $estado,
+            'codigo_postal' => $codigo_postal
+        ]);
+    
+        $direccion = $stmtBuscar->fetch(PDO::FETCH_ASSOC);
+    
+        // 2. Si no existe, insertar la dirección
+        if ($direccion) {
+            $idDireccion = $direccion['id_direccion'];
+        } else {
+            $stmtInsertar = $this->pdo->prepare(
+                'INSERT INTO direccion (calle, ciudad, estado, codigo_postal) 
+                 VALUES (:calle, :ciudad, :estado, :codigo_postal)'
+            );
+    
+            $stmtInsertar->execute([
+                'calle' => $calle,
+                'ciudad' => $ciudad,
+                'estado' => $estado,
+                'codigo_postal' => $codigo_postal
+            ]);
+    
+            $idDireccion = $this->pdo->lastInsertId();
+        }
+    
+        // 3. Insertar al profesor
+        $stmtProfesor = $this->pdo->prepare(
+            'INSERT INTO profesores (nombre, apellido, email, password, telefono, puesto, rol_id, id_direccion) 
+             VALUES (:nombre, :apellido, :email, :password, :telefono, :puesto, :rol_id, :id_direccion)'
+        );
+    
+        return $stmtProfesor->execute([
             'nombre' => $nombre,
             'apellido' => $apellido,
             'email' => $email,
             'password' => $password,
             'telefono' => $telefono,
             'puesto' => $puesto,
-            'rol_id' => $rol_id
+            'rol_id' => $rol_id,
+            'id_direccion' => $idDireccion
         ]);
     }
+    
+    
 
     public function eliminarProfesor($idProfesor) {
         $stmt = $this->pdo->prepare('DELETE FROM profesor_curso WHERE id_profesor = :id_profesor');
