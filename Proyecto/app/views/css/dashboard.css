@@ -1,14 +1,16 @@
-
-
 body {
   background-color: #f8f9fa;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Contenedor general debajo del header */
+.dashboard-wrapper {
+  margin-top: 60px; /* Compensa la altura del header */
+}
+
 .jumbotron {
-  background-color: #4a90e2; /* Cambia este color por el que prefieras */
-  color: white; /* Asegúrate de que el texto sea visible */
-  color-scheme: #007bff;
+  background-color: #4a90e2;
+  color: white;
   margin-bottom: 0;
   border-radius: 0;
 }
@@ -18,6 +20,22 @@ body {
   font-weight: 600;
 }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #343a40; /* Color oscuro */
+  color: #ffffff; /* Texto blanco */
+  text-align: center;
+  padding: 10px 0; /* Espaciado vertical */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra superior */
+  z-index: 1030; /* Asegura que esté encima de otros elementos */
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
 .image-style {
   height: 200px;
   object-fit: cover;
@@ -32,11 +50,12 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 .card-body {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  min-height: 100px; /* o el valor que necesites */
+  min-height: 100px;
   justify-content: space-between;
 }
 
@@ -55,7 +74,6 @@ body {
   font-size: 0.95rem;
   color: #6c757d;
 }
-
 
 .btn-outline-primary {
   border-radius: 20px;
@@ -104,8 +122,6 @@ h1 {
 @keyframes fadeZoomIn {
   to {
     opacity: 1;
-    transform: scale(1.);
+    transform: scale(1);
   }
 }
-
-

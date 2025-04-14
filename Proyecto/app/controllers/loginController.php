@@ -2,25 +2,35 @@
 // controllers/LoginController.php
 require_once __DIR__ . '/../models/UserModel.php';
 
-class LoginController {
+class LoginController
+{
     private $userModel;
 
-    public function __construct($pdo) {
+    public function __construct($pdo)
+    {
         $this->userModel = new UserModel($pdo);
     }
 
-        public function index() {
+
+    public function index()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['email'];
             $password = $_POST['password'];
-
-
             $user = $this->userModel->login($username, $password);
+
             if ($user) {
                 session_start();
                 $_SESSION['email'] = $user;
-                header('Location: index.php?action=home');
-                                exit;
+
+                if ($user['rol_id'] == 1) {
+                    header('Location: index.php?action=adminHome');
+                } elseif ($user['usuario']['rol_id'] == 2) {
+                    header('Location: index.php?action=home');
+                } else {
+                    header('Location: index.php?action=home');
+                }
+                exit;
             } else {
                 $error = 'Usuario o contraseña incorrectos';
                 require 'views/content/login.php';
@@ -30,7 +40,9 @@ class LoginController {
         }
     }
 
-    public function logout() {
+
+    public function logout()
+    {
         session_start();
         session_destroy();
         header('Location: index.php');

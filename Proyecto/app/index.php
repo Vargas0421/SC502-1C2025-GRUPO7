@@ -11,6 +11,8 @@ require_once 'controllers/adminDashboardController.php';
 require_once 'controllers/UserController.php';
 require_once 'controllers/ProfesorController.php';
 require_once 'controllers/gestionEstudianteController.php';
+require_once 'controllers/gestionProfesorController.php';
+
 
 $action = $_GET['action'] ?? 'login';
 
@@ -52,6 +54,10 @@ switch ($action) {
         $profileController = new ProfileController($pdo);
         $profileController->abrirProfile();
         break;
+    case 'agregarProfesor':
+        $controller = new gestionProfesorController($pdo);
+        $controller->agregarProfesor();
+        break;
     case 'agregarEstudiante':
         $controller = new gestionEstudianteController($pdo);
         $controller->agregarEstudiante();
@@ -63,6 +69,10 @@ switch ($action) {
     case 'eliminarEstudiante':
         $controller = new gestionEstudianteController($pdo);
         $controller->eliminarEstudiante();
+        break;
+    case 'eliminarProfesor':
+        $controller = new gestionProfesorController($pdo);
+        $controller->eliminarProfesor();
         break;
     case 'desinscribirEstudiante':
         $controller = new gestionEstudianteController($pdo);

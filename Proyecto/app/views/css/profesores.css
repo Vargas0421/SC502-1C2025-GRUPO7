@@ -21,3 +21,21 @@
   height: 200px;
   object-fit: cover;
 }
+
+/* Centrar el botón Agregar Profesor */
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Espaciado superior opcional */
+}
+
+section button {
+  border: none;
+  background: none; /* Elimina estilos predeterminados del botón */
+}
+
+section .btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+}

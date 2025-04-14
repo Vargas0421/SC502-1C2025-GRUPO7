@@ -1,21 +1,28 @@
+<!-- views/footer.php -->
+<style> 
+/* Estilo para el footer fijo */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #343a40; /* Color oscuro */
+  color: #ffffff; /* Texto blanco */
+  text-align: center;
+  padding: 10px 0; /* Espaciado vertical */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra superior */
+  z-index: 1030; /* Asegura que esté encima de otros elementos */
+}
 
-<!-- views/header.php -->
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Administración</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="views/css/style.css">
-</head>
-
-<body>
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+</style>
 
 <footer class="text-muted text-center py-4">
-        <div class="container">
-            <p>&copy; 2025 SC502-1C2025-GRUPO7. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+    <div class="container">
+        <p>&copy; 2025 SC502-1C2025-GRUPO7. Todos los derechos reservados.</p>
+    </div>
+</footer>
 </body>
+</html>

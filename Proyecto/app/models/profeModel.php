@@ -7,6 +7,38 @@ class profeModel {
         $this->pdo = $pdo;
     }
 
+    public function agregarProfesor($nombre, $apellido, $email, $password, $telefono, $puesto, $rol_id) {
+        $stmt = $this->pdo->prepare(
+            'INSERT INTO profesores (nombre, apellido, email, password, telefono, puesto, rol_id) 
+            VALUES (:nombre, :apellido, :email, :password, :telefono, :puesto, :rol_id)'
+        );
+        return $stmt->execute([
+            'nombre' => $nombre,
+            'apellido' => $apellido,
+            'email' => $email,
+            'password' => $password,
+            'telefono' => $telefono,
+            'puesto' => $puesto,
+            'rol_id' => $rol_id
+        ]);
+    }
+
+    public function eliminarProfesor($idProfesor) {
+        $stmt = $this->pdo->prepare('DELETE FROM profesor_curso WHERE id_profesor = :id_profesor');
+        $stmt->execute(['id_profesor' => $idProfesor]);
+
+        $stmt = $this->pdo->prepare('DELETE FROM historial_salarios WHERE id_profesor = :id_profesor');
+        $stmt->execute(['id_profesor' => $idProfesor]);
+
+        $stmt = $this->pdo->prepare('DELETE FROM salarios WHERE id_profesor = :id_profesor');
+        $stmt->execute(['id_profesor' => $idProfesor]);
+
+        $stmt = $this->pdo->prepare('DELETE FROM profesores WHERE id_profesor = :id_profesor');
+        return $stmt->execute(['id_profesor' => $idProfesor]);
+
+        
+    }
+
     public function updateProfesor($id, $nombre, $apellido, $password, $telefono, $puesto) {
         $stmt = $this->pdo->prepare(
             'UPDATE profesores 
