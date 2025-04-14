@@ -96,6 +96,23 @@
                                 <option value="2">Usuario Normal</option>
                             </select>
                         </div>
+                        <h5>Dirección</h5>
+                        <div class="form-group">
+                            <label for="calle">Calle</label>
+                            <input type="text" name="calle" class="form-control" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ciudad">Ciudad</label>
+                            <input type="text" name="ciudad" class="form-control" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="estado">Estado</label>
+                            <input type="text" name="estado" class="form-control" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="codigo_postal">Código Postal</label>
+                            <input type="text" name="codigo_postal" class="form-control" autocomplete="off" required>
+                        </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Agregar profesor</button>
                         </div>
