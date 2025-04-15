@@ -69,6 +69,12 @@ class EstudiantesModel {
     }
 
     public function eliminarEstudiante($idEstudiante) {
+        $stmt = $this->pdo->prepare('DELETE FROM pagos WHERE id_estudiante = :id_estudiante');
+        $stmt->execute(['id_estudiante' => $idEstudiante]);
+
+        $stmt = $this->pdo->prepare('DELETE FROM inscripciones WHERE id_estudiante = :id_estudiante');
+        $stmt->execute(['id_estudiante' => $idEstudiante]);
+
         $stmt = $this->pdo->prepare('DELETE FROM estudiante_curso WHERE id_estudiante = :id_estudiante');
         $stmt->execute(['id_estudiante' => $idEstudiante]);
 

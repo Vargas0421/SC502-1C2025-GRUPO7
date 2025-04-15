@@ -32,6 +32,27 @@ class salarioModel {
         $stmt->execute(['id_profesor' => $idProfesor]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }   
+
+    //Admin
+
+    public function actualizarSalario($idProfesor, $salarioNuevo) {
+        $stmt = $this->pdo->prepare("
+            INSERT INTO Historial_Salarios (id_profesor, salario, fecha_inicio)
+            VALUES (:id_profesor, :salarioNuevo, NOW())");
+        $stmt->execute([
+            ':id_profesor' => $idProfesor,
+            ':salarioNuevo' => $salarioNuevo]);
+
+        $stmt = $this->pdo->prepare("
+            UPDATE Salarios SET salario = :salarioNuevo, fecha_actualizacion = NOW()
+            WHERE id_profesor = :id_profesor");
+            $stmt->execute([
+                ':salarioNuevo' => $salarioNuevo,
+                ':id_profesor' => $idProfesor
+            ]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 }
 
 ?>

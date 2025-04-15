@@ -60,7 +60,7 @@
                                     <p class="card-text">Aca podras administar los pagos de los profesores</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="views/content/salario.php" class="btn btn-sm btn-outline-primary">Administrar pagos</a>
+                                            <a href="views/content/adminSalario.php" class="btn btn-sm btn-outline-primary">Administrar pagos</a>
                                         </div>
                                     </div>
                                 </div>

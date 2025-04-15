@@ -12,6 +12,7 @@ require_once 'controllers/UserController.php';
 require_once 'controllers/ProfesorController.php';
 require_once 'controllers/gestionEstudianteController.php';
 require_once 'controllers/gestionProfesorController.php';
+require_once 'controllers/salarioController.php';
 
 
 $action = $_GET['action'] ?? 'login';
@@ -77,6 +78,10 @@ switch ($action) {
     case 'desinscribirEstudiante':
         $controller = new gestionEstudianteController($pdo);
         $controller->desinscribirEstudiante();
+        break;
+    case 'editarSalarioProfesor':
+        $controller = new salarioController($pdo);
+        $controller->actualizarSalario();
         break;
     default:
         $loginController = new LoginController($pdo);
