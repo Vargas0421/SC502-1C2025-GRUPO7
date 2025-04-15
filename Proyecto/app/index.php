@@ -58,7 +58,7 @@ switch ($action) {
     case 'agregarProfesor':
         $controller = new gestionProfesorController($pdo);
         $controller->agregarProfesor();
-        break;
+        break; 
     case 'agregarEstudiante':
         $controller = new gestionEstudianteController($pdo);
         $controller->agregarEstudiante();

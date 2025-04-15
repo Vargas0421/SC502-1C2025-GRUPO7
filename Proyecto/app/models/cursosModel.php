@@ -1,12 +1,31 @@
 <?php
-class cursosModel {
+class cursosModel
+{
     private $pdo;
 
-    public function __construct($pdo) {
+    public function __construct($pdo)
+    {
         $this->pdo = $pdo;
     }
 
-    public function info_cursos($idProfesor) {
+    public function obtenerCursos()
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM cursos');
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function obtenerCursosPorId($id_curso)
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM cursos WHERE id_curso = :id_curso');
+        $stmt->bindParam(':id_curso', $id_curso, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC); 
+    }
+
+
+    public function info_cursos($idProfesor)
+    {
         $stmt = $this->pdo->prepare('
             SELECT 
                 c.id_curso,
@@ -18,12 +37,13 @@ class cursosModel {
             INNER JOIN Profesores p ON pc.id_profesor = p.id_profesor
             WHERE pc.id_profesor = :idProfesor
         ');
-    
+
         $stmt->execute(['idProfesor' => $idProfesor]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function obtenerCursoPorId($idCurso) {
+    public function obtenerCursoPorId($idCurso)
+    {
         $stmt = $this->pdo->prepare('
             SELECT 
                 c.nombre_curso AS nombre,
@@ -42,8 +62,8 @@ class cursosModel {
             WHERE c.id_curso = :idCurso
         ');
         $stmt->execute(['idCurso' => $idCurso]);
-        return $stmt->fetch(PDO::FETCH_ASSOC); 
-}
-    
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 }
 ?>

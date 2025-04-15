@@ -49,12 +49,12 @@
 
 
         <div class="mb-3 text-left">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarEstudiante">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarProfesor">
                 Agregar un profesor
             </button>
         </div>
 
-        <div class="modal fade" id="modalAgregarEstudiante" tabindex="-1" role="dialog"
+        <div class="modal fade" id="modalAgregarProfesor" tabindex="-1" role="dialog"
             aria-labelledby="modalAgregarLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <form action="../../index.php?action=agregarProfesor" method="POST" class="modal-content">
@@ -95,6 +95,23 @@
                                 <option value="1">Admin</option>
                                 <option value="2">Usuario Normal</option>
                             </select>
+                        </div>
+                        <h5>Dirección</h5>
+                        <div class="form-group">
+                            <label for="calle">Calle</label>
+                            <input type="text" name="calle" class="form-control" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ciudad">Ciudad</label>
+                            <input type="text" name="ciudad" class="form-control" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="estado">Estado</label>
+                            <input type="text" name="estado" class="form-control" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="codigo_postal">Código Postal</label>
+                            <input type="text" name="codigo_postal" class="form-control" autocomplete="off" required>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Agregar profesor</button>
