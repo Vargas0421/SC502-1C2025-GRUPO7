@@ -27,48 +27,57 @@ $listaProfesores = $Profesores->obtenerProfesores();
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container mt-5">
-        <h2>Administración de Salarios</h2>
-        <?php if ($id_profesor && $salarioActual): ?>
+<div class="container mt-5">
+    <h2>Administración de Salarios</h2>
+
+    <?php if ($id_profesor): ?>
+        <?php if ($salarioActual): ?>
             <div class="mb-4">
-            <h4>Salario Actual</h4>
-            <p><strong>Cantidad:</strong> <?= number_format($salarioActual['cantidad']) ?></p>
-            <p><strong>Última Actualización:</strong> <?= htmlspecialchars($salarioActual['fecha']) ?></p>
+                <h4>Salario Actual</h4>
+                <p><strong>Cantidad:</strong> <?= number_format($salarioActual['cantidad']) ?></p>
+                <p><strong>Última Actualización:</strong> <?= htmlspecialchars($salarioActual['fecha']) ?></p>
             </div>
+        <?php else: ?>
+            <div class="alert alert-warning text-center">
+                No hay datos de salario para este profesor
+            </div>
+        <?php endif; ?>
 
-            <form method="POST" action="../../index.php?action=editarSalarioProfesor" class="mb-4">
-                <input type="hidden" name="id_profesor" value="<?= htmlspecialchars($id_profesor) ?>">
-                <div class="form-group">
-                    <label for="salarioNuevo">Nuevo Salario:</label>
-                    <input type="number" step="0.01" name="salarioNuevo" class="form-control" required>
-                </div>
-                <button type="submit" class="btn btn-primary mt-2">Actualizar Salario</button>
-            </form>
+        <form method="POST" action="../../index.php?action=editarSalarioProfesor" class="mb-4">
+            <input type="hidden" name="id_profesor" value="<?= htmlspecialchars($id_profesor) ?>">
+            <div class="form-group">
+                <label for="salarioNuevo">Nuevo Salario:</label>
+                <input type="number" step="0.01" name="salarioNuevo" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Actualizar Salario</button>
+        </form>
 
+        <?php if (!empty($salarios)): ?>
             <h3 class="mb-4">Historial Salario</h3>
             <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>Cantidad</th>
-                    <th>Fecha de Actualización</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php $cantidad = 1; foreach ($salarios as $s): ?>
-                <tr>
-                    <td><?= $cantidad++ ?></td>
-                    <td><?= number_format($s['cantidad']) ?></td>
-                    <td><?= htmlspecialchars($s['fecha']) ?></td>
-                </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Cantidad</th>
+                        <th>Fecha de Actualización</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php $cantidad = 1; foreach ($salarios as $s): ?>
+                    <tr>
+                        <td><?= $cantidad++ ?></td>
+                        <td><?= number_format($s['cantidad']) ?></td>
+                        <td><?= htmlspecialchars($s['fecha']) ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
-        <?php elseif ($id_profesor): ?>
-            <p>No hay datos de salario para este profesor.</p>
         <?php endif; ?>
-    </div>
+
+    <?php endif; ?>
+</div>
+
 </body>
 </html>

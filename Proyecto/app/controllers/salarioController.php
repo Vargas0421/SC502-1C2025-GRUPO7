@@ -10,7 +10,7 @@ class salarioController {
         if (isset($_POST['id_profesor'], $_POST['salarioNuevo'])) {
             $salarioModel = new salarioModel($this->pdo);
             $resultado = $salarioModel->actualizarSalario($_POST['id_profesor'], $_POST['salarioNuevo']);
-            header('Location: views/content/gestionSalario.php?id=$id_profesores');
+            header("Location: views/content/gestionSalario.php?id={$_POST['id_profesor']}");
             exit(); 
         }
         echo "No llega";
