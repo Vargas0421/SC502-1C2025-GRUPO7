@@ -96,7 +96,7 @@ class EstudiantesModel {
             )'
         );
         $stmt->execute(['id_estudiante' => $idEstudiante]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); 
     }
 
     public function agregarCursoEstudiante($idEstudiante, $idCurso) {

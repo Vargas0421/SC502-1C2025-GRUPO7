@@ -24,6 +24,18 @@ class gestionCursosController {
             header('Location: views/content/adminEstudiantes.php');
             exit();
         }
+    }   
+
+    public function actualizarInfoCurso(){
+        if (isset($_POST['id_profesor'], $_POST['id_curso'])) {
+            $cursoModel = new cursosModel($this->pdo);
+            $resultado = $cursoModel->actualizarCursoProfe($_POST['id_profesor'], $_POST['id_curso']);
+
+            header("Location: views/content/adminVistacurso.php?id=" . $_POST['id_curso']);
+            exit();
+        } 
     }
+
+    
 }
 ?>

@@ -9,6 +9,8 @@ $verificacion->verificarSesion();
 
 if (isset($_GET['id'])) {
     $id_curso = $_GET['id'];
+    $profes = new profeModel($pdo);
+    $profesores = $profes -> obtenerProfesores();
     $cursoModel = new cursosModel($pdo);
     $curso = $cursoModel->obtenerCursoFullPorId($id_curso);
     if (!$curso) {
@@ -86,55 +88,54 @@ if (isset($_GET['id'])) {
                 <a href="adminCursos.php" class="btn btn-success mt-4">Volver al listado de cursos</a>
                 <button class="btn btn-info mt-4" onclick="mostrarFormulario()">Editar información</button>
             </section>
-            <form action="editarCurso.php" method="post" class="card shadow-sm p-4 mt-4" id="form-edicion"
-                style="display: none;">
-                <input type="hidden" name="id_curso" value="<?= htmlspecialchars($id_curso) ?>">
+                <form action="../../index.php?action=actualizarInfoCurso" method="post" class="card shadow-sm p-4 mt-4" id="form-edicion"
+                    style="display: none;">
+                    <input type="hidden" name="id_curso" value="<?= htmlspecialchars($id_curso) ?>">
+                    <div class="form-group">
+                        <label for="nombre">Nombre del curso</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre"
+                            value="<?= htmlspecialchars($curso['nombre']) ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3"
+                            required><?= htmlspecialchars($curso['descripcion']) ?></textarea>
+                    </div>
+                    <div>
+                    <label for="descripcion">Profe a cargo</label>
+                    <select name="id_profesor" id="id_profesor" class="form-control" required>
+                        <?php foreach ($profesores as $profesor): ?>
+                            <option value="<?= htmlspecialchars($profesor['id_profesor']) ?>"
+                                <?php if ($profesor['email'] === $curso['email']) echo 'selected'; ?>>
+                                <?= htmlspecialchars($profesor['id_profesor']) ?>
+                                <?= htmlspecialchars($profesor['nombre']) ?>
+                                <?= htmlspecialchars($profesor['apellido']) ?>,
+                                @: <?= htmlspecialchars($profesor['email']) ?>,
+                                Puesto: <?= htmlspecialchars($profesor['puesto']) ?>.
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
 
-                <div class="form-group">
-                    <label for="nombre">Nombre del curso</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre"
-                        value="<?= htmlspecialchars($curso['nombre']) ?>" required>
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="horario">Día</label>
+                        <input type="text" class="form-control" id="horario" name="horario"
+                            value="<?= htmlspecialchars($curso['horario']) ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="hora_inicio">Hora de inicio</label>
+                        <input type="time" class="form-control" id="hora_inicio" name="hora_inicio"
+                            value="<?= htmlspecialchars($curso['hora_inicio']) ?>">
+                    </div>
 
-                <div class="form-group">
-                    <label for="descripcion">Descripción</label>
-                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3"
-                        required><?= htmlspecialchars($curso['descripcion']) ?></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="telefono">Teléfono</label>
-                    <input type="text" class="form-control" id="telefono" name="telefono"
-                        value="<?= htmlspecialchars($curso['telefono']) ?>">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" class="form-control" id="email" name="email"
-                        value="<?= htmlspecialchars($curso['email']) ?>">
-                </div>
-
-                <div class="form-group">
-                    <label for="horario">Día</label>
-                    <input type="text" class="form-control" id="horario" name="horario"
-                        value="<?= htmlspecialchars($curso['horario']) ?>">
-                </div>
-
-                <div class="form-group">
-                    <label for="hora_inicio">Hora de inicio</label>
-                    <input type="time" class="form-control" id="hora_inicio" name="hora_inicio"
-                        value="<?= htmlspecialchars($curso['hora_inicio']) ?>">
-                </div>
-
-                <div class="form-group">
-                    <label for="hora_fin">Hora de fin</label>
-                    <input type="time" class="form-control" id="hora_fin" name="hora_fin"
-                        value="<?= htmlspecialchars($curso['hora_fin']) ?>">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                <button type="button" class="btn btn-secondary ml-2" onclick="cancelarEdicion()">Cancelar</button>
-            </form>
+                    <div class="form-group">
+                        <label for="hora_fin">Hora de fin</label>
+                        <input type="time" class="form-control" id="hora_fin" name="hora_fin"
+                            value="<?= htmlspecialchars($curso['hora_fin']) ?>">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    <button type="button" class="btn btn-secondary ml-2" onclick="cancelarEdicion()">Cancelar</button>
+                </form>
 
 
 

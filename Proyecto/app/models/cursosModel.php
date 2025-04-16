@@ -41,6 +41,18 @@ class cursosModel
         $stmt->execute(['idProfesor' => $idProfesor]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function actualizarCursoProfe($idProfe, $idCurso) {
+        $stmt = $this->pdo->prepare(
+            'UPDATE profesor_curso 
+             SET id_profesor = :id_profesor
+             WHERE id_curso = :id_curso'
+        );
+            return $stmt->execute([
+            'id_profesor' => $idProfe,  
+            'id_curso' => $idCurso     
+        ]);
+    }
+    
 
     public function obtenerCursoFullPorId($idCurso)
     {
