@@ -13,6 +13,7 @@ require_once 'controllers/ProfesorController.php';
 require_once 'controllers/gestionEstudianteController.php';
 require_once 'controllers/gestionProfesorController.php';
 require_once 'controllers/salarioController.php';
+require_once 'controllers/gestionCursosController.php';
 
 
 $action = $_GET['action'] ?? 'login';
@@ -66,6 +67,10 @@ switch ($action) {
     case 'agregarCursoEstudiante':
         $controller = new gestionEstudianteController($pdo);
         $controller->agregarCursoEstudiante();
+        break;
+    case 'agregarCurso':
+        $controller = new gestionCursosController($pdo);
+        $controller->agregarCurso();
         break;
     case 'eliminarEstudiante':
         $controller = new gestionEstudianteController($pdo);

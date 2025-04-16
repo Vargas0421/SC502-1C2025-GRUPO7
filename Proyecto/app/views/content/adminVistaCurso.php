@@ -16,9 +16,6 @@ if (isset($_GET['id'])) {
         echo "El curso no existe o no se encontró.";
         exit();
     }
-    $profeModel = new profeModel($pdo);
-    $profesores = $profeModel->obtenerProfesores();
-
 } else {
     echo "No se ha seleccionado un curso.";
     exit();
@@ -64,7 +61,7 @@ if (isset($_GET['id'])) {
                         <?= htmlspecialchars($curso['nombre_curso']) ?>
                     </h5>
                     <p class="card-text"><strong>Descripcion:</strong> <?= htmlspecialchars($curso['descripcion']) ?></p>
-                    <P clas"card-text"><strong>Profesor asigand@:</strong> <?= htmlspecialchars($curso['nombre_curso']) ?></P>
+                    <P class="card-text"><strong>Profesor asigand@:</strong> <?= htmlspecialchars($curso['nombre_curso']) ?></P>
                 </div>
             </div>
             <section>
@@ -72,7 +69,7 @@ if (isset($_GET['id'])) {
             </section>
         
 
-        <?php endif; ?> <!-- 🔧 cierre correcto del if -->
+        <?php endif; ?> 
 
     </div>
 

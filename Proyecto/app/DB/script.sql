@@ -28,6 +28,10 @@ CREATE TABLE Direccion (
   codigo_postal VARCHAR(10) NOT NULL
 );
 
+CREATE TABLE Rol (
+  id_rol INT PRIMARY KEY AUTO_INCREMENT, 
+  nombre varchar(30) not null
+);
 
 CREATE TABLE Profesores (
   id_profesor INT PRIMARY KEY AUTO_INCREMENT,
@@ -37,7 +41,9 @@ CREATE TABLE Profesores (
   password VARCHAR(255) NOT NULL,
   id_direccion INT,
   telefono VARCHAR(20),
-  puesto VARCHAR(200) ,
+  puesto VARCHAR(200),
+  rol_id int,
+  FOREIGN KEY (rol_id) REFERENCES Rol(id_rol),
   FOREIGN KEY (id_direccion) REFERENCES Direccion(id_direccion)
 );
 
@@ -49,6 +55,8 @@ CREATE TABLE Estudiantes (
   password VARCHAR(255) NOT NULL,
   id_direccion INT,
   telefono VARCHAR(20),
+  rol_id int,
+  FOREIGN KEY (rol_id) REFERENCES Rol(id_rol),
   FOREIGN KEY (id_direccion) REFERENCES Direccion(id_direccion)
 );
 
@@ -160,6 +168,10 @@ INSERT INTO Cursos (nombre_curso, descripcion) VALUES
 INSERT INTO Profesor_Curso (id_profesor, id_curso) VALUES
 (1, 1),  
 (2, 2);  
+
+INSERT INTO Rol (id_rol, nombre) VALUES
+(1, "Admin"),
+(2, "Usuario Comun");
 
 INSERT INTO Estudiante_Curso (id_estudiante, id_curso, fecha_inscripcion) VALUES
 (1, 1, '2025-03-01'),  

@@ -13,6 +13,7 @@ if (isset($_GET['id'])) {
     $idCurso = $_GET['id']; 
     $cursosModel = new cursosModel($pdo);
     $cursoEncontrado = $cursosModel->obtenerCursoPorId($idCurso);
+    $estudianteCurso = $cursosModel->obtenerEstudiantesPorCurso($idCurso);
 }
 ?>
 <!DOCTYPE html>
@@ -67,6 +68,39 @@ if (isset($_GET['id'])) {
             </div>
           </div>
         </div>
+
+        <div class="col-md-6">
+          <div class="card shadow-sm">
+            <div class="card-header bg-white">
+              <strong>Estudiantes inscritos</strong>
+            </div>
+            <div class="card-body">
+              <?php if (!empty($estudianteCurso)): ?>
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Estudiante</th>
+                        <th>Email</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($estudianteCurso as $estudiante): ?>
+                        <tr>
+                          <td><?= htmlspecialchars($estudiante['nombre']) . ' ' . htmlspecialchars($estudiante['apellido']) ?></td>
+                          <td><?= htmlspecialchars($estudiante['email']) ?></td>
+                        </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                </div>
+              <?php else: ?>
+                <p class="text-muted">No hay estudiantes inscritos en este curso.</p>
+              <?php endif; ?>
+            </div>
+          </div>
+        </div>
+
       </div>
     <?php else: ?>
       <div class="alert alert-danger">
