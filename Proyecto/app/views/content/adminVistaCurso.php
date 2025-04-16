@@ -118,9 +118,17 @@ if (isset($_GET['id'])) {
 
                     </div>
                     <div class="form-group">
-                        <label for="horario">Día</label>
-                        <input type="text" class="form-control" id="horario" name="horario"
-                            value="<?= htmlspecialchars($curso['horario']) ?>">
+                        <label for="horario">Día de la semana</label>
+                        <select class="form-control" id="horario" name="horario" required>
+                            <?php
+                            $dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+                            foreach ($dias as $dia):
+                            ?>
+                                <option value="<?= $dia ?>" <?= ($curso['horario'] === $dia) ? 'selected' : '' ?>>
+                                    <?= $dia ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="hora_inicio">Hora de inicio</label>
