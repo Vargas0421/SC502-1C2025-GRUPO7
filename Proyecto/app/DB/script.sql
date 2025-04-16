@@ -28,6 +28,10 @@ CREATE TABLE Direccion (
   codigo_postal VARCHAR(10) NOT NULL
 );
 
+CREATE TABLE Rol (
+  id_rol INT PRIMARY KEY AUTO_INCREMENT, 
+  nombre varchar(30) not null
+);
 
 CREATE TABLE Profesores (
   id_profesor INT PRIMARY KEY AUTO_INCREMENT,
@@ -37,7 +41,9 @@ CREATE TABLE Profesores (
   password VARCHAR(255) NOT NULL,
   id_direccion INT,
   telefono VARCHAR(20),
-  puesto VARCHAR(200) ,
+  puesto VARCHAR(200),
+  rol_id int,
+  FOREIGN KEY (rol_id) REFERENCES Rol(id_rol),
   FOREIGN KEY (id_direccion) REFERENCES Direccion(id_direccion)
 );
 
@@ -49,6 +55,8 @@ CREATE TABLE Estudiantes (
   password VARCHAR(255) NOT NULL,
   id_direccion INT,
   telefono VARCHAR(20),
+  rol_id int,
+  FOREIGN KEY (rol_id) REFERENCES Rol(id_rol),
   FOREIGN KEY (id_direccion) REFERENCES Direccion(id_direccion)
 );
 
@@ -107,11 +115,6 @@ CREATE TABLE Pagos (
   FOREIGN KEY (id_metodo_pago) REFERENCES Metodos_Pago(id_metodo_pago)
 );
 
-CREATE TABLE Tipos_Telefono (
-  id_tipo_telefono INT PRIMARY KEY AUTO_INCREMENT,
-  tipo VARCHAR(50) UNIQUE NOT NULL
-);
-
 CREATE TABLE Historial_Salarios (
   id_historial INT PRIMARY KEY AUTO_INCREMENT,
   id_profesor INT NOT NULL,
@@ -166,6 +169,10 @@ INSERT INTO Profesor_Curso (id_profesor, id_curso) VALUES
 (1, 1),  
 (2, 2);  
 
+INSERT INTO Rol (id_rol, nombre) VALUES
+(1, "Admin"),
+(2, "Usuario Comun");
+
 INSERT INTO Estudiante_Curso (id_estudiante, id_curso, fecha_inscripcion) VALUES
 (1, 1, '2025-03-01'),  
 (2, 2, '2025-03-01');  
@@ -197,10 +204,6 @@ INSERT INTO Metodos_Pago (nombre_metodo) VALUES
 INSERT INTO Pagos (id_estudiante, monto, fecha_pago, id_metodo_pago) VALUES
 (1, 200.00, '2025-04-01', 1),  
 (2, 250.00, '2025-04-01', 2); 
-
-INSERT INTO Tipos_Telefono (tipo) VALUES
-('Móvil'),
-('Fijo');
 
 
 INSERT INTO Estados_Inscripcion (estado) VALUES

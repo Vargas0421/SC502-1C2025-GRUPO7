@@ -25,6 +25,7 @@
         $id = $_SESSION['email']['id_profesor'];
         $profeModel = new profeModel($pdo);
         $direccion = $profeModel->obtenerDireccionId($id);
+        $infoProfesor = $profeModel->obtenerProfesorPorId($id);
     ?>
     <!-- Contenido principal -->
     <div class="bg-light min-vh-100 d-flex align-items-center">
@@ -35,18 +36,11 @@
                         <div class="position-relative d-inline-block">
                             <img src="https://randomuser.me/api/portraits/men/40.jpg" class="rounded-circle profile-pic"
                                 alt="Profile Picture">
-                            <button class="btn btn-primary btn-sm position-absolute bottom-0 end-0 rounded-circle">
-                                <i class="fas fa-camera"></i>
-                            </button>
                         </div>
                         <?php 
                             echo '<h3 class="mt-3 mb-1">' . htmlspecialchars($_SESSION['email']['nombre']) .' '. htmlspecialchars($_SESSION['email']['apellido']) . '</h3>';
-                            echo ' <p class="text-muted mb-3">' . htmlspecialchars($_SESSION['email']['puesto']) .'</p>';
+                            echo ' <p class="text-white mb-3">' . htmlspecialchars($_SESSION['email']['puesto']) .'</p>';
                         ?>
-                        <div class="d-flex justify-content-center gap-2 mb-4">
-                            <button class="btn btn-outline-primary"><i class="fas fa-envelope me-2"></i>Message</button>
-                            <button class="btn btn-primary"><i class="fas fa-user-plus me-2"></i>Connect</button>
-                        </div>
                     </div>
 
                     <!-- Main Content -->
@@ -61,23 +55,23 @@
                                                 <div class="row g-3">
                                                     <div class="col-md-6">
                                                         <label class="form-label">Nombre</label>
-                                                        <input type="text" class="form-control" name="nombre" value="<?= htmlspecialchars($_SESSION['email']['nombre']) ?>">
+                                                        <input type="text" class="form-control" name="nombre" value="<?= htmlspecialchars($infoProfesor['nombre']) ?>">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Apellidos</label>
-                                                        <input type="text" class="form-control" name="apellido" value="<?= htmlspecialchars($_SESSION['email']['apellido']) ?>">
+                                                        <input type="text" class="form-control" name="apellido" value="<?= htmlspecialchars($infoProfesor['apellido']) ?>">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Password</label>
-                                                        <input type="password" class="form-control" name="password" value="<?= htmlspecialchars($_SESSION['email']['password']) ?>">
+                                                        <input type="password" class="form-control" name="password" value="<?= htmlspecialchars($infoProfesor['password']) ?>">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Telefono</label>
-                                                        <input type="text" class="form-control" name="telefono" value="<?= htmlspecialchars($_SESSION['email']['telefono']) ?>">
+                                                        <input type="text" class="form-control" name="telefono" value="<?= htmlspecialchars($infoProfesor['telefono']) ?>">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Puesto</label>
-                                                        <input type="text" class="form-control" name="puesto" value="<?= htmlspecialchars($_SESSION['email']['puesto']) ?>">
+                                                        <input type="text" class="form-control" name="puesto" value="<?= htmlspecialchars($infoProfesor['puesto']) ?>">
                                                     </div>
                                                     <input type="hidden" name="id_profesor" value="<?= htmlspecialchars($_SESSION['email']['id_profesor']) ?>"> <!-- Campo con el id del profesor -->
                                                     <div class="mt-4 text-center">

@@ -30,6 +30,7 @@
         <div class="container marketing mt-5 pt-5">
             <h2 class="text-center mb-4">Listado de cursos impartidos</h2>
             <div class="row">
+            <?php if (!empty($cursos)): ?>
                 <?php foreach ($cursos as $curso): ?>
                     <div class="col-lg-4 mb-4">
                         <div class="card shadow-sm">
@@ -44,6 +45,13 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-12">
+                    <div class="alert alert-warning text-center">
+                        No hay cursos disponibles para usted en este momento
+                    </div>
+                </div>
+            <?php endif; ?>
             </div>
         </div>
     </main>

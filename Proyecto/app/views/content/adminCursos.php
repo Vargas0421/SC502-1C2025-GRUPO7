@@ -68,15 +68,36 @@
                             <input type="text" name="nombre" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="apellido">Descripcion</label>
-                            <input type="text" name="apellido" class="form-control" required>
+                            <label for="descripcion">Descripcion</label>
+                            <input type="text" name="descripcion" class="form-control" required>
                         </div>
-
+                        <h5>Horario</h5>
+                        <div class="form-group">
+                            <label for="diaSemana">Día de la semana</label>
+                            <select name="diaSemana" class="form-control" required>
+                                <option value="">Seleccione un día</option>
+                                <option value="Lunes">Lunes</option>
+                                <option value="Martes">Martes</option>
+                                <option value="Miércoles">Miércoles</option>
+                                <option value="Jueves">Jueves</option>
+                                <option value="Viernes">Viernes</option>
+                                <option value="Sábado">Sábado</option>
+                                <option value="Domingo">Domingo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="horaInicio">Hora de inicio</label>
+                            <input type="time" name="horaInicio" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="horaFin">Hora de fin</label>
+                            <input type="time" name="horaFin" class="form-control" required>
+                        </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Agregar el curso </button>
                         </div>
                     </div>
-                </form>
+                </form>  
             </div>  
         </div>
 
