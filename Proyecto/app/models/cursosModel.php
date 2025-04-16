@@ -41,8 +41,51 @@ class cursosModel
         $stmt->execute(['idProfesor' => $idProfesor]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function actualizarCursoProfe($idProfe, $idCurso, $nombreCurso, $descripcion, $dia_semana, $hora_inicio, $hora_fin) {
+        // Actualizar profesor
+        $stmt1 = $this->pdo->prepare(
+            'UPDATE profesor_curso 
+             SET id_profesor = :id_profesor
+             WHERE id_curso = :id_curso'
+        );
+        $res1 = $stmt1->execute([
+            'id_profesor' => $idProfe,
+            'id_curso' => $idCurso
+        ]);
+    
+        // Actualizar curso
+        $stmt2 = $this->pdo->prepare(
+            'UPDATE cursos 
+             SET nombre_curso = :nombre_curso, descripcion = :descripcion
+             WHERE id_curso = :id_curso'
+        );
+        $res2 = $stmt2->execute([
+            'nombre_curso' => $nombreCurso,
+            'descripcion' => $descripcion,
+            'id_curso' => $idCurso
+        ]);
+    
+        // Actualizar horario
+        $stmt3 = $this->pdo->prepare(
+            'UPDATE horarios 
+             SET dia_semana = :dia_semana, hora_inicio = :hora_inicio, hora_fin = :hora_fin
+             WHERE id_curso = :id_curso'
+        );
+        $res3 = $stmt3->execute([
+            'dia_semana' => $dia_semana,
+            'hora_inicio' => $hora_inicio,
+            'hora_fin' => $hora_fin,
+            'id_curso' => $idCurso
+        ]);
+    
+        // Devolver true solo si las 3 operaciones fueron exitosas
+        return $res1 && $res2 && $res3;
+    }
+    
+    
+    
 
-    public function obtenerCursoPorId($idCurso)
+    public function obtenerCursoFullPorId($idCurso)
     {
         $stmt = $this->pdo->prepare('
             SELECT 
@@ -50,11 +93,11 @@ class cursosModel
                 c.descripcion,
                 CONCAT(p.nombre, " ", p.apellido) AS profesor,
                 p.telefono AS telefono,
-                p.email AS email,
+                p.email AS email,   
                 h.dia_semana AS horario,
                 h.hora_inicio,
                 h.hora_fin
-            FROM Profesor_Curso pc
+            FROM profesor_curso pc
             INNER JOIN Cursos c ON pc.id_curso = c.id_curso
             INNER JOIN Profesores p ON pc.id_profesor = p.id_profesor
             LEFT JOIN Direccion d ON p.id_direccion = d.id_direccion
@@ -81,23 +124,29 @@ class cursosModel
     // Admin
     
     public function agregarCurso($nombre, $descripcion, $diaSemana, $horaInicio, $horaFin) {
-        $stmt = $this->pdo->prepare('INSERT INTO Cursos (nombre_curso, descripcion) VALUES (:nombre, :descripcion);');
-        return $stmt->execute([
+        // Insertar el curso
+        $stmt = $this->pdo->prepare('INSERT INTO Cursos (nombre_curso, descripcion) VALUES (:nombre, :descripcion)');
+        $stmt->execute([
             ':nombre' => $nombre,
             ':descripcion' => $descripcion
         ]);
-
+    
+        // Obtener el id del curso recién insertado
+        $idCurso = $this->pdo->lastInsertId();
+    
+        // Insertar el horario relacionado con ese curso
         $stmt = $this->pdo->prepare(
             'INSERT INTO Horarios (id_curso, dia_semana, hora_inicio, hora_fin) 
              VALUES (:idCurso, :diaSemana, :horaInicio, :horaFin)'
         );
-        $stmt->execute([
+        return $stmt->execute([
             ':idCurso' => $idCurso,
             ':diaSemana' => $diaSemana,
             ':horaInicio' => $horaInicio,
             ':horaFin' => $horaFin
         ]);
     }
+    
 
 }
 ?>
