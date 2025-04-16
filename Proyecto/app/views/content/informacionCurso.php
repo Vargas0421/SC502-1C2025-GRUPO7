@@ -12,7 +12,7 @@ $cursoEncontrado = null;
 if (isset($_GET['id'])) {
     $idCurso = $_GET['id']; 
     $cursosModel = new cursosModel($pdo);
-    $cursoEncontrado = $cursosModel->obtenerCursoPorId($idCurso);
+    $cursoEncontrado = $cursosModel->obtenerCursoFullPorId($idCurso);
     $estudianteCurso = $cursosModel->obtenerEstudiantesPorCurso($idCurso);
 }
 ?>

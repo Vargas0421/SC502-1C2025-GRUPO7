@@ -36,49 +36,65 @@ $estudiantes = $estudiantesModel->obtenerEstudiantes();
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($estudiantes as $estudiante): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($estudiante['nombre']) . ' ' . htmlspecialchars($estudiante['apellido']) ?></td>
-                        <td>
-                            <button 
-                                class="btn btn-info" 
-                                data-toggle="modal" 
-                                data-target="#modalEstudiante-<?= htmlspecialchars($estudiante['id_estudiante']) ?>"
-                            >
-                                Ver Detalles
-                            </button>
-                        </td>
-                    </tr>
-                    <div class="modal" id="modalEstudiante-<?= htmlspecialchars($estudiante['id_estudiante']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalEstudianteLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalEstudianteLabel">Detalles del Estudiante</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button> 
-                                </div>
-                                <div class="modal-body">
-                                    <p><strong>Nombre:</strong> <?= htmlspecialchars($estudiante['nombre']) ?></p>
-                                    <p><strong>Apellido:</strong> <?= htmlspecialchars($estudiante['apellido']) ?></p>
-                                    <p><strong>Email:</strong> <?= htmlspecialchars($estudiante['email']) ?></p>
-                                    <p><strong>Teléfono:</strong> <?= htmlspecialchars($estudiante['telefono']) ?></p>
-                                    <p><strong>Cursos inscritos:</strong></p>
-                                    <ul>
+                <?php if (!empty($estudiantes)): ?>
+                    <?php foreach ($estudiantes as $estudiante): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($estudiante['nombre']) . ' ' . htmlspecialchars($estudiante['apellido']) ?></td>
+                            <td>
+                                <button 
+                                    class="btn btn-info" 
+                                    data-toggle="modal" 
+                                    data-target="#modalEstudiante-<?= htmlspecialchars($estudiante['id_estudiante']) ?>"
+                                >
+                                    Ver Detalles
+                                </button>
+                            </td>
+                        </tr>
+                        <div class="modal" id="modalEstudiante-<?= htmlspecialchars($estudiante['id_estudiante']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalEstudianteLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalEstudianteLabel">Detalles del Estudiante</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button> 
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><strong>Nombre:</strong> <?= htmlspecialchars($estudiante['nombre']) ?></p>
+                                        <p><strong>Apellido:</strong> <?= htmlspecialchars($estudiante['apellido']) ?></p>
+                                        <p><strong>Email:</strong> <?= htmlspecialchars($estudiante['email']) ?></p>
+                                        <p><strong>Teléfono:</strong> <?= htmlspecialchars($estudiante['telefono']) ?></p>
+                                        <p><strong>Cursos inscritos:</strong></p>
                                         <?php 
                                         $cursos = $estudiantesModel->obtenerCursosEstudiante($estudiante['id_estudiante']);
-                                        foreach ($cursos as $curso): ?>
-                                            <p><?= htmlspecialchars($curso['nombre_curso']) ?></p>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        if (!empty($cursos)): ?>
+                                            <ul>
+                                                <?php foreach ($cursos as $curso): ?>
+                                                    <li><?= htmlspecialchars($curso['nombre_curso']) ?></li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        <?php else: ?>
+                                            <div class="alert alert-warning" role="alert">
+                                                Este estudiante no está inscrito en ningún curso.
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="2">
+                            <div class="alert alert-warning" role="alert">
+                                No hay estudiantes registrados.
+                            </div>
+                        </td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
