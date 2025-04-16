@@ -42,7 +42,7 @@ class cursosModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function obtenerCursoPorId($idCurso)
+    public function obtenerCursoFullPorId($idCurso)
     {
         $stmt = $this->pdo->prepare('
             SELECT 
@@ -50,11 +50,11 @@ class cursosModel
                 c.descripcion,
                 CONCAT(p.nombre, " ", p.apellido) AS profesor,
                 p.telefono AS telefono,
-                p.email AS email,
+                p.email AS email,   
                 h.dia_semana AS horario,
                 h.hora_inicio,
                 h.hora_fin
-            FROM Profesor_Curso pc
+            FROM profesor_curso pc
             INNER JOIN Cursos c ON pc.id_curso = c.id_curso
             INNER JOIN Profesores p ON pc.id_profesor = p.id_profesor
             LEFT JOIN Direccion d ON p.id_direccion = d.id_direccion
