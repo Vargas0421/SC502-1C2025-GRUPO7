@@ -49,12 +49,12 @@
 
 
         <div class="mb-3 text-left">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarEstudiante">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarProfesor">
                 Agregar un profesor
             </button>
         </div>
 
-        <div class="modal fade" id="modalAgregarEstudiante" tabindex="-1" role="dialog"
+        <div class="modal fade" id="modalAgregarProfesor" tabindex="-1" role="dialog"
             aria-labelledby="modalAgregarLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <form action="../../index.php?action=agregarProfesor" method="POST" class="modal-content">

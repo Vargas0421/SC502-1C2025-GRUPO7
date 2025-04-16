@@ -60,7 +60,7 @@
                                     <p class="card-text">Aca podras administar los pagos de los profesores</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="views/content/salario.php" class="btn btn-sm btn-outline-primary">Administrar pagos</a>
+                                            <a href="views/content/adminSalario.php" class="btn btn-sm btn-outline-primary">Administrar pagos</a>
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@
                                     <p class="card-text">Aca puesdes administar los cursos, tanto estudiantes como profesores.</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="views/content/estudiantes.php" class="btn btn-sm btn-outline-primary">Administar cursos</a>
+                                            <a href="views/content/adminCursos.php" class="btn btn-sm btn-outline-primary">Administar cursos</a>
                                         </div>
                                     </div>
                                 </div>
