@@ -15,7 +15,7 @@ class cursosModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function obtenerCursosPorId($id_curso)
+    public function obtenerCursoPorId($id_curso)
     {
         $stmt = $this->pdo->prepare('SELECT * FROM cursos WHERE id_curso = :id_curso');
         $stmt->bindParam(':id_curso', $id_curso, PDO::PARAM_INT);
