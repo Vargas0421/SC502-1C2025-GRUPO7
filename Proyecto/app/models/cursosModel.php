@@ -80,7 +80,7 @@ class cursosModel
     
         // Devolver true solo si las 3 operaciones fueron exitosas
         return $res1 && $res2 && $res3;
-    }
+    }   
     
     
     
@@ -97,16 +97,41 @@ class cursosModel
                 h.dia_semana AS horario,
                 h.hora_inicio,
                 h.hora_fin
-            FROM profesor_curso pc
-            INNER JOIN Cursos c ON pc.id_curso = c.id_curso
-            INNER JOIN Profesores p ON pc.id_profesor = p.id_profesor
+            FROM Cursos c
+            LEFT JOIN profesor_curso pc ON pc.id_curso = c.id_curso
+            LEFT JOIN Profesores p ON pc.id_profesor = p.id_profesor
             LEFT JOIN Direccion d ON p.id_direccion = d.id_direccion
             LEFT JOIN Horarios h ON h.id_curso = c.id_curso
             WHERE c.id_curso = :idCurso
         ');
         $stmt->execute(['idCurso' => $idCurso]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }public function eliminarCurso($idCurso) {
+        
+            // Primero eliminar relaciones
+            $stmt = $this->pdo->prepare('DELETE FROM Estudiante_curso WHERE id_curso = :idCurso');
+            $stmt->execute([':idCurso' => $idCurso]);
+    
+            $stmt = $this->pdo->prepare('DELETE FROM profesor_curso WHERE id_curso = :idCurso');
+            $stmt->execute([':idCurso' => $idCurso]);
+    
+            $stmt = $this->pdo->prepare('DELETE FROM Horarios WHERE id_curso = :idCurso');
+            $stmt->execute([':idCurso' => $idCurso]);
+    
+            $stmt = $this->pdo->prepare('DELETE FROM Inscripciones WHERE id_curso = :idCurso');
+            $stmt->execute([':idCurso' => $idCurso]);
+
+            // Finalmente eliminar el curso
+            $stmt = $this->pdo->prepare('DELETE FROM Cursos WHERE id_curso = :idCurso');
+            $stmt->execute([':idCurso' => $idCurso]);
+    
+            return true;
+            
     }
+    
+    
+    
+    
 
     public function obtenerEstudiantesPorCurso($idCurso) {
         $stmt = $this->pdo->prepare("

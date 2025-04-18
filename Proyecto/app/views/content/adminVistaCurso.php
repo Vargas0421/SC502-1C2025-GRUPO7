@@ -13,7 +13,12 @@ if (isset($_GET['id'])) {
     $profesores = $profes -> obtenerProfesores();
     $cursoModel = new cursosModel($pdo);
     $curso = $cursoModel->obtenerCursoFullPorId($id_curso);
+
     if (!$curso) {
+        echo '<pre>';
+        var_dump($curso);
+        echo '<pre>';
+
         echo "El curso no existe o no se encontró.";
         exit();
     }
@@ -87,6 +92,12 @@ if (isset($_GET['id'])) {
             <section id="botones-acciones">
                 <a href="adminCursos.php" class="btn btn-success mt-4">Volver al listado de cursos</a>
                 <button class="btn btn-info mt-4" onclick="mostrarFormulario()">Editar información</button>
+                <form action="../../index.php?action=eliminarCurso"" method="POST" 
+                    onsubmit = "return confirm('Seguro de que deseas eliminar este curso? Al hacerlo eliminara tambien la información relacionada al curso, como horarios, profesores y estudiantes asignados al curso ')">
+                    <input type="hidden" name="id_curso" value="<?= htmlspecialchars($id_curso) ?>">
+                    <button type="submit" class=    "btn btn-danger mb-3">Eliminar curso</button>
+                </form>
+
             </section>
                 <form action="../../index.php?action=actualizarInfoCurso" method="post" class="card shadow-sm p-4 mt-4" id="form-edicion"
                     style="display: none;">
