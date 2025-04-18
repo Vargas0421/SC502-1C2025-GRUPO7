@@ -9,9 +9,9 @@ class gestionCursosController
     }
     public function agregarCurso()
     {
-        if (isset($_POST['nombre'], $_POST['descripcion'], $_POST['diaSemana'], $_POST['horaInicio'], $_POST['horaFin'])) {
+        if (isset($_POST['nombre'], $_POST['descripcion'], $_POST['diaSemana'], $_POST['horaInicio'], $_POST['horaFin'], $_POST['id_profesor'],)) {
             $cursosModel = new cursosModel($this->pdo);
-            $resultado = $cursosModel->agregarCurso($_POST['nombre'], $_POST['descripcion'], $_POST['diaSemana'], $_POST['horaInicio'], $_POST['horaFin']);
+            $resultado = $cursosModel->agregarCurso($_POST['nombre'], $_POST['descripcion'], $_POST['diaSemana'], $_POST['horaInicio'], $_POST['horaFin'], $_POST['id_profesor'],);
 
             header('Location: views/content/adminCursos.php');
             exit();
