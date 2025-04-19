@@ -163,9 +163,16 @@ INSERT INTO Direccion (calle, ciudad, estado, codigo_postal) VALUES
 ('Calle 45 Norte', 'Heredia', 'Heredia', '40101');
 
 INSERT INTO Profesores (nombre, apellido, email, password, id_direccion, telefono, puesto) VALUES
-('Carlos', 'Fernández', 'cfernandez@gmail.com', 'clave123', 1, "8765-4321", 'Profesor de Matemáticas'),
-('María', 'Gómez', 'mgomez@gmail.com', 'segura456', 2, "6012-3456", 'Profesor de Física'),
-('Brandon', 'Vargas', 'Bvargas@mail.com', 'a', 2, "8369-0296", 'Desarrollador Full Stack');
+('Carlos', 'Fernández', 'cfernandez@gmail.com', '$2y$10$g9XEJoeckD3bpFecolW0RuvckRwiQTgc5t5BaRKORNx58SaAUrJMi', 1, "8765-4321", 'Profesor de Matemáticas'), -- clave123
+('María', 'Gómez', 'mgomez@gmail.com', '$2y$10$G2zZGmUE3kqlySzoO9.ncOLaSRu1eeMsM7L.jXiOJ1Ql4Ze8Jc0wK', 2, "6012-3456", 'Profesor de Física'), -- segura456
+('Brandon', 'Vargas', 'Bvargas@mail.com', '$2y$10$XR5iv7bWJmHN9Sdx2ZHcfu7MfFiGeJCq2K2sX6wYmI1YH.uyYVMAC', 2, "8369-0296", 'Desarrollador Full Stack'); -- a
+
+
+-- $2y$10$l72HvHwGi/56GRiLBXMdles5SnrTet4voyXRpW4mDU.Z2Vo62tUAC
+-- $2y$10$jwYhRg0q/CUDLINUIyMK9uHHM0TzjBMxJ0CijmgwFjuwqJuzd5BHy
+-- $2y$10$doMJlJNU/XP3nraYY8M2tee3ElzpzKVMbkqfCMxQNkmDDIgRhoC/q
+
+
 
 INSERT INTO Estudiantes (nombre, apellido, email, password, id_direccion, telefono) VALUES
 ('Juan', 'Pérez', 'jperez@gmail.com', 'estudiante789', 1, "7111-2222"),

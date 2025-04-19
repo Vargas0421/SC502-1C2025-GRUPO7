@@ -19,6 +19,14 @@ class calendarioController {
         }
         echo "nunca pasa";
     }
-    
 
+    public function eliminarCalendario() {
+        if (isset($_POST['id_calendario'])) {
+            $calendarioModel = new calendarioModel($this->pdo);
+            $resultado = $calendarioModel->eliminarCalendario($_POST['id_calendario']);
+            header('Location: views/content/calendario.php');
+            exit();
+        }
+        echo "nunca pasa";
+    }
 }

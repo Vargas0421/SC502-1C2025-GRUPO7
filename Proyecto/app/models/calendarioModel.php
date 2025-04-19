@@ -1,3 +1,4 @@
+  
 <?php
 class calendarioModel {
     private $pdo;
@@ -22,6 +23,12 @@ class calendarioModel {
         $stmt->execute([$id_profesor]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function eliminarCalendario($id_calendario) {
+        $stmt = $this->pdo->prepare("DELETE FROM calendario WHERE id_calendario = ?");
+        $stmt->execute([$id_calendario]); 
+    }
+    
 
 
 

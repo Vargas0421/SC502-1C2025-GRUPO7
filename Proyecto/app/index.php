@@ -108,6 +108,10 @@ switch ($action) {
         $controller = new calendarioController($pdo);
         $controller->agregaraCalendario();
         break;
+    case 'eliminarCalendario':
+        $controller = new calendarioController($pdo);
+        $controller->eliminarCalendario();
+        break;
     default:
         $loginController = new LoginController($pdo);
         $loginController->index();

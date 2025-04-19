@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,8 +12,6 @@
 <body>
 <?php 
 $titulo = "Calendario"; 
-$_SESSION['vista_anterior'] = 'app/../../../index.php?action=home';
-
 require_once('header/headerIndex.php'); 
 require_once('../../config/config.php'); 
 require_once('../../controllers/VerificacionController.php'); 
@@ -26,11 +25,12 @@ $id_profesor = $_SESSION['email']['id_profesor'] ?? null;
 $calendarioModel = new calendarioModel($pdo);
 $eventos = $calendarioModel->obtenerCalendarioPorId($id_profesor);
 
-// Convertir los eventos a formato que FullCalendar entiende
+// Pasa los eventos a un formato que FullCalendar pueda entender
 $eventosFormateados = [];
 
 foreach ($eventos as $evento) {
     $eventosFormateados[] = [
+        'id' => $evento['id_calendario'],
         'title' => $evento['titulo'],
         'start' => $evento['fecha_inicial'] . 'T' . $evento['hora'],
         'description' => $evento['descripcion'],
@@ -94,33 +94,15 @@ foreach ($eventos as $evento) {
                 <p><strong>Descripción:</strong> <span id="modalDescripcion"></span></p>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-warning">Editar</button>
-                <button class="btn btn-danger">Eliminar</button>
+                <form method="POST" action="../../index.php?action=eliminarCalendario" id="eliminarCalendario">
+                <input type="hidden" id="idCalendario" name="id_calendario">
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Model Editar el evento -->
-<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalTitulo">Detalles del Evento</h5>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p><strong>Fecha:</strong> <span id="modalFecha"></span></p>
-                <p><strong>Hora:</strong> <span id="modalHora"></span></p>
-                <p><strong>Descripción:</strong> <span id="modalDescripcion"></span></p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-warning">Editar</button>
-                <button class="btn btn-danger">Eliminar</button>
-            </div>
-        </div>
-    </div>
-</div>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.js"></script>
@@ -148,6 +130,9 @@ foreach ($eventos as $evento) {
                 $('#modalHora').text(horaCompleta);
                 $('#modalDescripcion').text(event.description);
 
+                // Id para el eliminar despues
+                $('#idCalendario').val(event.id);
+
                 $('#modalEvento').modal('show');
             }
         });
@@ -155,4 +140,3 @@ foreach ($eventos as $evento) {
 </script>
 </body>
 </html>
-
