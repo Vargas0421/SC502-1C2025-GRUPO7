@@ -52,6 +52,7 @@ if (isset($_GET['id'])) {
 <body>
     <?php
     $titulo = "Área de gestion un curso";
+    $_SESSION['vista_anterior'] = 'adminCursos.php';
     require_once('header/headerIndex.php');
     ?>
 

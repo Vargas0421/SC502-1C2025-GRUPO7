@@ -13,6 +13,8 @@
     <?php
 
     $titulo = "Manejo de cursos";
+    $_SESSION['vista_anterior'] = 'app/../../../index.php?action=adminHome';
+
     require_once('header/headerIndex.php');
     require_once('../../models/cursosModel.php');
     require_once('../../models/profeModel.php');
