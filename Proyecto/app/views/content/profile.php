@@ -5,28 +5,40 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Profile</title>
+    <title>Perfil</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link href="css/profile.css" rel="stylesheet">
 </head>
 
 <body>
+    <?php
 
-    <?php 
-        $titulo = "Bienvenido a tu perfil"; 
-        require_once('header/headerIndex.php'); 
-        require_once('../../config/config.php');
-        require_once('../../models/UserModel.php');
-        require_once('../../models/profeModel.php');
-        require_once('../../controllers/VerificacionController.php');
+    $titulo = "Bienvenido a tu perfil";
 
-        $verificacion = new VerificacionController();
-        $verificacion->verificarSesion();
+    // Requiere primero la información del profesor antes de la verificación
+    require_once('../../config/config.php');
+    require_once('../../models/UserModel.php');
+    require_once('../../models/profeModel.php');
+    require_once('../../controllers/VerificacionController.php');
 
-        $id = $_SESSION['email']['id_profesor'];
-        $profeModel = new profeModel($pdo);
-        $direccion = $profeModel->obtenerDireccionId($id);
-        $infoProfesor = $profeModel->obtenerProfesorPorId($id);
+    // Verificar la sesión antes de obtener datos del profesor
+    $verificacion = new VerificacionController();
+    $verificacion->verificarSesion();
+
+    $id = $_SESSION['email']['id_profesor'];
+    $profeModel = new profeModel($pdo);
+    $infoProfesor = $profeModel->obtenerProfesorPorId($id); // Obtener info del profesor
+    $direccion = $profeModel->obtenerDireccionId($id); // Obtener dirección del profesor
+    
+    // Luego, verificar el rol de este profesor
+    if ((int) htmlspecialchars($infoProfesor['rol_id']) === 1) {
+        $_SESSION['vista_anterior'] = 'app/../../../index.php?action=adminHome';
+    } else {
+        $_SESSION['vista_anterior'] = 'app/../../../index.php?action=home';
+    }
+    require_once('header/headerIndex.php');
     ?>
+
+
     <!-- Contenido principal -->
     <div class="bg-light min-vh-100 d-flex align-items-center">
         <div class="container py-5">
@@ -37,9 +49,9 @@
                             <img src="https://randomuser.me/api/portraits/men/40.jpg" class="rounded-circle profile-pic"
                                 alt="Profile Picture">
                         </div>
-                        <?php 
-                            echo '<h3 class="mt-3 mb-1">' . htmlspecialchars($_SESSION['email']['nombre']) .' '. htmlspecialchars($_SESSION['email']['apellido']) . '</h3>';
-                            echo ' <p class="text-white mb-3">' . htmlspecialchars($_SESSION['email']['puesto']) .'</p>';
+                        <?php
+                        echo '<h3 class="mt-3 mb-1">' . htmlspecialchars($infoProfesor['nombre']) . ' ' . htmlspecialchars($infoProfesor['apellido']) . '</h3>';
+                        echo ' <p class="text-white mb-3">' . htmlspecialchars($infoProfesor['puesto']) . '</p>';
                         ?>
                     </div>
 
@@ -49,49 +61,62 @@
                             <div class="row g-0">
                                 <div class="col-12">
                                     <div class="p-4">
-                                        <form action="../../index.php?action=actualizarPerfil" method="POST" id="updateProfesor">
+                                        <form action="../../index.php?action=actualizarPerfil" method="POST"
+                                            id="updateProfesor">
                                             <div class="mb-4">
                                                 <h5 class="mb-4">Información Personal</h5>
                                                 <div class="row g-3">
                                                     <div class="col-md-6">
                                                         <label class="form-label">Nombre</label>
-                                                        <input type="text" class="form-control" name="nombre" value="<?= htmlspecialchars($infoProfesor['nombre']) ?>">
+                                                        <input type="text" class="form-control" name="nombre"
+                                                            value="<?= htmlspecialchars($infoProfesor['nombre']) ?>">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Apellidos</label>
-                                                        <input type="text" class="form-control" name="apellido" value="<?= htmlspecialchars($infoProfesor['apellido']) ?>">
+                                                        <input type="text" class="form-control" name="apellido"
+                                                            value="<?= htmlspecialchars($infoProfesor['apellido']) ?>">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Telefono</label>
-                                                        <input type="text" class="form-control" name="telefono" value="<?= htmlspecialchars($infoProfesor['telefono']) ?>">
+                                                        <input type="text" class="form-control" name="telefono"
+                                                            value="<?= htmlspecialchars($infoProfesor['telefono']) ?>">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Puesto</label>
-                                                        <input type="text" class="form-control" name="puesto" value="<?= htmlspecialchars($infoProfesor['puesto']) ?>">
+                                                        <input type="text" class="form-control" name="puesto"
+                                                            value="<?= htmlspecialchars($infoProfesor['puesto']) ?>">
                                                     </div>
-                                                    <input type="hidden" name="id_profesor" value="<?= htmlspecialchars($_SESSION['email']['id_profesor']) ?>"> <!-- Campo con el id del profesor -->
+                                                    <input type="hidden" name="id_profesor"
+                                                        value="<?= htmlspecialchars($_SESSION['email']['id_profesor']) ?>">
+                                                    <!-- Campo con el id del profesor -->
                                                     <div class="mt-4">
-                                                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                                        <button type="submit" class="btn btn-primary">Guardar
+                                                            Cambios</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
                                         <!-- Formulario para cambiar contraseña -->
-                                        <form action="../../index.php?action=actualizarPassword" method="POST" id="cambiarPassword">
+                                        <form action="../../index.php?action=actualizarPassword" method="POST"
+                                            id="cambiarPassword">
                                             <div class="mb-4">
                                                 <h5 class="mb-4">Cambiar Contraseña</h5>
                                                 <div class="row g-3">
                                                     <div class="col-md-6">
                                                         <label class="form-label">Nueva contraseña</label>
-                                                        <input type="password" class="form-control" name="nuevaPassword" required>
+                                                        <input type="password" class="form-control" name="nuevaPassword"
+                                                            required>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Confirmar contraseña</label>
-                                                        <input type="password" class="form-control" name="confirmarPassword" required>
+                                                        <input type="password" class="form-control"
+                                                            name="confirmarPassword" required>
                                                     </div>
-                                                    <input type="hidden" name="id_profesor" value="<?= htmlspecialchars($_SESSION['email']['id_profesor']) ?>">
+                                                    <input type="hidden" name="id_profesor"
+                                                        value="<?= htmlspecialchars($_SESSION['email']['id_profesor']) ?>">
                                                     <div class="mt-4 text-center">
-                                                        <button type="submit" class="btn btn-primary">Actualizar Contraseña</button>
+                                                        <button type="submit" class="btn btn-primary">Actualizar
+                                                            Contraseña</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,29 +124,37 @@
 
 
                                         <!-- Calle, ciudad, estado, código postal -->
-                                        <form action="../../index.php?action=actualizarDireccion" method="POST" id="updateDireccion">
+                                        <form action="../../index.php?action=actualizarDireccion" method="POST"
+                                            id="updateDireccion">
                                             <div class="mb-4">
                                                 <h5 class="mb-4">Dirección</h5>
                                                 <div class="row g-3">
                                                     <div class="col-md-6">
                                                         <label class="form-label">Calle</label>
-                                                        <input type="text" class="form-control" name="calle" value="<?= htmlspecialchars($direccion['calle']) ?>">
+                                                        <input type="text" class="form-control" name="calle"
+                                                            value="<?= htmlspecialchars($direccion['calle']) ?>">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Ciudad</label>
-                                                        <input type="text" class="form-control" name="ciudad" value="<?= htmlspecialchars($direccion['ciudad']) ?>">
+                                                        <input type="text" class="form-control" name="ciudad"
+                                                            value="<?= htmlspecialchars($direccion['ciudad']) ?>">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Estado</label>
-                                                        <input type="text" class="form-control" name="estado" value="<?= htmlspecialchars($direccion['estado']) ?>">
+                                                        <input type="text" class="form-control" name="estado"
+                                                            value="<?= htmlspecialchars($direccion['estado']) ?>">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Código Postal</label>
-                                                        <input type="text" class="form-control" name="codigo_postal" value="<?= htmlspecialchars($direccion['codigo_postal']) ?>">
+                                                        <input type="text" class="form-control" name="codigo_postal"
+                                                            value="<?= htmlspecialchars($direccion['codigo_postal']) ?>">
                                                     </div>
-                                                    <input type="hidden" name="id_profesor" value="<?= htmlspecialchars($_SESSION['email']['id_profesor']) ?>"> <!-- Campo con el id del profesor -->
+                                                    <input type="hidden" name="id_profesor"
+                                                        value="<?= htmlspecialchars($_SESSION['email']['id_profesor']) ?>">
+                                                    <!-- Campo con el id del profesor -->
                                                     <div class="mt-4 text-center">
-                                                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                                        <button type="submit" class="btn btn-primary">Guardar
+                                                            Cambios</button>
                                                     </div>
                                                 </div>
                                             </div>

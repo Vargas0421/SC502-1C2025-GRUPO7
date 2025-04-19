@@ -78,16 +78,15 @@ class profeModel {
         
     }
 
-    public function updateProfesor($id, $nombre, $apellido, $password, $telefono, $puesto) {
+    public function updateProfesor($id, $nombre, $apellido, $telefono, $puesto) {
         $stmt = $this->pdo->prepare(
             'UPDATE profesores 
-                SET nombre = :nombre, apellido = :apellido, password = :password, telefono = :telefono, puesto = :puesto 
+                SET nombre = :nombre, apellido = :apellido, telefono = :telefono, puesto = :puesto 
                 WHERE id_profesor = :id_profesor'
         );
         $resultado = $stmt->execute([
             'nombre' => $nombre,
             'apellido' => $apellido,
-            'password' => $password, 
             'telefono' => $telefono,
             'puesto' => $puesto,
             'id_profesor' => $id

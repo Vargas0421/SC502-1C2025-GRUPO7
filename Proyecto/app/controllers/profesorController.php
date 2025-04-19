@@ -6,31 +6,16 @@ class ProfesorController {
         $this->pdo = $pdo;
     }
     public function actualizarProfesor() {
-        if (isset($_POST['id_profesor'], $_POST['nombre'], $_POST['apellido'], $_POST['password'], $_POST['telefono'], $_POST['puesto'])) {
+        if (isset($_POST['id_profesor'], $_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['puesto'])) {
             $profeModel = new profeModel($this->pdo);
-            $resultado = $profeModel->updateProfesor($_POST['id_profesor'], $_POST['nombre'], $_POST['apellido'], $_POST['password'], $_POST['telefono'], $_POST['puesto']);
+            $resultado = $profeModel->updateProfesor($_POST['id_profesor'], $_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['puesto']);
 
             header('Location: views/content/profile.php');
             exit();
  
         }
     }
-    public function actualizarPassword() {
-        if (isset($_POST['id_profesor'], $_POST['oldPassword'], $_POST['newPassword'])) {
-            $profeModel = new profeModel($this->pdo);
-            $resultado = $profeModel->actualizarPassword($_POST['id_profesor'], $_POST['oldPassword'], $_POST['newPassword']);
-    
-            if ($resultado) {
-                $_SESSION['mensaje_password'] = 'Contraseña actualizada con éxito.';
-            } else {
-                $_SESSION['error_password'] = 'La contraseña actual es incorrecta.';
-            }
-    
-            header('Location: views/content/profile.php');
-            exit();
-        }
-    }
-    
+   
     
     public function actualizarDireccion() {
         if (isset($_POST['id_profesor'], $_POST['calle'], $_POST['ciudad'], $_POST['estado'], $_POST['codigo_postal'])) {
