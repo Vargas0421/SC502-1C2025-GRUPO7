@@ -47,6 +47,16 @@ CREATE TABLE Profesores (
   FOREIGN KEY (id_direccion) REFERENCES Direccion(id_direccion)
 );
 
+CREATE TABLE Calendario (
+  id_calendario INT PRIMARY KEY AUTO_INCREMENT,
+  titulo VARCHAR(50) NOT NULL,
+  descripcion VARCHAR(200) NOT NULL,
+  fecha_inicial DATE NOT NULL,
+  hora TIME NOT NULL,
+  id_profesor INT NULL,
+  FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor)
+);
+
 CREATE TABLE Estudiantes (
   id_estudiante INT PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(100) NOT NULL,

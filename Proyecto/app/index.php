@@ -14,7 +14,7 @@ require_once 'controllers/gestionEstudianteController.php';
 require_once 'controllers/gestionProfesorController.php';
 require_once 'controllers/salarioController.php';
 require_once 'controllers/gestionCursosController.php';
-
+require_once 'controllers/calendarioController.php';
 
 $action = $_GET['action'] ?? 'login';
 
@@ -95,6 +95,14 @@ switch ($action) {
     case 'editarSalarioProfesor':
         $controller = new salarioController($pdo);
         $controller->actualizarSalario();
+        break;
+    case 'verCalendario':
+        $controller = new calendarioController($pdo);
+        $controller->abrirCalendario();
+        break;
+    case 'agregaraCalendario':
+        $controller = new calendarioController($pdo);
+        $controller->agregaraCalendario();
         break;
     default:
         $loginController = new LoginController($pdo);
