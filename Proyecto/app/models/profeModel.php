@@ -96,22 +96,13 @@ class profeModel {
         return $resultado;
     }
 
-    public function actualizarPassword($id_profesor, $oldPassword, $newPassword) {
-        $stmt = $this->pdo->prepare('SELECT password FROM profesores WHERE id_profesor = :id_profesor');
-        $stmt->execute(['id_profesor' => $id_profesor]);
-        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-        if ($resultado && $resultado['password'] === $oldPassword) {
-            $stmt = $this->pdo->prepare('UPDATE profesores SET password = :newPassword WHERE id_profesor = :id_profesor');
-            return $stmt->execute([
-                'newPassword' => $newPassword,
-                'id_profesor' => $id_profesor
-            ]);
-        }
-    
-        return false; // Contraseña actual incorrecta
+    public function updatePassword($id, $password) {
+        $stmt = $this->pdo->prepare('UPDATE profesores SET password = :password WHERE id_profesor = :id');
+        return $stmt->execute([
+            'password' => $password,
+            'id' => $id
+        ]);
     }
-    
 
     public function updateDireccion($id, $calle, $ciudad, $estado, $codigo_postal) {
         $stmt = $this->pdo->prepare(

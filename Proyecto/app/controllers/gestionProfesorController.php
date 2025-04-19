@@ -16,12 +16,15 @@ class gestionProfesorController {
                 $_POST['calle'], $_POST['ciudad'], $_POST['estado'], $_POST['codigo_postal']
             )
         ) {
+            // Encripta la contraseña
+            $passwordEncriptada = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
             $profeModel = new profeModel($this->pdo);
             $resultado = $profeModel->agregarProfesor(
                 $_POST['nombre'],
                 $_POST['apellido'],
                 $_POST['email'],
-                $_POST['password'],
+                $passwordEncriptada,
                 $_POST['telefono'],
                 $_POST['puesto'],
                 $_POST['rol_id'],

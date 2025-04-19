@@ -13,6 +13,26 @@ class EstudiantesModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC); 
     }
 
+    public function obtenerEstudiantesPorCursoProfesor($idProfesor) {
+        $stmt = $this->pdo->prepare('
+            SELECT 
+                c.id_curso,
+                c.nombre_curso,
+                e.id_estudiante,
+                e.nombre AS nombre_estudiante,
+                e.apellido,
+                e.email,
+                e.telefono
+            FROM cursos c
+            INNER JOIN curso_profesor cp ON cp.id_curso = c.id_curso
+            LEFT JOIN curso_estudiante ce ON ce.id_curso = c.id_curso
+            LEFT JOIN estudiantes e ON e.id_estudiante = ce.id_estudiante
+            WHERE cp.id_profesor = :idProfesor
+            ORDER BY c.nombre_curso, e.apellido');
+        $stmt->execute(['idProfesor' => $idProfesor]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function obtenerCursosEstudiante($idEstudiante) {
         $stmt = $this->pdo->prepare(
             'SELECT c.id_curso, c.nombre_curso 
@@ -73,7 +93,6 @@ class EstudiantesModel {
                 'id_direccion' => $id_direccion
             ]);
         } catch (PDOException $e) {
-            // Manejo de errores
             error_log('Error al agregar estudiante: ' . $e->getMessage());
             return false;
         }

@@ -6,9 +6,9 @@ class UserModel {
         $this->pdo = $pdo;
     }
 
-    public function login($username, $password) {
-        $stmt = $this->pdo->prepare('SELECT * FROM profesores WHERE email = :username AND password = :password');
-        $stmt->execute(['username' => $username, 'password' => $password]);
+    public function login($email) {
+        $stmt = $this->pdo->prepare('SELECT * FROM profesores WHERE email = :email');
+        $stmt->execute(['email' => $email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
