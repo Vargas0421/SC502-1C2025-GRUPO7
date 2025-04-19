@@ -1,5 +1,7 @@
 <?php
 $titulo = "Gestion de Estudiante"; 
+$_SESSION['vista_anterior'] = 'adminEstudiantes.php';
+
 require_once('header/headerIndex.php'); 
 require_once('../../config/config.php');
 require_once('../../models/estudiantesModel.php');

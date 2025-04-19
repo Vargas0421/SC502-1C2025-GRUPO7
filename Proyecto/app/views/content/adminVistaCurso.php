@@ -8,7 +8,7 @@ $verificacion = new VerificacionController();
 $verificacion->verificarSesion();
 
 if (isset($_GET['id'])) {
-    $id_curso = $_GET['id'];
+    $id_curso = $_GET['id']; 
     $profes = new profeModel($pdo);
     $profesores = $profes -> obtenerProfesores();
     $cursoModel = new cursosModel($pdo);
@@ -52,6 +52,7 @@ if (isset($_GET['id'])) {
 <body>
     <?php
     $titulo = "Área de gestion un curso";
+    $_SESSION['vista_anterior'] = 'adminCursos.php';
     require_once('header/headerIndex.php');
     ?>
 
@@ -92,7 +93,7 @@ if (isset($_GET['id'])) {
             <section id="botones-acciones">
                 <a href="adminCursos.php" class="btn btn-success mt-4">Volver al listado de cursos</a>
                 <button class="btn btn-info mt-4" onclick="mostrarFormulario()">Editar información</button>
-                <form action="../../index.php?action=eliminarCurso"" method="POST" 
+                <form action="../../index.php?action=eliminarCurso" method="POST" 
                     onsubmit = "return confirm('Seguro de que deseas eliminar este curso? Al hacerlo eliminara tambien la información relacionada al curso, como horarios, profesores y estudiantes asignados al curso ')">
                     <input type="hidden" name="id_curso" value="<?= htmlspecialchars($id_curso) ?>">
                     <button type="submit" class=    "btn btn-danger mb-3">Eliminar curso</button>

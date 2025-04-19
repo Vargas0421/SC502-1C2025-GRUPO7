@@ -148,29 +148,45 @@ class cursosModel
 
     // Admin
     
-    public function agregarCurso($nombre, $descripcion, $diaSemana, $horaInicio, $horaFin) {
-        // Insertar el curso
-        $stmt = $this->pdo->prepare('INSERT INTO Cursos (nombre_curso, descripcion) VALUES (:nombre, :descripcion)');
-        $stmt->execute([
-            ':nombre' => $nombre,
-            ':descripcion' => $descripcion
-        ]);
+    public function agregarCurso($nombre, $descripcion, $diaSemana, $horaInicio, $horaFin, $id_profesor) {
+        
     
-        // Obtener el id del curso recién insertado
-        $idCurso = $this->pdo->lastInsertId();
+            // Insertar el curso
+            $stmt = $this->pdo->prepare('INSERT INTO Cursos (nombre_curso, descripcion) VALUES (:nombre, :descripcion)');
+            $stmt->execute([
+                ':nombre' => $nombre,
+                ':descripcion' => $descripcion
+            ]);
     
-        // Insertar el horario relacionado con ese curso
-        $stmt = $this->pdo->prepare(
-            'INSERT INTO Horarios (id_curso, dia_semana, hora_inicio, hora_fin) 
-             VALUES (:idCurso, :diaSemana, :horaInicio, :horaFin)'
-        );
-        return $stmt->execute([
-            ':idCurso' => $idCurso,
-            ':diaSemana' => $diaSemana,
-            ':horaInicio' => $horaInicio,
-            ':horaFin' => $horaFin
-        ]);
+            $idCurso = $this->pdo->lastInsertId();
+    
+            // Insertar horario
+            $stmtHorario = $this->pdo->prepare(
+                'INSERT INTO Horarios (id_curso, dia_semana, hora_inicio, hora_fin) 
+                 VALUES (:idCurso, :diaSemana, :horaInicio, :horaFin)'
+            );
+            $stmtHorario->execute([
+                ':idCurso' => $idCurso,
+                ':diaSemana' => $diaSemana,
+                ':horaInicio' => $horaInicio,
+                ':horaFin' => $horaFin
+            ]);
+    
+            // Insertar relación con profesor
+            $stmtProfesor = $this->pdo->prepare(
+                'INSERT INTO profesor_curso (id_curso, id_profesor) 
+                 VALUES (:idCurso, :id_profesor)'
+            );
+            $stmtProfesor->execute([
+                ':idCurso' => $idCurso,
+                ':id_profesor' => $id_profesor
+            ]);
+    
+            return true;
+    
+       
     }
+    
     
 
 }

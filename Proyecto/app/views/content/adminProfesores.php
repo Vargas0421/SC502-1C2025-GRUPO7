@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Manejo Profesores</title>
+    <title>Manejo de usuarios</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="views/css/profesores.css">
 </head>
@@ -15,7 +15,9 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    $titulo = "Manejo de profesores";
+    $titulo = "Manejo de usuarios";
+    $_SESSION['vista_anterior'] = 'app/../../../index.php?action=adminHome';
+
     require_once('header/headerIndex.php');
     require_once('../../config/config.php');
     require_once('../../models/profeModel.php');
@@ -28,7 +30,7 @@
     ?>
 
     <div class="container py-5">
-        <h1 class="text-center mb-4">Listado de Profesores</h1>
+        <h1 class="text-center mb-4">Listado de usuarios</h1>
         <div class="row" id="profesores-container">
             <?php foreach ($profesores as $profesor): ?>
                 <div class="col-md-4 d-flex align-items-stretch mb-4">

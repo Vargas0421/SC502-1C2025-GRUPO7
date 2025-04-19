@@ -72,7 +72,7 @@ switch ($action) {
         $controller = new gestionCursosController($pdo);
         $controller->actualizarInfoCurso();
         break;
-    case 'eliminarCurso': 
+    case 'eliminarCurso':  
         $controller = new gestionCursosController($pdo);
         $controller->eliminarCurso();
         break;

@@ -13,6 +13,8 @@
     <?php
 
     $titulo = "Manejo de cursos";
+    $_SESSION['vista_anterior'] = 'app/../../../index.php?action=adminHome';
+
     require_once('header/headerIndex.php');
     require_once('../../models/cursosModel.php');
     require_once('../../models/profeModel.php');
@@ -72,7 +74,7 @@
                             <input type="text" name="descripcion" class="form-control" required>
                         </div>
                         <h5>Horario</h5>
-                        <div class="form-group">
+                        <div class="form-group"> 
                             <label for="diaSemana">Día de la semana</label>
                             <select name="diaSemana" class="form-control" required>
                                 <option value="">Seleccione un día</option>
@@ -92,6 +94,20 @@
                         <div class="form-group">
                             <label for="horaFin">Hora de fin</label>
                             <input type="time" name="horaFin" class="form-control" required>
+                        </div>
+                        <div>
+                            <label for="descripcion">Profe a cargo</label>
+                            <select name="id_profesor" id="id_profesor" class="form-control" required>
+                                <?php foreach ($profesores as $profesor): ?>
+                                    <option value="<?= htmlspecialchars($profesor['id_profesor']) ?>">
+                                        <?= htmlspecialchars($profesor['id_profesor']) ?>
+                                        <?= htmlspecialchars($profesor['nombre']) ?>
+                                        <?= htmlspecialchars($profesor['apellido']) ?>,
+                                        @: <?= htmlspecialchars($profesor['email']) ?>,
+                                        Puesto: <?= htmlspecialchars($profesor['puesto']) ?>.
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Agregar el curso </button>
