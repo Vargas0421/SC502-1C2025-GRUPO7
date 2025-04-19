@@ -24,14 +24,16 @@ class EstudiantesModel {
                 e.email,
                 e.telefono
             FROM cursos c
-            INNER JOIN curso_profesor cp ON cp.id_curso = c.id_curso
-            LEFT JOIN curso_estudiante ce ON ce.id_curso = c.id_curso
+            INNER JOIN profesor_curso cp ON cp.id_curso = c.id_curso
+            LEFT JOIN estudiante_curso ce ON ce.id_curso = c.id_curso
             LEFT JOIN estudiantes e ON e.id_estudiante = ce.id_estudiante
             WHERE cp.id_profesor = :idProfesor
-            ORDER BY c.nombre_curso, e.apellido');
+            ORDER BY c.nombre_curso, e.apellido
+        ');
         $stmt->execute(['idProfesor' => $idProfesor]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
 
     public function obtenerCursosEstudiante($idEstudiante) {
         $stmt = $this->pdo->prepare(
