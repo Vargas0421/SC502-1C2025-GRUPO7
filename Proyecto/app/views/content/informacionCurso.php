@@ -1,12 +1,12 @@
 <?php
-require_once('header/headerIndex.php'); 
 require_once('../../config/config.php');
 require_once('../../models/cursosModel.php');
 require_once('../../controllers/VerificacionController.php');
 
 $verificacion = new VerificacionController();
 $verificacion->verificarSesion();
-
+$titulo = "Cursos"; 
+$_SESSION['vista_anterior'] = 'Clases.php';
 $cursoEncontrado = null;
 // Recibe el id
 if (isset($_GET['id'])) {
@@ -25,10 +25,7 @@ if (isset($_GET['id'])) {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
-    <?php 
-    $titulo = "Cursos"; 
-    require_once('header/headerIndex.php'); 
-    ?>
+    <?php require_once('header/headerIndex.php'); ?>
 
   <main role="main" class="container mt-5 pt-5">
     <?php if ($cursoEncontrado): ?>

@@ -17,14 +17,14 @@
                 $pagina = basename($_SERVER['PHP_SELF']);
                 $esHome = isset($_GET['action']) && $_GET['action'] === 'home';
                 $esAdminHome = isset($_GET['action']) && $_GET['action'] === 'adminHome';
-                if ($pagina !== 'dashboard.php' && $pagina !== 'login.php' && !$esHome): ?>
+                if ($pagina !== 'dashboard.php' && $pagina !== 'login.php' && !$esHome && !$esAdminHome): ?>
                     <a href="<?= $_SESSION['vista_anterior'] ?? 'dashboard.php' ?>" class="btn btn-outline-light">Volver</a>
                 <?php endif; ?>
                 <a href="#" class="navbar-brand d-flex align-items-center">
-                    <strong><?php echo isset($titulo) ? $titulo : 'Área Administrativa'; ?></strong>
+                    <strong><?php echo isset($titulo) ? $titulo : 'Titulo por defecto ya que en la clase no se unduca'; ?></strong>
                 </a>
 
-                <?php if ($esHome || $esAdminHome): ?>
+                <?php if ($esAdminHome || $esHome ): ?>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" id="perfil" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
