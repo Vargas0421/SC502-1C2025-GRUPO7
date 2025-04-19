@@ -44,6 +44,10 @@ switch ($action) {
         $controller = new ProfesorController($pdo);
         $controller->actualizarProfesor();
         break;
+    case 'actualizarPassword':
+        $controller = new ProfesorController($pdo);
+        $controller->actualizarPassword();
+        break;
     case 'actualizarDireccion':
         $controller = new ProfesorController($pdo);
         $controller->actualizarDireccion();
@@ -59,20 +63,20 @@ switch ($action) {
     case 'agregarProfesor':
         $controller = new gestionProfesorController($pdo);
         $controller->agregarProfesor();
-        break; 
+        break;
     case 'agregarEstudiante':
         $controller = new gestionEstudianteController($pdo);
         $controller->agregarEstudiante();
         break;
-    case 'agregarCursoEstudiante': 
+    case 'agregarCursoEstudiante':
         $controller = new gestionEstudianteController($pdo);
         $controller->agregarCursoEstudiante();
         break;
-    case 'actualizarInfoCurso': 
+    case 'actualizarInfoCurso':
         $controller = new gestionCursosController($pdo);
         $controller->actualizarInfoCurso();
         break;
-    case 'eliminarCurso':  
+    case 'eliminarCurso':
         $controller = new gestionCursosController($pdo);
         $controller->eliminarCurso();
         break;
