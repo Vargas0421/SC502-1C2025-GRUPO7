@@ -32,7 +32,7 @@
                                     <p class="card-text">Puede administrar las fechas y tiempos de las asignaturas</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="calendario.html" class="btn btn-sm btn-outline-primary">Abrir
+                                            <a href="../app/index.php?action=verCalendario" class="btn btn-sm btn-outline-primary">Abrir
                                                 calendario</a>
                                         </div>
                                     </div>
