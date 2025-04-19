@@ -96,6 +96,14 @@ class profeModel {
         return $resultado;
     }
 
+    public function updatePassword($id, $password) {
+        $stmt = $this->pdo->prepare('UPDATE profesores SET password = :password WHERE id_profesor = :id');
+        return $stmt->execute([
+            'password' => $password,
+            'id' => $id
+        ]);
+    }
+
     public function updateDireccion($id, $calle, $ciudad, $estado, $codigo_postal) {
         $stmt = $this->pdo->prepare(
             "UPDATE Direccion 

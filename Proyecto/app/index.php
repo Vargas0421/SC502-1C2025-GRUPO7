@@ -44,6 +44,10 @@ switch ($action) {
         $controller = new ProfesorController($pdo);
         $controller->actualizarProfesor();
         break;
+    case 'actualizarPassword':
+        $controller = new ProfesorController($pdo);
+        $controller->actualizarPassword();
+        break;
     case 'actualizarDireccion':
         $controller = new ProfesorController($pdo);
         $controller->actualizarDireccion();
@@ -103,6 +107,10 @@ switch ($action) {
     case 'agregaraCalendario':
         $controller = new calendarioController($pdo);
         $controller->agregaraCalendario();
+        break;
+    case 'eliminarCalendario':
+        $controller = new calendarioController($pdo);
+        $controller->eliminarCalendario();
         break;
     default:
         $loginController = new LoginController($pdo);

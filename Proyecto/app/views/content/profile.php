@@ -62,10 +62,6 @@
                                                         <input type="text" class="form-control" name="apellido" value="<?= htmlspecialchars($infoProfesor['apellido']) ?>">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label">Password</label>
-                                                        <input type="password" class="form-control" name="password" value="<?= htmlspecialchars($infoProfesor['password']) ?>">
-                                                    </div>
-                                                    <div class="col-md-6">
                                                         <label class="form-label">Telefono</label>
                                                         <input type="text" class="form-control" name="telefono" value="<?= htmlspecialchars($infoProfesor['telefono']) ?>">
                                                     </div>
@@ -74,12 +70,33 @@
                                                         <input type="text" class="form-control" name="puesto" value="<?= htmlspecialchars($infoProfesor['puesto']) ?>">
                                                     </div>
                                                     <input type="hidden" name="id_profesor" value="<?= htmlspecialchars($_SESSION['email']['id_profesor']) ?>"> <!-- Campo con el id del profesor -->
-                                                    <div class="mt-4 text-center">
+                                                    <div class="mt-4">
                                                         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+                                        <!-- Formulario para cambiar contraseña -->
+                                        <form action="../../index.php?action=actualizarPassword" method="POST" id="cambiarPassword">
+                                            <div class="mb-4">
+                                                <h5 class="mb-4">Cambiar Contraseña</h5>
+                                                <div class="row g-3">
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Nueva contraseña</label>
+                                                        <input type="password" class="form-control" name="nuevaPassword" required>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Confirmar contraseña</label>
+                                                        <input type="password" class="form-control" name="confirmarPassword" required>
+                                                    </div>
+                                                    <input type="hidden" name="id_profesor" value="<?= htmlspecialchars($_SESSION['email']['id_profesor']) ?>">
+                                                    <div class="mt-4 text-center">
+                                                        <button type="submit" class="btn btn-primary">Actualizar Contraseña</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
 
                                         <!-- Calle, ciudad, estado, código postal -->
                                         <form action="../../index.php?action=actualizarDireccion" method="POST" id="updateDireccion">
@@ -118,7 +135,9 @@
             </div>
         </div>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>
