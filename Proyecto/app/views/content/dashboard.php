@@ -13,6 +13,9 @@
 <?php 
 $titulo = "Área de Gestión"; 
 require_once('header/headerIndex.php'); 
+require_once('../../controllers/VerificacionController.php');
+    $verificacion = new VerificacionController();
+    $verificacion->verificarAcceso();   
 ?>
 
 <main role="main">

@@ -19,10 +19,8 @@
     require_once('../../models/UserModel.php');
     require_once('../../models/profeModel.php');
     require_once('../../controllers/VerificacionController.php');
-
-    // Verificar la sesión antes de obtener datos del profesor
     $verificacion = new VerificacionController();
-    $verificacion->verificarSesion();
+    $verificacion->verificarAcceso();   
 
     $id = $_SESSION['email']['id_profesor'];
     $profeModel = new profeModel($pdo);

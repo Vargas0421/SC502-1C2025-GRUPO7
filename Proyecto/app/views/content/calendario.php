@@ -14,11 +14,11 @@
 $titulo = "Calendario"; 
 require_once('header/headerIndex.php'); 
 require_once('../../config/config.php'); 
-require_once('../../controllers/VerificacionController.php'); 
 require_once('../../models/calendarioModel.php');
+require_once('../../controllers/VerificacionController.php');
+    $verificacion = new VerificacionController();
+    $verificacion->verificarAcceso();   
 
-$verificacion = new VerificacionController();
-$verificacion->verificarSesion();
 
 $id_profesor = $_SESSION['email']['id_profesor'] ?? null;
 

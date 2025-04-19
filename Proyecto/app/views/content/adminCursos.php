@@ -18,11 +18,10 @@
     require_once('header/headerIndex.php');
     require_once('../../models/cursosModel.php');
     require_once('../../models/profeModel.php');
-
     require_once('../../config/config.php');
-
-
-
+    require_once('../../controllers/VerificacionController.php');
+    $verificacion = new VerificacionController();
+    $verificacion->verificarAcceso();   
     $cursoModel = new cursosModel($pdo);
     $cursos = $cursoModel->obtenerCursos();
     $profeModel = new profeModel($pdo);

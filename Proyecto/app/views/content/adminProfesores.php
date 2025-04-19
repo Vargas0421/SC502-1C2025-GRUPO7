@@ -22,9 +22,8 @@
     require_once('../../config/config.php');
     require_once('../../models/profeModel.php');
     require_once('../../controllers/VerificacionController.php');
-
     $verificacion = new VerificacionController();
-    $verificacion->verificarSesion();
+    $verificacion->verificarAcceso();   
     $profeModel = new profeModel($pdo);
     $profesores = $profeModel->obtenerProfesores();
     ?>

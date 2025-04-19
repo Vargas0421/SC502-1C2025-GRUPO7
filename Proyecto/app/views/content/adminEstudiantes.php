@@ -18,7 +18,7 @@ require_once('../../models/estudiantesModel.php');
 require_once('../../controllers/VerificacionController.php'); 
 
 $verificacion = new VerificacionController();
-$verificacion->verificarSesion();
+$verificacion->verificarAcceso();   
 $estudiantesModel = new EstudiantesModel($pdo);
 $estudiantes = $estudiantesModel->obtenerEstudiantes(); 
 $cursosEstudiantes = $estudiantesModel->obtenerCursos(); 

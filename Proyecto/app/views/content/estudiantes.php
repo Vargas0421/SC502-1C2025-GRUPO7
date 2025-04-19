@@ -17,10 +17,9 @@ $_SESSION['vista_anterior'] = 'app/../../../index.php?action=home';
 require_once('header/headerIndex.php'); 
 require_once('../../config/config.php'); 
 require_once('../../models/estudiantesModel.php'); 
-require_once('../../controllers/VerificacionController.php'); 
-
-$verificacion = new VerificacionController();
-$verificacion->verificarSesion();
+require_once('../../controllers/VerificacionController.php');
+    $verificacion = new VerificacionController();
+    $verificacion->verificarAcceso();   
 $estudiantesModel = new EstudiantesModel($pdo);
 $estudiantes = $estudiantesModel->obtenerEstudiantes(); 
 ?>
