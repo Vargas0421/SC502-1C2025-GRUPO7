@@ -6,27 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Profile</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link href="css/profile.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <?php 
-        $titulo = "Bienvenido a tu perfil"; 
-        require_once('header/headerIndex.php'); 
-        require_once('../../config/config.php');
-        require_once('../../models/UserModel.php');
-        require_once('../../models/profeModel.php');
-        require_once('../../controllers/VerificacionController.php');
+<?php 
+    $titulo = "Bienvenido a tu perfil"; 
 
-        $verificacion = new VerificacionController();
-        $verificacion->verificarSesion();
+    // Requiere primero la información del profesor antes de la verificación
+    require_once('../../config/config.php');
+    require_once('../../models/UserModel.php');
+    require_once('../../models/profeModel.php');
+    require_once('../../controllers/VerificacionController.php');
+    
+    // Verificar la sesión antes de obtener datos del profesor
+    $verificacion = new VerificacionController();
+    $verificacion->verificarSesion();  
 
-        $id = $_SESSION['email']['id_profesor'];
-        $profeModel = new profeModel($pdo);
-        $direccion = $profeModel->obtenerDireccionId($id);
-        $infoProfesor = $profeModel->obtenerProfesorPorId($id);
-    ?>
+    $id = $_SESSION['email']['id_profesor'];
+    $profeModel = new profeModel($pdo);
+    $infoProfesor = $profeModel->obtenerProfesorPorId($id); // Obtener info del profesor
+    $direccion = $profeModel->obtenerDireccionId($id); // Obtener dirección del profesor
+    
+    // Luego, verificar el rol de este profesor
+    if ((int) htmlspecialchars($infoProfesor['rol_id']) === 1) {
+        $_SESSION['vista_anterior'] = 'app/../../../index.php?action=adminHome';
+    } else {
+        $_SESSION['vista_anterior'] = 'app/../../../index.php?action=home';
+    }
+    require_once('header/headerIndex.php');
+?>
+
     <!-- Contenido principal -->
     <div class="bg-light min-vh-100 d-flex align-items-center">
         <div class="container py-5">
@@ -39,7 +49,7 @@
                         </div>
                         <?php 
                             echo '<h3 class="mt-3 mb-1">' . htmlspecialchars($_SESSION['email']['nombre']) .' '. htmlspecialchars($_SESSION['email']['apellido']) . '</h3>';
-                            echo ' <p class="text-white mb-3">' . htmlspecialchars($_SESSION['email']['puesto']) .'</p>';
+                            echo ' <p class="text-white mb-3">' . htmlspecialchars($_SESSION['email']['puesto']) . var_dump(htmlspecialchars($infoProfesor['rol_id'])) .'</p>';
                         ?>
                     </div>
 
