@@ -6,11 +6,27 @@ class gestionEstudianteController {
         $this->pdo = $pdo;
     }
     public function agregarEstudiante() {
-        if (isset($_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['password'], $_POST['telefono'], $_POST['calle'], $_POST['ciudad'], $_POST['estado'], $_POST['codigo_postal'])) {
+        if (isset($_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['password'], $_POST['telefono'], 
+        $_POST['calle'], $_POST['ciudad'], $_POST['estado'], $_POST['codigo_postal'])) {
+
+            $email = $_POST['email'];
+            $estudiantesModel = new estudiantesModel($this->pdo);
+            $estudiantes = $estudiantesModel->obtenerEstudiantes();
+            // Verifica el email
+            foreach ($estudiantes as $estudiante) {
+                if ($estudiante['email'] === $email) {
+                    header('Location: views/content/adminEstudiantes.php?errorEmailIdentico');
+                    exit();
+                }
+            }
             $estudiantesModel = new estudiantesModel($this->pdo);
             $resultado = $estudiantesModel->agregarEstudiantes($_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['password'], $_POST['telefono'], $_POST['calle'], $_POST['ciudad'], $_POST['estado'], $_POST['codigo_postal']);
-
-            header('Location: views/content/adminEstudiantes.php');
+            if ($resultado) {
+                header('Location: views/content/adminEstudiantes.php?exitoAgregarEstudiante');
+            } else {
+                header('Location: views/content/adminEstudiantes.php?errorAgregarEstudiante');
+            }
+           
             exit();
         }
     }
@@ -30,7 +46,11 @@ class gestionEstudianteController {
             $estudiantesModel = new estudiantesModel($this->pdo);
             $resultado = $estudiantesModel->eliminarEstudiante($_POST['id_estudiante']);
 
-            header("Location: views/content/adminEstudiantes.php");
+            if ($resultado) {
+                header('Location: views/content/adminEstudiantes.php?exitoEliminarEstudiante');
+            } else {
+                header('Location: views/content/adminEstudiantes.php?errorEliminarEstudiante');
+            }
             exit();
         }
     }

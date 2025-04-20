@@ -17,6 +17,17 @@ $salarioActual = $salarioActual[0];
 
 $Profesores = new profeModel($pdo);
 $listaProfesores = $Profesores->obtenerProfesores();
+
+// Mensajes para la gestion de salarios
+$mensaje = "";
+$tipoAlerta = "";
+if (isset($_GET['exitoCambiarSalario'])) {
+    $mensaje = "El salario fue actualizado con exito";
+    $tipoAlerta = "success";
+} elseif (isset($_GET['errorCambiarSalario'])) {
+    $mensaje = "Hubo problemas al actualizar el salario";
+    $tipoAlerta = "warning";
+}
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +65,18 @@ $listaProfesores = $Profesores->obtenerProfesores();
                 </div>
                 <button type="submit" class="btn btn-primary mt-2">Actualizar Salario</button>
             </form>
+               
+            <!-- Mensajes -->
+            <?php if (!empty($mensaje)): ?>
+                <div class="container mt-3">
+                    <div class="alert alert-<?= $tipoAlerta ?> alert-dismissible fade show" role="alert">
+                        <?= $mensaje ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            <?php endif; ?>
 
             <?php if (!empty($salarios)): ?>
                 <h3 class="mb-4">Historial Salario</h3>

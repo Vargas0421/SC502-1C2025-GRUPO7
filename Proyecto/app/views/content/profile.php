@@ -67,8 +67,8 @@
                 <div class="col-12 col-md-10 col-lg-8 mb-4">
                     <div class="profile-header text-center mb-4">
                         <div class="position-relative d-inline-block">
-                            <img src="https://randomuser.me/api/portraits/men/40.jpg" class="rounded-circle profile-pic"
-                                alt="Profile Picture">
+                            <img src="../Images/6522516.png" class="rounded-circle profile-pic"
+                                alt="Profile Picture" style="width: 170px; height: 170px;">
                         </div>
                         <?php
                         echo '<h3 class="mt-3 mb-1">' . htmlspecialchars($infoProfesor['nombre']) . ' ' . htmlspecialchars($infoProfesor['apellido']) . '</h3>';

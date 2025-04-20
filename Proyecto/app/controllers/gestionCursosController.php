@@ -7,16 +7,17 @@ class gestionCursosController
     {
         $this->pdo = $pdo;
     }
-    public function agregarCurso()
-    {
+    public function agregarCurso() {
         if (isset($_POST['nombre'], $_POST['descripcion'], $_POST['diaSemana'], $_POST['horaInicio'], $_POST['horaFin'], $_POST['id_profesor'],)) {
             $cursosModel = new cursosModel($this->pdo);
             $resultado = $cursosModel->agregarCurso($_POST['nombre'], $_POST['descripcion'], $_POST['diaSemana'], $_POST['horaInicio'], $_POST['horaFin'], $_POST['id_profesor'],);
-
-            header('Location: views/content/adminCursos.php');
+            if ($resultado) {
+                header('Location: views/content/adminCursos.php?exitoAgregarCurso');
+            } else {
+                header('Location: views/content/adminCursos.php?errorAgregarCurso');
+            }
             exit();
         }
-        echo "No llego";
     }
 
     public function editarCurso()
@@ -37,8 +38,11 @@ class gestionCursosController
         if (isset($_POST['id_curso'])) {
             $cursoModel = new cursosModel($this->pdo);
             $resultado = $cursoModel->eliminarCurso($_POST['id_curso']);
-
-            header("Location: views/content/adminCursos.php");
+            if ($resultado) {
+                header("Location: views/content/adminCursos.php?exitoEliminarCurso");
+            } else {
+                header("Location: views/content/adminCursos.php?errorEliminarCurso");
+            }
             exit();
         }
     }
@@ -76,9 +80,11 @@ class gestionCursosController
                 $horaInicio,
                 $horaFin
             );
-
-            // Podés validar $resultado si querés mostrar un error si algo falla
-            header("Location: views/content/adminVistacurso.php?id=" . $_POST['id_curso']);
+            if ($resultado) {
+                header("Location: views/content/adminVistacurso.php?id=" . $_POST['id_curso'] . "&exitoEditar");
+            } else {
+                header("Location: views/content/adminVistacurso.php?id=" . $_POST['id_curso'] . "&errorEditar");
+            }
             exit();
         } else {
             // Manejo de error si faltan datos

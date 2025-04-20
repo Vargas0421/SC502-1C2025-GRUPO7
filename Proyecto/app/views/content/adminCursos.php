@@ -26,10 +26,39 @@
     $cursos = $cursoModel->obtenerCursos();
     $profeModel = new profeModel($pdo);
     $profesores = $profeModel->obtenerProfesores();
+
+    $mensaje = "";
+    $tipoAlerta = "";
+    if (isset($_GET['exitoAgregarCurso'])) {
+        $mensaje = "El curso fue agregado con exito";
+        $tipoAlerta = "success";
+    } elseif (isset($_GET['errorAgregarCurso'])) {
+        $mensaje = "Hubo problemas al agregar el curso";
+        $tipoAlerta = "danger";
+    } elseif (isset($_GET['exitoEliminarCurso'])) {
+        $mensaje = "El curso fue eliminado con exito";
+        $tipoAlerta = "success";
+    } elseif (isset($_GET['errorEliminarCurso'])) {
+        $mensaje = "Hubo problemas al eliminar el curso";
+        $tipoAlerta = "danger";
+    } 
     ?>
 
     <div class="container py-5">
         <h1 class="text-center mb-4">Listado de cursos</h1>
+
+        <!-- Mensajes -->
+        <?php if (!empty($mensaje)): ?>
+            <div class="container mt-3">
+                <div class="alert alert-<?= $tipoAlerta ?> alert-dismissible fade show" role="alert">
+                    <?= $mensaje ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        <?php endif; ?>
+
         <div class="row" id="profesores-container">
             <?php foreach ($cursos as $curso): ?>
                 <div class="col-md-4 d-flex align-items-stretch mb-4">

@@ -12,6 +12,7 @@
 <body>
 <?php 
 $titulo = "Calendario"; 
+$_SESSION['vista_anterior'] = 'app/../../../index.php?action=home';
 require_once('header/headerIndex.php'); 
 require_once('../../config/config.php'); 
 require_once('../../models/calendarioModel.php');
