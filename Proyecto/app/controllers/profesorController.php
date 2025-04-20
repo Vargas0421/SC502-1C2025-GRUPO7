@@ -9,21 +9,26 @@ class ProfesorController {
         if (isset($_POST['id_profesor'], $_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['puesto'])) {
             $profeModel = new profeModel($this->pdo);
             $resultado = $profeModel->updateProfesor($_POST['id_profesor'], $_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['puesto']);
-
-            header('Location: views/content/profile.php');
+            
+            if ($resultado) {
+                header('Location: views/content/profile.php?exitoProfesor');
+            } else {
+                header('Location: views/content/profile.php?errorProfesor');
+            }
             exit();
  
         }
     }
-   
-    
     public function actualizarDireccion() {
         if (isset($_POST['id_profesor'], $_POST['calle'], $_POST['ciudad'], $_POST['estado'], $_POST['codigo_postal'])) {
             $profeModel = new profeModel($this->pdo);
     
             $resultado = $profeModel->updateDireccion($_POST['id_profesor'], $_POST['calle'],$_POST['ciudad'], $_POST['estado'], $_POST['codigo_postal']);
-    
-            header('Location: views/content/profile.php');
+            if ($resultado) {
+                header('Location: views/content/profile.php?exitoDireccion');
+            } else {
+                header('Location: views/content/profile.php?errorDireccion');
+            }
             exit();
         }
     }
@@ -37,13 +42,11 @@ class ProfesorController {
                 $profeModel = new profeModel($this->pdo);
                 $resultado = $profeModel->updatePassword($_POST['id_profesor'], $NuevaPassword);
                 if ($resultado) {
-                    header('Location: views/content/profile.php?exito=1');
-                } else {
-                    header('Location: views/content/profile.php?error=actualizacion');
+                    header('Location: views/content/profile.php?exitoContraseña');
                 }
             } else {
                 echo "No son iguales";
-                header('Location: views/content/profile.php?error=coincidencia');
+                header('Location: views/content/profile.php?errorCoincidencia');
             }
             exit();
         }
