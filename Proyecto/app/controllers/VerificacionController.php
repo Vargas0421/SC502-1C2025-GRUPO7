@@ -21,9 +21,11 @@ class VerificacionController
         'views/content/estudiantes.php' => [1, 2],
         'views/content/gestionEstudiante.php' => [1],
         'views/content/gestionSalario.php' => [1],
-        'views/content/informacionCurso.php' => [1],
+        'views/content/informacionCurso.php' => [1, 2],
         'views/content/profile.php' => [1, 2],
         'views/content/salario.php' => [1, 2],
+        'views/content/clases.php' => [1, 2],
+
     ];
 
     public function __construct()

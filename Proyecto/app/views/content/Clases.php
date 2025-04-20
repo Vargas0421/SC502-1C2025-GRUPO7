@@ -15,7 +15,7 @@
     require_once('header/headerIndex.php');
     require_once('../../config/config.php');
     require_once('../../models/UserModel.php');
-    require_once('../../models/cursosModel.php');
+    require_once('../../models/cursosModel.php'); 
     require_once('../../controllers/VerificacionController.php');
     $verificacion = new VerificacionController();
     $verificacion->verificarAcceso();

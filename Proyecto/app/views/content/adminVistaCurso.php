@@ -112,7 +112,7 @@ if (isset($_GET['id'])) {
                             required><?= htmlspecialchars($curso['descripcion']) ?></textarea>
                     </div>
                     <div>
-                    <label for="descripcion">Profe a cargo</label>
+                    <label for="descripcion">Profesor a cargo</label>
                     <select name="id_profesor" id="id_profesor" class="form-control" required>
                         <?php foreach ($profesores as $profesor): ?>
                             <option value="<?= htmlspecialchars($profesor['id_profesor']) ?>"
