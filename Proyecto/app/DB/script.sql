@@ -174,16 +174,15 @@ INSERT INTO Direccion (calle, ciudad, estado, codigo_postal) VALUES
 ('Via Azul 7', 'San Ramón', 'Alajuela', '20201');
 
 INSERT INTO Profesores (nombre, apellido, email, password, id_direccion, telefono, puesto, rol_id) VALUES
-('Carlos', 'Fernández', 'cfernandez@gmail.com', '$2y$10$F5Exn1Dc44LAv9oRIuiRi.MFND/uY67A2gkCIXWNpFY...
-', 1, '8765-4321', 'Profesor de Matemáticas', 2),
-('María', 'Gómez', 'mgomez@gmail.com', '$2y$10$F5Exn1Dc44LAv9oRIuiRi.MFND/uY67A2gkCIXWNpFY...
-', 2, '6012-3456', 'Profesor de Física', 2),
-('Pedro', 'Ramírez', 'pramirez@gmail.com', '$2y$10$F5Exn1Dc44LAv9oRIuiRi.MFND/uY67A2gkCIXWNpFY...
-', 3, '7070-7070', 'Profesor de Química', 2),
-('Lucía', 'Alvarado', 'lalvarado@gmail.com', '$2y$10$F5Exn1Dc44LAv9oRIuiRi.MFND/uY67A2gkCIXWNpFY...
-', 4, '6262-6262', 'Profesora de Historia', 2),
-('Andrés', 'Chaves', 'achaves@gmail.com', '$2y$10$F5Exn1Dc44LAv9oRIuiRi.MFND/uY67A2gkCIXWNpFY...
-', 5, '7171-7171', 'Profesor de Informática', 1);
+('Carlos', 'Fernández', 'cfernandez@gmail.com', '$2y$10$fa4iQQPHodfNgMU6DzJkCOl/f.d8aenF4JHZUQU6FTrdeY.TUT12u',
+ 1, '8765-4321', 'Profesor de Matemáticas', 2),
+('María', 'Gómez', 'mgomez@gmail.com', '$2y$10$68jJ2551dXGPZUA9inK/3ufAgEnkqU9MX/ybPxaWXzFwDynkB.ozS',
+ 2, '6012-3456', 'Profesor de Física', 2),
+('Pedro', 'Ramírez', 'pramirez@gmail.com', '$2y$10$F5Exn1Dc44LAv9oRIuiRi.MFND/uY67A2gkCIXWNpFYFJffEIg9mu'
+ , 3, '7070-7070', 'Profesor de Química', 2),
+('Lucía', 'Alvarado', 'lalvarado@gmail.com', '$2y$10$F5Exn1Dc44LAv9oRIuiRi.MFND/uY67A2gkCIXWNpFYFJffEIg9mu',
+ 4, '6262-6262', 'Profesora de Historia', 2),
+('Andrés', 'Chaves', 'achaves@gmail.com', '$2y$10$F5Exn1Dc44LAv9oRIuiRi.MFND/uY67A2gkCIXWNpFYFJffEIg9mu', 5, '7171-7171', 'Profesor de Informática', 1);
 
 INSERT INTO Estudiantes (nombre, apellido, email, password, id_direccion, telefono, rol_id) VALUES
 ('Juan', 'Pérez', 'juanp@gmail.com', 'est123', 1, '7111-2222', 3),

@@ -20,7 +20,7 @@ class gestionEstudianteController {
             $estudiantesModel = new estudiantesModel($this->pdo);
             $resultado = $estudiantesModel->agregarCursoEstudiante($_POST['id_estudiante'], $_POST['id_curso']);
 
-            header("Location: views/content/adminEstudiantes.php");
+            header("Location: views/content/gestionEstudiante.php?id=" . $_POST['id_estudiante']);
             exit();
         } 
     }
@@ -39,7 +39,7 @@ class gestionEstudianteController {
             if (isset($_POST['id_estudiante'], $_POST['id_curso'])) {
             $estudiantesModel = new estudiantesModel($this->pdo);
             $resultado = $estudiantesModel->desinscribirEstudiante($_POST['id_estudiante'], $_POST['id_curso']);
-            header("Location: views/content/adminEstudiantes.php");
+            header("Location: views/content/gestionEstudiante.php?id=" . $_POST['id_estudiante']);
             exit();
         }
     }

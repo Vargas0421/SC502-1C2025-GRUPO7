@@ -26,10 +26,43 @@
     $verificacion->verificarAcceso();   
     $profeModel = new profeModel($pdo);
     $profesores = $profeModel->obtenerProfesores();
+    
+    // Mensajes para la gestion de profesor
+    $mensaje = "";
+    $tipoAlerta = "";
+    if (isset($_GET['exitoAgregarProfesor'])) {
+        $mensaje = "El profesor fue agregado con exito";
+        $tipoAlerta = "success";
+    } elseif (isset($_GET['errorAgregarProfesor'])) {
+        $mensaje = "Hubo problemas al agregar el profesor";
+        $tipoAlerta = "warning";
+    } elseif (isset($_GET['errorEmailIdentico'])) {
+        $mensaje = "El email existe en el sistema";
+        $tipoAlerta = "danger";
+    } elseif (isset($_GET['exitoEliminarProfesor'])) {
+        $mensaje = "El profesor fue eliminado con exito";
+        $tipoAlerta = "success";
+    } elseif (isset($_GET['errorEliminarProfesor'])) {
+        $mensaje = "Hubo problemas al ingresar el profesor";
+        $tipoAlerta = "danger";
+    }
     ?>
 
     <div class="container py-5">
         <h1 class="text-center mb-4">Listado de usuarios</h1>
+        
+        <!-- Mensajes -->
+        <?php if (!empty($mensaje)): ?>
+            <div class="container mt-3">
+                <div class="alert alert-<?= $tipoAlerta ?> alert-dismissible fade show" role="alert">
+                    <?= $mensaje ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        <?php endif; ?>
+
         <div class="row" id="profesores-container">
             <?php foreach ($profesores as $profesor): ?>
                 <div class="col-md-4 d-flex align-items-stretch mb-4">
