@@ -19,15 +19,12 @@
     require_once('../../models/UserModel.php');
     require_once('../../models/profeModel.php');
     require_once('../../controllers/VerificacionController.php');
-
-    // Verificar la sesión antes de obtener datos del profesor
     $verificacion = new VerificacionController();
-    $verificacion->verificarSesion();
-
+    $verificacion->verificarAcceso();   
     $id = $_SESSION['email']['id_profesor'];
     $profeModel = new profeModel($pdo);
-    $infoProfesor = $profeModel->obtenerProfesorPorId($id); // Obtener info del profesor
-    $direccion = $profeModel->obtenerDireccionId($id); // Obtener dirección del profesor
+    $infoProfesor = $profeModel->obtenerProfesorPorId($id); 
+    $direccion = $profeModel->obtenerDireccionId($id); 
     
     // Luego, verificar el rol de este profesor
     if ((int) htmlspecialchars($infoProfesor['rol_id']) === 1) {
@@ -36,6 +33,30 @@
         $_SESSION['vista_anterior'] = 'app/../../../index.php?action=home';
     }
     require_once('header/headerIndex.php');
+
+    // Mensajes de actualizar generañ
+    $mensaje = "";
+    $tipoAlerta = "";
+    if (isset($_GET['exitoContraseña'])) {
+        $mensaje = "Contraseña actualizada correctamente.";
+        $tipoAlerta = "success";
+    } elseif (isset($_GET['errorCoincidencia'])) {
+        $mensaje = "Las contraseñas no coinciden.";
+        $tipoAlerta = "warning";
+    } elseif (isset($_GET['exitoProfesor'])) {
+        $mensaje = "Datos personales actualizados correctamente.";
+        $tipoAlerta = "success";
+    } elseif (isset($_GET['errorProfesor'])) {
+        $mensaje = "Ocurrió un error al actualizar los datos personales.";
+        $tipoAlerta = "danger";
+    } elseif (isset($_GET['exitoDireccion'])) {
+        $mensaje = "Dirección actualizada correctamente.";
+        $tipoAlerta = "success";
+    } elseif (isset($_GET['errorDireccion'])) {
+        $mensaje = "Ocurrió un error al actualizar la dirección.";
+        $tipoAlerta = "danger";
+    }
+
     ?>
 
 
@@ -54,6 +75,17 @@
                         echo ' <p class="text-white mb-3">' . htmlspecialchars($infoProfesor['puesto']) . '</p>';
                         ?>
                     </div>
+                    
+                    <?php if (!empty($mensaje)): ?>
+                        <div class="container mt-3">
+                            <div class="alert alert-<?= $tipoAlerta ?> alert-dismissible fade show" role="alert">
+                                <?= $mensaje ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    <?php endif; ?>
 
                     <!-- Main Content -->
                     <div class="card border-0 shadow-sm">
@@ -122,7 +154,6 @@
                                             </div>
                                         </form>
 
-
                                         <!-- Calle, ciudad, estado, código postal -->
                                         <form action="../../index.php?action=actualizarDireccion" method="POST"
                                             id="updateDireccion">
@@ -168,6 +199,8 @@
             </div>
         </div>
     </div>
+
+    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

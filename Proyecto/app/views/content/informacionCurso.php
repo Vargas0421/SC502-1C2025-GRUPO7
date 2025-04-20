@@ -2,30 +2,31 @@
 require_once('../../config/config.php');
 require_once('../../models/cursosModel.php');
 require_once('../../controllers/VerificacionController.php');
-
 $verificacion = new VerificacionController();
-$verificacion->verificarSesion();
-$titulo = "Cursos"; 
+$verificacion->verificarAcceso();
+$titulo = "Cursos";
 $_SESSION['vista_anterior'] = 'Clases.php';
 $cursoEncontrado = null;
 // Recibe el id
 if (isset($_GET['id'])) {
-    $idCurso = $_GET['id']; 
-    $cursosModel = new cursosModel($pdo);
-    $cursoEncontrado = $cursosModel->obtenerCursoFullPorId($idCurso);
-    $estudianteCurso = $cursosModel->obtenerEstudiantesPorCurso($idCurso);
+  $idCurso = $_GET['id'];
+  $cursosModel = new cursosModel($pdo);
+  $cursoEncontrado = $cursosModel->obtenerCursoFullPorId($idCurso);
+  $estudianteCurso = $cursosModel->obtenerEstudiantesPorCurso($idCurso);
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
+
 <body>
-    <?php require_once('header/headerIndex.php'); ?>
+  <?php require_once('header/headerIndex.php'); ?>
 
   <main role="main" class="container mt-5 pt-5">
     <?php if ($cursoEncontrado): ?>
@@ -46,9 +47,9 @@ if (isset($_GET['id'])) {
             </div>
             <div class="card-body">
               <p class="mb-1"><strong>Nombre: </strong> <?= htmlspecialchars($cursoEncontrado['profesor']) ?></p>
-            </div>  
+            </div>
             <div class="card-footer">
-                <strong>Contactos: </strong>
+              <strong>Contactos: </strong>
               <p class="mb-0"><strong>Email:</strong> <?= htmlspecialchars($cursoEncontrado['email']) ?></p>
               <p class="mb-0"><strong>Teléfono:</strong> <?= htmlspecialchars($cursoEncontrado['telefono']) ?></p>
             </div>
@@ -61,7 +62,9 @@ if (isset($_GET['id'])) {
               <strong>Horario</strong>
             </div>
             <div class="card-body">
-            <p class="mb-0"><?= htmlspecialchars($cursoEncontrado['horario']) ?>  (<?= htmlspecialchars($cursoEncontrado['hora_inicio']) ?> - <?= htmlspecialchars($cursoEncontrado['hora_fin']) ?> )</p>
+              <p class="mb-0"><?= htmlspecialchars($cursoEncontrado['horario']) ?>
+                (<?= htmlspecialchars($cursoEncontrado['hora_inicio']) ?> -
+                <?= htmlspecialchars($cursoEncontrado['hora_fin']) ?> )</p>
             </div>
           </div>
         </div>
@@ -84,7 +87,8 @@ if (isset($_GET['id'])) {
                     <tbody>
                       <?php foreach ($estudianteCurso as $estudiante): ?>
                         <tr>
-                          <td><?= htmlspecialchars($estudiante['nombre']) . ' ' . htmlspecialchars($estudiante['apellido']) ?></td>
+                          <td><?= htmlspecialchars($estudiante['nombre']) . ' ' . htmlspecialchars($estudiante['apellido']) ?>
+                          </td>
                           <td><?= htmlspecialchars($estudiante['email']) ?></td>
                         </tr>
                       <?php endforeach; ?>
@@ -112,4 +116,5 @@ if (isset($_GET['id'])) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
+
 </html>

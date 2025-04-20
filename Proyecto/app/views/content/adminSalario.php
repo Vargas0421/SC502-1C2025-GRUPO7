@@ -7,7 +7,7 @@
     require_once('../../models/profeModel.php');
     require_once('../../controllers/VerificacionController.php');
     $verificacion = new VerificacionController();
-    $verificacion->verificarSesion();
+    $verificacion->verificarAcceso();   
     
     $id_profesor = $_SESSION['email']['id_profesor'];
       $salarioModel = new salarioModel($pdo);

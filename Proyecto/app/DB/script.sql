@@ -168,11 +168,6 @@ INSERT INTO Profesores (nombre, apellido, email, password, id_direccion, telefon
 ('Brandon', 'Vargas', 'Bvargas@mail.com', '$2y$10$XR5iv7bWJmHN9Sdx2ZHcfu7MfFiGeJCq2K2sX6wYmI1YH.uyYVMAC', 2, "8369-0296", 'Desarrollador Full Stack'); -- a
 
 
--- $2y$10$l72HvHwGi/56GRiLBXMdles5SnrTet4voyXRpW4mDU.Z2Vo62tUAC
--- $2y$10$jwYhRg0q/CUDLINUIyMK9uHHM0TzjBMxJ0CijmgwFjuwqJuzd5BHy
--- $2y$10$doMJlJNU/XP3nraYY8M2tee3ElzpzKVMbkqfCMxQNkmDDIgRhoC/q
-
-
 
 INSERT INTO Estudiantes (nombre, apellido, email, password, id_direccion, telefono) VALUES
 ('Juan', 'Pérez', 'jperez@gmail.com', 'estudiante789', 1, "7111-2222"),

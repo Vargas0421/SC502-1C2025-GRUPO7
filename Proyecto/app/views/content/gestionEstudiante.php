@@ -5,8 +5,9 @@ $_SESSION['vista_anterior'] = 'adminEstudiantes.php';
 require_once('header/headerIndex.php'); 
 require_once('../../config/config.php');
 require_once('../../models/estudiantesModel.php');
-
-
+require_once('../../controllers/VerificacionController.php');
+$verificacion = new VerificacionController();
+$verificacion->verificarAcceso();   
 $idEstudiante = $_GET['id'];
 $estudiantesModel = new EstudiantesModel($pdo);
 $cursos = $estudiantesModel->CursosNoIngresados($idEstudiante);

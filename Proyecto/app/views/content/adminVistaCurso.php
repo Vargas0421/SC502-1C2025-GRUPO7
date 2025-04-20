@@ -3,10 +3,8 @@ require_once('../../config/config.php');
 require_once('../../models/cursosModel.php');
 require_once('../../models/profeModel.php');
 require_once('../../controllers/VerificacionController.php');
-
-$verificacion = new VerificacionController();
-$verificacion->verificarSesion();
-
+    $verificacion = new VerificacionController();
+    $verificacion->verificarAcceso();   
 if (isset($_GET['id'])) {
     $id_curso = $_GET['id']; 
     $profes = new profeModel($pdo);
