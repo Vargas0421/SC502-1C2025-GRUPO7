@@ -1,13 +1,34 @@
 <?php
 class VerificacionController {
-    private $acceso;
+    private $acceso = [
+        // Acciones basadas en "action"
+        'adminHome'     => [1],
+        'home'          => [1, 2],
+        'dashboard'     => [1, 2],
+        'usuarioHome'   => [2],
+
+        // Rutas de archivos PHP directos
+        'views/content/adminEstudiantes.php'    => [1],
+        'views/content/adminCurso.php'          => [1],
+        'views/content/adminDashboard.php'      => [1],
+        'views/content/adminProfesores.php'     => [1],
+        'views/content/adminSalario.php'        => [1],
+        'views/content/adminVistaCurso.php'     => [1],
+        'views/content/adminVistaProfesor.php'  => [1],
+        'views/content/calendario.php'          => [1, 2],
+        'views/content/dashboard.php'           => [1, 2],
+        'views/content/estudiantes.php'         => [1, 2],
+        'views/content/gestionEstudiante.php'   => [1],
+        'views/content/gestionSalario.php'      => [1],
+        'views/content/informacionCurso.php'    => [1],
+        'views/content/profile.php'             => [1, 2],
+        'views/content/salario.php'             => [1, 2],
+    ];
 
     public function __construct() {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-
-        $this->accesoPorVista = require '../../config/access_config.php';
     }
 
     public function verificarAcceso() {
@@ -17,8 +38,6 @@ class VerificacionController {
         }
 
         $rolUsuario = $_SESSION['email']['rol_id'];
-
-        // Detectar si accede por ?action=
         $accion = $_GET['action'] ?? null;
 
         if ($accion && isset($this->acceso[$accion])) {
@@ -27,9 +46,9 @@ class VerificacionController {
                 exit();
             }
         } else {
-            // Acceso por archivo directo
+            // Limpiar la ruta a formato relativo
             $rutaActual = $_SERVER['PHP_SELF']; // ej: /Proyecto/app/views/content/adminEstudiantes.php
-            $rutaRelativa = str_replace('/Proyectos/SC502-1C2025-GRUPO7/Proyecto/app/', '', $rutaActual);
+            $rutaRelativa = ltrim(str_replace('/Proyectos/SC502-1C2025-GRUPO7/Proyecto/app/', '', $rutaActual), '/');
 
             if (isset($this->acceso[$rutaRelativa])) {
                 if (!in_array($rolUsuario, $this->acceso[$rutaRelativa])) {
