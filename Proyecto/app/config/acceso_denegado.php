@@ -47,7 +47,7 @@
         }
         .emoji {
             font-size: 50px;
-            margin-bottom: 10px;
+            margin-bottom: 10px;         
         }
     </style>
 </head>
@@ -57,7 +57,7 @@
         <h1>Acceso Denegado</h1>
         <p>No tenés permisos para acceder a esta página.</p>
         <button class="btn" onclick="history.back()">🔙 Volver atrás</button>
-        <a class="btn" href="index.php">🏠 Ir al inicio</a>
+        <a class="btn" href="../index.php?action=logout">🏠 Ir al log in</a>
     </div>
 </body>
 </html>
