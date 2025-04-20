@@ -19,7 +19,7 @@ class gestionProfesorController {
             $email = $_POST['email'];
             $profeModel = new profeModel($this->pdo);
 
-            // Verificamos el email
+            // Verifica el email
             $profesores = $profeModel->obtenerTodosProfesores();
             foreach ($profesores as $profesor) {
                 if ($profesor['email'] === $email) {

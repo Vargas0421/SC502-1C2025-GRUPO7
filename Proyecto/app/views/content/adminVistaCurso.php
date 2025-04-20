@@ -20,10 +20,21 @@ if (isset($_GET['id'])) {
         echo "El curso no existe o no se encontró.";
         exit();
     }
-} else {
-    echo "No se ha seleccionado un curso.";
-    exit();
-}
+    } else {
+        echo "No se ha seleccionado un curso.";
+        exit();
+    }
+
+    $mensaje = "";
+    $tipoAlerta = "";
+    if (isset($_GET['exitoEditar'])) {
+        $mensaje = "El curso fue editado con exito";
+        $tipoAlerta = "success";
+    } elseif (isset($_GET['exitoEditar'])) {
+        $mensaje = "Hubo problemas al editar el curso";
+        $tipoAlerta = "danger";
+    }  
+
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +69,19 @@ if (isset($_GET['id'])) {
 
     <div class="container py-5">
         <h1 class="text-center mb-4">Curso</h1>
+
+        <!-- Mensajes -->
+        <?php if (!empty($mensaje)): ?>
+            <div class="container mt-3">
+                <div class="alert alert-<?= $tipoAlerta ?> alert-dismissible fade show" role="alert">
+                    <?= $mensaje ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        <?php endif; ?>
+
 
         <?php if ($curso): ?>
             <div class="card shadow-sm">

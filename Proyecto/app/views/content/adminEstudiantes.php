@@ -22,12 +22,45 @@ $verificacion->verificarAcceso();
 $estudiantesModel = new EstudiantesModel($pdo);
 $estudiantes = $estudiantesModel->obtenerEstudiantes(); 
 $cursosEstudiantes = $estudiantesModel->obtenerCursos(); 
+
+// Mensajes para la gestion de estudiantes
+$mensaje = "";
+$tipoAlerta = "";
+if (isset($_GET['exitoAgregarEstudiante'])) {
+    $mensaje = "El estudiante fue agregado con exito";
+    $tipoAlerta = "success";
+} elseif (isset($_GET['errorAgregarEstudiante'])) {
+    $mensaje = "Hubo problemas al agregar el profesor";
+    $tipoAlerta = "warning";
+} elseif (isset($_GET['errorEmailIdentico'])) {
+    $mensaje = "El email existe en el sistema";
+    $tipoAlerta = "danger";
+} elseif (isset($_GET['exitoEliminarEstudiante'])) {
+    $mensaje = "El estudiante fue eliminado con exito";
+    $tipoAlerta = "success";
+} elseif (isset($_GET['errorEliminarEstudiante'])) {
+    $mensaje = "Hubo problemas al eliminar el estuidiante";
+    $tipoAlerta = "warning";
+} 
 ?>
 
 <div class="container">
     <div class="text-center mb-4">
         <p class="text-muted">Aquí puedes ver la información de todos los estudiantes.</p>
     </div>
+
+    <!-- Mensajes -->
+    <?php if (!empty($mensaje)): ?>
+            <div class="container mt-3">
+                <div class="alert alert-<?= $tipoAlerta ?> alert-dismissible fade show" role="alert">
+                    <?= $mensaje ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        <?php endif; ?>
+
     <div class="table-container">
         <table class="table table-hover">
             <thead>

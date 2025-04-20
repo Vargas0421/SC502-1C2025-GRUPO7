@@ -15,6 +15,7 @@ $cursosMatriculados = $estudiantesModel->obtenerCursosEstudiante($idEstudiante);
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $idCurso = $_GET['id']; 
 } 
+
 ?>
 
 <!DOCTYPE html>
