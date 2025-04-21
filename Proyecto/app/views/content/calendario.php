@@ -139,5 +139,7 @@ foreach ($eventos as $evento) {
         });
     });
 </script>
+<?php require_once('footer/footer.php'); ?>
+
 </body>
 </html>

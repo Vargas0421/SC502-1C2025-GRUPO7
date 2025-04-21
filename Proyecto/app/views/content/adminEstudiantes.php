@@ -148,11 +148,8 @@ if (isset($_GET['exitoAgregarEstudiante'])) {
     </div>
 </div>
 
-<footer class="text-muted text-center py-4 bg-dark">
-    <div class="container">
-        <p class="text-white">&copy; 2024 Álbum Bootstrap. Todos los derechos reservados.</p>
-    </div>
-</footer>
+<?php require_once('footer/footer.php'); ?>
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> 
