@@ -64,7 +64,7 @@ $salarioActual = $salarioActual[0];
       </table>
     </div>
   </div>
-
+  <?php require_once('footer/footer.php'); ?>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
