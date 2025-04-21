@@ -57,10 +57,7 @@
         </div>
     </main>
 
-    <footer class="container mt-5">
-        <p class="text-center">&copy; 2025 Universidad &middot; <a href="#">Privacidad</a> &middot; <a
-                href="#">Términos</a></p>
-    </footer>
+    <?php require_once('footer/footer.php'); ?>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>

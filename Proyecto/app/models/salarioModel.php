@@ -62,7 +62,7 @@ class salarioModel {
             ':salarioNuevo' => $salarioNuevo,
             ':id_profesor' => $idProfesor
         ]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return true;
     }
     
 }

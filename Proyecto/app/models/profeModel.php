@@ -132,7 +132,7 @@ class profeModel {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     public function obtenerProfesores() { 
-        $stmt = $this->pdo->prepare('SELECT * FROM profesores');
+        $stmt = $this->pdo->prepare("SELECT * FROM profesores WHERE rol_id = 2");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -141,6 +141,12 @@ class profeModel {
         $stmt->bindParam(':id_profesor', $id_profesor, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function obtenerTodosProfesores() { 
+        $stmt = $this->pdo->prepare("SELECT * FROM profesores");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 

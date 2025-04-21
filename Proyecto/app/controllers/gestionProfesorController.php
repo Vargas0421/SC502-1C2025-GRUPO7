@@ -16,6 +16,18 @@ class gestionProfesorController {
                 $_POST['calle'], $_POST['ciudad'], $_POST['estado'], $_POST['codigo_postal']
             )
         ) {
+            $email = $_POST['email'];
+            $profeModel = new profeModel($this->pdo);
+
+            // Verifica el email
+            $profesores = $profeModel->obtenerTodosProfesores();
+            foreach ($profesores as $profesor) {
+                if ($profesor['email'] === $email) {
+                    header('Location: views/content/adminProfesores.php?errorEmailIdentico');
+                    exit();
+                }
+            }
+
             // Encripta la contraseña
             $passwordEncriptada = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
@@ -35,9 +47,9 @@ class gestionProfesorController {
             );
     
             if ($resultado) {
-                header('Location: views/content/adminProfesores.php');
+                header('Location: views/content/adminProfesores.php?exitoAgregarProfesor');
             } else {
-                echo "Error al registrar el profesor.";
+                header('Location: views/content/adminProfesores.php?errorAgregarProfesor');
             }
             exit();
         } else {
@@ -45,15 +57,20 @@ class gestionProfesorController {
         }
     }
     
+    
 
     public function eliminarProfesor() {
         if (isset($_POST['id_profesor'])) {
             $profeModel = new profeModel($this->pdo);
             $resultado = $profeModel->eliminarProfesor($_POST['id_profesor']);
-
-            header("Location: views/content/adminProfesores.php");
+            if ($resultado) {
+                header('Location: views/content/adminProfesores.php?exitoEliminarProfesor');
+            } else {
+                header('Location: views/content/adminProfesores.php?errorEliminarProfesor');
+            }
+            
             exit();
-        }
+        } else {}
     }
 
     

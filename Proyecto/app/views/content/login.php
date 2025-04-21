@@ -36,6 +36,7 @@
             </div>
         </div>
     </div>
+    <?php require_once('footer/footer.php'); ?>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

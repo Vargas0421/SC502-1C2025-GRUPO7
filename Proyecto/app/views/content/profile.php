@@ -67,8 +67,8 @@
                 <div class="col-12 col-md-10 col-lg-8 mb-4">
                     <div class="profile-header text-center mb-4">
                         <div class="position-relative d-inline-block">
-                            <img src="https://randomuser.me/api/portraits/men/40.jpg" class="rounded-circle profile-pic"
-                                alt="Profile Picture">
+                            <img src="../Images/6522516.png" class="rounded-circle profile-pic"
+                                alt="Profile Picture" style="width: 170px; height: 170px;">
                         </div>
                         <?php
                         echo '<h3 class="mt-3 mb-1">' . htmlspecialchars($infoProfesor['nombre']) . ' ' . htmlspecialchars($infoProfesor['apellido']) . '</h3>';
@@ -200,7 +200,8 @@
         </div>
     </div>
 
-    
+    <?php require_once('footer/footer.php'); ?>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
